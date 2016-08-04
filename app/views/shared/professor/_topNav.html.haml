@@ -16,5 +16,5 @@
         %li
           %a{href: "#contact"} Contact
     .pull-right
-      - if current_student
+      - if current_professor
         Signed in: #{current_professor.email}#{link_to "Logout", destroy_professor_session_path, method: :delete}
