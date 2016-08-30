@@ -52,6 +52,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  #no_swf:true = don't include web-sockets-js for browsers without WebSockets support
+  # no_swf:true = don't include web-sockets-js for browsers without WebSockets support
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload, no_swf: true
 end

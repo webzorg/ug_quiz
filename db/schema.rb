@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725093710) do
+ActiveRecord::Schema.define(version: 20160830144023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "semester_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "student_id"
+    t.integer  "professor_id"
+    t.index ["professor_id"], name: "index_groups_on_professor_id", using: :btree
+    t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
+    t.index ["student_id"], name: "index_groups_on_student_id", using: :btree
+  end
 
   create_table "professors", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +40,17 @@ ActiveRecord::Schema.define(version: 20160725093710) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.integer  "professor_id"
     t.index ["email"], name: "index_professors_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "semesters", force: :cascade do |t|
+    t.integer  "year"
+    t.boolean  "academicterm"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -45,8 +66,16 @@ ActiveRecord::Schema.define(version: 20160725093710) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.integer  "group_id"
+    t.integer  "student_id"
     t.index ["email"], name: "index_students_on_email", unique: true, using: :btree
+    t.index ["group_id"], name: "index_students_on_group_id", using: :btree
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "groups", "professors"
+  add_foreign_key "groups", "semesters"
+  add_foreign_key "groups", "students"
+  add_foreign_key "students", "groups"
 end

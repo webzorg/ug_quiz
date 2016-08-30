@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :professors
   devise_for :students
 
-  namespace :professor do
+  resources :groups
+  resources :semesters
+
+  namespace :professors do
     get 'home/index'
     root 'home#index'
   end

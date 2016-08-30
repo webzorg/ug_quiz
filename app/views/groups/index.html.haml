@@ -1,0 +1,26 @@
+.page-header
+  = link_to new_group_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Group
+  %h1 Listing groups
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Semester
+        %th Professor
+        %th
+        %th
+        %th
+
+    %tbody
+      - @groups.each do |group|
+        %tr
+          %td= group.name
+          %td= group.semester.semester_name
+          %td= group.professor.name
+          %td= link_to 'Show', group
+          %td= link_to 'Edit', edit_group_path(group)
+          %td= link_to 'Destroy', group, data: { confirm: 'Are you sure?' }, method: :delete

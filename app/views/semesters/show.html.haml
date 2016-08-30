@@ -1,0 +1,14 @@
+.page-header
+  = link_to semesters_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_semester_path(@semester), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show semester
+
+%dl.dl-horizontal
+  %dt Year:
+  %dd= @semester.year
+  %dt Academic Term:
+  %dd= @semester.semester_name

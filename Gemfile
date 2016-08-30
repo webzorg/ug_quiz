@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rails-erd'
   gem 'rack-livereload'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'foreman'

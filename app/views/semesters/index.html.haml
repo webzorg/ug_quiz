@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_semester_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Semester
+  %h1 Listing semesters
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Year
+        %th Academic Term
+        %th
+        %th
+        %th
+
+    %tbody
+      - @semesters.each do |semester|
+        %tr
+          %td= semester.year
+          %td= semester.semester_name
+          %td= link_to 'Show', semester
+          %td= link_to 'Edit', edit_semester_path(semester)
+          %td= link_to 'Destroy', semester, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,0 +1,2 @@
+module Professors::HomeHelper
+end

@@ -14,7 +14,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
   %body
-    = render "shared/professor/topNav"
+    = render "shared/professors/topNav"
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

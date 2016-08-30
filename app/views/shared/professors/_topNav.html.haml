@@ -9,12 +9,12 @@
       %a.navbar-brand{href: "#"}=image_tag "logo.gif", id: "logo"
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
-          %a{href: "#"} Professor Home
         %li
-          %a{href: "#about"} About
+          =link_to 'Professors Home', professors_root_path
         %li
-          %a{href: "#contact"} Contact
+          =link_to 'Semesters', semesters_path
+        %li
+          =link_to 'Groups', groups_path
     .pull-right
       - if current_professor
         Signed in: #{current_professor.email}#{link_to "Logout", destroy_professor_session_path, method: :delete}
