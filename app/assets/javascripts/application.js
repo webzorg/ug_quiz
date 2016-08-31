@@ -13,5 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require select2
 //= require turbolinks
 //= require_tree .
+
+$( "#dropdown" ).select2({
+    theme: "bootstrap"
+});
+
+$(document).on('turbolinks:load', function() {
+  $("#include_students_in_group").select2();
+});

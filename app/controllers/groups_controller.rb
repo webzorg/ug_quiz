@@ -57,6 +57,6 @@ class GroupsController < Professors::ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def group_params
-    params.require(:group).permit(:name, :semester_id, :student_ids)
+    params.require(:group).permit(:name, :semester_id, student_ids: [])
   end
 end
