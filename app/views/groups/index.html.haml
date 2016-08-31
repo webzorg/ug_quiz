@@ -19,7 +19,7 @@
       - @groups.each do |group|
         %tr
           %td= group.name
-          %td= group.semester.semester_name
+          %td= group.semester.semester_name_concat
           %td= group.professor.name
           %td= link_to 'Show', group
           %td= link_to 'Edit', edit_group_path(group)

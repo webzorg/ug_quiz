@@ -23,6 +23,8 @@ class GroupsController < Professors::ApplicationController
   def create
     @group = Group.new(group_params)
     @group.professor_id = current_professor.id
+    logger.debug "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    logger.debug group_params
 
     if @group.save
       redirect_to @group, notice: 'Group was successfully created.'
@@ -47,13 +49,14 @@ class GroupsController < Professors::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_group
-      @group = Group.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def group_params
-      params.require(:group).permit(:name, :semester_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_group
+    @group = Group.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def group_params
+    params.require(:group).permit(:name, :semester_id, :student_ids)
+  end
 end

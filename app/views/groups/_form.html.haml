@@ -17,11 +17,16 @@
   .form-group
     = f.label :semester, class: 'col-sm-2 control-label'
     .col-sm-10
-      = f.collection_select(:semester_id, Semester.all, :id, :semester_name, {}, { class: 'form-control' })
+      = f.collection_select(:semester_id, Semester.all, :id, :semester_name_concat, {}, { class: 'form-control' })
   .form-group
     = f.label :professor, class: 'col-sm-2 control-label'
     .col-sm-10
       = current_professor.name
+  .form-group
+    = f.label :students, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select(:student_ids, Student.where(group_id: nil), :id, :student_name_concat,
+      {include_hidden: false}, { class: 'form-control', multiple: true })
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: 'btn btn-primary'
