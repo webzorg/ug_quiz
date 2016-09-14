@@ -16,8 +16,7 @@
 //= require select2
 //= require turbolinks
 //= require_tree .
-
-$( "#dropdown" ).select2({
+$("#dropdown").select2({
     theme: "bootstrap"
 });
 

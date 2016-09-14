@@ -21,6 +21,15 @@ html {
   }
 }
 
+
+.active {
+  background-color: #286090;
+  a {
+    font-weight: bold;
+    color: #f00;
+  }
+}
+
 #logo {
   width: 1.5em;
 }

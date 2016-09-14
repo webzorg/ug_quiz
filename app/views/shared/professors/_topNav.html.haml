@@ -9,11 +9,11 @@
       %a.navbar-brand{href: "#"}=image_tag "logo.gif", id: "logo"
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li
+        %li{class: active_class(professors_root_path)}
           =link_to 'Professors Home', professors_root_path
-        %li
+        %li{class: active_class(semesters_path)}
           =link_to 'Semesters', semesters_path
-        %li
+        %li{class: active_class(groups_path)}
           =link_to 'Groups', groups_path
     .pull-right
       - if current_professor

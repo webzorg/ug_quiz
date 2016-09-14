@@ -23,8 +23,6 @@ class GroupsController < Professors::ApplicationController
   def create
     @group = Group.new(group_params)
     @group.professor_id = current_professor.id
-    logger.debug "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    logger.debug group_params
 
     if @group.save
       redirect_to @group, notice: 'Group was successfully created.'

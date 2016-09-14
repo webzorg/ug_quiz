@@ -14,3 +14,9 @@
   %dd= @group.semester.semester_name_concat
   %dt Professor:
   %dd= @group.professor.name
+  %br/
+  %dt Students:
+  %dd
+    - @group.students.each do |student|
+      =student.student_name_concat
+      %br/

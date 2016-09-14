@@ -9,11 +9,11 @@
       %a.navbar-brand{href: "#"}=image_tag "logo.gif", id: "logo"
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
+        %li{class: active_class(professors_root_path)}
           %a{href: "#"} Student Home
-        %li
+        %li{class: active_class(professors_root_path)}
           %a{href: "#about"} About
-        %li
+        %li{class: active_class(professors_root_path)}
           %a{href: "#contact"} Contact
     .pull-right
       - if current_student

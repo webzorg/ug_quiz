@@ -25,7 +25,7 @@
   .form-group
     = f.label :students, class: 'col-sm-2 control-label'
     .col-sm-10
-      = f.collection_select(:student_ids, Student.where(group_id: nil), :id, :student_name_concat,
+      = f.collection_select(:student_ids, Student.all, :id, :student_name_concat,
       {include_hidden: false}, { id: 'include_students_in_group', class: 'form-control', multiple: true })
   .form-group
     .col-sm-offset-2.col-sm-10
