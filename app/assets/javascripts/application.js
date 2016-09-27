@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require select2
+//= require bootstrap-switch
+//= require cocoon
 //= require turbolinks
 //= require_tree .
 $("#dropdown").select2({
@@ -21,5 +23,17 @@ $("#dropdown").select2({
 });
 
 $(document).on('turbolinks:load', function() {
+
   $("#include_students_in_group").select2();
+
+  $('.js-switch').bootstrapSwitch({
+    onText: "Fall",
+    offText: "Spring",
+    onColor: "warning",
+    offColor: "success",
+    size: "large",
+    handleWidth: 150,
+    labelWidth: 10
+  });
+
 });

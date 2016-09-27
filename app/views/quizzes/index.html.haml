@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_quiz_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Quiz
+  %h1 Listing quizzes
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Quiz ID
+        %th Group
+        %th
+        %th
+        %th
+
+    %tbody
+      - @quizzes.each do |quiz|
+        %tr
+          %td= quiz.group.quizzes_count
+          %td= quiz.group.name
+          %td= link_to 'Show', quiz
+          %td= link_to 'Edit', edit_quiz_path(quiz)
+          %td= link_to 'Destroy', quiz, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,0 +1,30 @@
+= form_for @quiz, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @quiz.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@quiz.errors.count, "error")} prohibited this quiz from being saved:"
+
+      %ul
+        - @quiz.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :add_to_group, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.select :group_id, options_from_collection_for_select(current_professor.groups, "id", "name")
+
+  -# ***** questions *****
+  .form-group
+    = f.label :add_question, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.fields_for :questions do |question|
+        = render 'question_fields', f: question
+      .links
+        = link_to_add_association 'add question', f, :questions
+
+    %br
+    %br
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

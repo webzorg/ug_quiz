@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :professors
-  devise_for :students
-
+  resources :answers
+  resources :questions
+  resources :quizzes
   resources :groups
   resources :semesters
+
+  devise_for :professors
+  devise_for :students
 
   namespace :professors do
     get 'home/index'

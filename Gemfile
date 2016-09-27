@@ -31,8 +31,10 @@ gem 'turbolinks', '~> 5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap-generators', '~> 3.3.4'
-gem "select2-rails"
+gem 'select2-rails'
+gem 'bootstrap-switch-rails'
 
+gem 'cocoon'
 gem 'devise'
 
 group :development, :test do

@@ -3,7 +3,8 @@ class Professor < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :groups
 
-  validates_uniqueness_of :professor_id
+  validates :professor_id, presence: true, uniqueness: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 end

@@ -15,6 +15,8 @@
           =link_to 'Semesters', semesters_path
         %li{class: active_class(groups_path)}
           =link_to 'Groups', groups_path
+        %li{class: active_class(quizzes_path)}
+          =link_to 'Quizzes', quizzes_path
     .pull-right
       - if current_professor
         Signed in: #{current_professor.email}#{link_to "Logout", destroy_professor_session_path, method: :delete}

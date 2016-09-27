@@ -46,13 +46,14 @@ class SemestersController < Professors::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_semester
-      @semester = Semester.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def semester_params
-      params.require(:semester).permit(:year, :academicterm)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_semester
+    @semester = Semester.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def semester_params
+    params.require(:semester).permit(:year, :academicterm)
+  end
 end
