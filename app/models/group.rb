@@ -6,5 +6,5 @@ class Group < ApplicationRecord
   has_many :quizzes
 
   validates :name, uniqueness: true
-  validates :group_id, presence: true, uniqueness: true
+  # validates :group_id, presence: true, uniqueness: true
 end

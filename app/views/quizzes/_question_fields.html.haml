@@ -2,5 +2,13 @@
   .field
     = f.label :question
     %br
-    = f.text_field :question
+    = f.text_area :content
   = link_to_remove_association "remove question", f
+  .links
+    = link_to_add_association 'add answer', f, :answers
+
+  %br
+  %br
+  = f.fields_for :answers, f.object.answers.all.oldest_first do |answer|
+    = render 'answer_fields.html.haml', f: answer
+    %br

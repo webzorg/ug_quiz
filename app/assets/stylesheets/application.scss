@@ -21,7 +21,12 @@ html {
     //border:5px solid blue;
   }
 }
-
+fieldset {
+  border:1px solid #999;
+}
+.ordered_list {
+  font-weight: bold;
+}
 
 .active {
   background-color: #486070;

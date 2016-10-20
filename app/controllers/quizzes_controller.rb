@@ -3,7 +3,7 @@ class QuizzesController < Professors::ApplicationController
 
   # GET /quizzes
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.all.oldest_first
   end
 
   # GET /quizzes/1
@@ -54,6 +54,6 @@ class QuizzesController < Professors::ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def quiz_params
-    params.require(:quiz).permit(:group_id, :professor_id, :quizzes_count, questions_attributes: [:id, :question, :_destroy])
+    params.require(:quiz).permit(:group_id, :professor_id, :quizzes_count, questions_attributes: [:id, :content, :_destroy, answers_attributes: [:id, :content, :_destroy]])
   end
 end

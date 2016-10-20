@@ -10,3 +10,11 @@
 %dl.dl-horizontal
   %dt Professor:
   %dd= @quiz.group.name
+  %br
+  %dt Questions:
+
+  - @quiz.questions.each.with_index(1) do |question, index|
+    %dd
+      %span.ordered_list= "#{index})"
+      =link_to question.content, question_path(question)
+    %br

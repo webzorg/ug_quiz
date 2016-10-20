@@ -15,9 +15,9 @@
         %th
 
     %tbody
-      - @quizzes.each do |quiz|
+      - @quizzes.each.with_index(1) do |quiz, index|
         %tr
-          %td= quiz.group.quizzes_count
+          %td= index
           %td= quiz.group.name
           %td= link_to 'Show', quiz
           %td= link_to 'Edit', edit_quiz_path(quiz)

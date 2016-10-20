@@ -17,10 +17,11 @@
 
   -# ***** questions *****
   .form-group
-    = f.label :add_question, class: 'col-sm-2 control-label'
+    = f.label :add_questions, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.fields_for :questions do |question|
         = render 'question_fields', f: question
+      %br
       .links
         = link_to_add_association 'add question', f, :questions
 

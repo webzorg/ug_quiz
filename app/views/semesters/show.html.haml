@@ -12,9 +12,9 @@
   %dd= @semester.year
   %dt Academic Term:
   %dd= @semester.semester_name_concat
-  %br/
-  %dt Groups
+  %br
+  %dt Groups:
   %dd
     -@semester.groups.each do |group|
       =link_to group.name, group_path(group)
-      %br/
+      %br
