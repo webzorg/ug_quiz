@@ -1,14 +1,17 @@
 .nested-fields
-  .field
-    = f.label :question
-    %br
-    = f.text_area :content
-  = link_to_remove_association "remove question", f
-  .links
-    = link_to_add_association 'add answer', f, :answers
+  %fieldset.questions-fieldset
+    %legend.questions-legend
+      = f.label :content, "Question"
 
-  %br
-  %br
-  = f.fields_for :answers, f.object.answers.all.oldest_first do |answer|
-    = render 'answer_fields.html.haml', f: answer
+    = link_to_remove_association button_tag('X', class: "btn btn-danger custom-close"), f
+
+    .questions
+      = f.text_area :content, class: "question-content"
+
+    = f.fields_for :answers, f.object.answers.all.oldest_first do |answer|
+      = render 'answer_fields.html.haml', f: answer
+
+    .links
+      = link_to_add_association button_tag('Add Answer', class: "btn btn-success"), f, :answers
     %br
+%br

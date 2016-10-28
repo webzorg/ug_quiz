@@ -10,31 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020194236) do
+ActiveRecord::Schema.define(version: 20161026234338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
-    t.integer  "student_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "content"
+    t.boolean  "correct"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
-    t.index ["student_id"], name: "index_answers_on_student_id", using: :btree
+  end
+
+  create_table "attempts", force: :cascade do |t|
+    t.integer  "quiz_id"
+    t.integer  "student_id"
+    t.float    "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_attempts_on_quiz_id", using: :btree
+    t.index ["student_id"], name: "index_attempts_on_student_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.integer  "semester_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "professor_id"
-    t.integer  "quizzes_count", default: 0, null: false
     t.integer  "group_id"
     t.index ["professor_id"], name: "index_groups_on_professor_id", using: :btree
     t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
+  end
+
+  create_table "groups_quizzes", force: :cascade do |t|
+    t.integer  "quiz_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_groups_quizzes_on_group_id", using: :btree
+    t.index ["quiz_id"], name: "index_groups_quizzes_on_quiz_id", using: :btree
   end
 
   create_table "groups_students", force: :cascade do |t|
@@ -71,6 +88,7 @@ ActiveRecord::Schema.define(version: 20161020194236) do
     t.integer  "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "weight"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
   end
 
@@ -78,7 +96,19 @@ ActiveRecord::Schema.define(version: 20161020194236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "group_id"
-    t.integer  "quiz_id"
+    t.boolean  "active"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "attempt_id"
+    t.integer  "answer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "correct"
+    t.index ["answer_id"], name: "index_responses_on_answer_id", using: :btree
+    t.index ["attempt_id"], name: "index_responses_on_attempt_id", using: :btree
+    t.index ["question_id"], name: "index_responses_on_question_id", using: :btree
   end
 
   create_table "semesters", force: :cascade do |t|
@@ -107,7 +137,11 @@ ActiveRecord::Schema.define(version: 20161020194236) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "attempts", "quizzes"
+  add_foreign_key "attempts", "students"
   add_foreign_key "groups", "professors"
   add_foreign_key "groups", "semesters"
+  add_foreign_key "groups_quizzes", "groups"
+  add_foreign_key "groups_quizzes", "quizzes"
   add_foreign_key "questions", "quizzes"
 end

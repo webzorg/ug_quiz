@@ -16,33 +16,122 @@
 @import "select2-bootstrap";
 @import "bootstrap3-switch";
 
-html {
-  body {
-    //border:5px solid blue;
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{"-" + $prefix + "-" + $property}: $value;
+  }
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+//@include prefix(box-shadow, inset 0 1px 1px $box-shadow, webkit ms);
+
+
+
+$box-shadow: rgba(0, 0, 0, .05);
+$black: #000;
+$white: #fff;
+$gray-dark: #444;
+$gray-norm: #999;
+$gray-light: #ccc;
+$gray-lighter: #f9f9f9;
+$gray-lighter2: #fcfcfc;
+
+$primary-color: #428bca;
+$danger-color: #f44;
+$danger-color-dark: #c00;
+$warning-color: #fb3;
+$warning-color-dark: #f80;
+$success-color: #00c851;
+$success-color-dark: #007e33;
+$info-color: #33b5e5;
+$info-color-dark: #09c;
+
+.nested-fields {
+  position: relative;
+  text-align: left;
+
+  .nested-fields {
+    text-align: left;
   }
 }
-fieldset {
-  border:1px solid #999;
+
+.btn.active,
+.btn:active {
+  background-color: $success-color;
 }
+
+textarea {
+  resize: vertical;
+}
+
+.questions-fieldset {
+
+  .questions-legend {
+    // placeholder
+  }
+
+  .answers-fieldset {
+    margin: 1em 0 0 2em;
+
+    .answers-legend {
+      font-size: 1.2em;
+    }
+  }
+
+  .custom-close {
+    position: absolute;
+    top: 3em;
+    right: 0.5em;
+  }
+
+  .questions {
+    padding: 0.5em;
+
+    .question-content {
+      border: 1px solid $black;
+      min-width: 80%;
+      background-color: $gray-lighter2;
+    }
+  }
+}
+
+.answers {
+  display: table;
+  width: 100%;
+  padding: 0.5em;
+  position: relative;
+  // margin-top: 1em;
+  // margin-bottom: 1em;
+
+  .answer-content {
+    display: table-cell;
+    width: 100%;
+    background-color: $gray-lighter2;
+  }
+
+  .correct-switch {
+    display: table-cell;
+    width: 25%;
+
+    .btn {
+      margin-left: 1em;
+    }
+  }
+}
+
 .ordered_list {
   font-weight: bold;
 }
 
-.active {
-  background-color: #486070;
-  a {
-    font-weight: bold;
-    color: #f99;
-  }
-}
 
-#logo {
+.logo {
   width: 1.5em;
 }
 
-#main-wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
+.main-wrapper {
+  max-width: 75em;
+  margin: 4em auto;
   text-align: center;
   border: 0.1em solid f00;
+  padding: 1em;
 }

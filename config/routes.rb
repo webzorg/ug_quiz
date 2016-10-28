@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :answers
   resources :questions
-  resources :quizzes
+  resources :quizzes do
+    patch 'toggle_quiz', on: :member
+  end
   resources :groups
   resources :semesters
 

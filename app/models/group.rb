@@ -3,7 +3,9 @@ class Group < ApplicationRecord
   belongs_to :professor
   has_many :groups_students, dependent: :destroy
   has_many :students, through: :groups_students
-  has_many :quizzes
+
+  has_many :groups_quizzes, dependent: :destroy
+  has_many :quizzes, through: :groups_quizzes
 
   validates :name, uniqueness: true
   # validates :group_id, presence: true, uniqueness: true

@@ -1,6 +1,12 @@
 .nested-fields
-  .field
-    = f.label :content, "Answer"
-    %br
-    = f.text_area :content
-  = link_to_remove_association "remove answer", f
+  %fieldset.answers-fieldset
+    %legend.answers-legend
+      = f.label :content, "Answer"
+    = link_to_remove_association button_tag('X', class: "btn btn-danger custom-close"), f
+
+    .answers
+      = f.text_area :content, class: "answer-content"
+      .btn-group{"data-toggle" => "buttons", class: "correct-switch"}
+        %label{class: "btn btn-danger"}
+          = f.check_box :correct
+          Correct?

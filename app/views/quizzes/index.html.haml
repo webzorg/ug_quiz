@@ -9,7 +9,8 @@
     %thead
       %tr
         %th Quiz ID
-        %th Group
+        %th Groups
+        %th Active?
         %th
         %th
         %th
@@ -18,7 +19,12 @@
       - @quizzes.each.with_index(1) do |quiz, index|
         %tr
           %td= index
-          %td= quiz.group.name
+          %td
+            %ul
+              - quiz.groups.each do |group|
+                %li
+                  = group.name
+          %td= check_box_tag(:active, quiz.id, quiz.active, {class: 'toggle-quiz'})
           %td= link_to 'Show', quiz
           %td= link_to 'Edit', edit_quiz_path(quiz)
           %td= link_to 'Destroy', quiz, data: { confirm: 'Are you sure?' }, method: :delete

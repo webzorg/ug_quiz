@@ -1,5 +1,5 @@
 class QuizzesController < Professors::ApplicationController
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
 
   # GET /quizzes
   def index
@@ -33,9 +33,18 @@ class QuizzesController < Professors::ApplicationController
   # PATCH/PUT /quizzes/1
   def update
     if @quiz.update(quiz_params)
-      redirect_to @quiz, notice: 'Quiz was successfully updated.'
+      redirect_to @quiz, notice: ''
     else
       render :edit
+    end
+  end
+
+  def toggle_quiz
+    if @quiz.update_attributes(active: params[:active])
+      redirect_to :back, notice: 'Quiz was successfully updated.'
+      # render js: "window.location = '#{polymorphic_path(@quiz.object)}'"
+    else
+      redirect_to :back, notice: 'Quiz was unsuccessfully updated.'
     end
   end
 
@@ -54,6 +63,6 @@ class QuizzesController < Professors::ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def quiz_params
-    params.require(:quiz).permit(:group_id, :professor_id, :quizzes_count, questions_attributes: [:id, :content, :_destroy, answers_attributes: [:id, :content, :_destroy]])
+    params.require(:quiz).permit(:professor_id, :active, group_ids: [], questions_attributes: [:id, :content, :weight, :_destroy, answers_attributes: [:id, :content, :correct, :_destroy]])
   end
 end

@@ -10,7 +10,7 @@ class Student < ApplicationRecord
 
   has_many :groups_students
   has_many :groups, through: :groups_students
-  has_many :answers, dependent: :destroy
+  has_many :attempt, dependent: :destroy
 
   def student_name_concat
     "#{student_id} - #{name}"

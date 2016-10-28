@@ -8,8 +8,11 @@
   %h1 Show quiz
 
 %dl.dl-horizontal
-  %dt Professor:
-  %dd= @quiz.group.name
+  %dt Belongs To Groups:
+  %dd
+    - @quiz.groups.each do |group|
+      = group.name
+      %br/
   %br
   %dt Questions:
 
