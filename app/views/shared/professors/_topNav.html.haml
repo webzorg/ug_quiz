@@ -1,23 +1,22 @@
 %nav.navbar.navbar-default.navbar-fixed-top
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle.collapsed{"data-target": "#bs-example-navbar-collapse-1", "data-toggle": "collapse", type: "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      =link_to (image_tag "logo.gif", class: "logo"), professors_root_path, class: "navbar-brand"
-
+      =link_to (image_tag "logo.png", class: "logo-image"), professors_root_path, class: "logo-anchor"
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
-          %a{:href => "#"} Link
+          %a{href: "#"} Link
         %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Main Menu
+          %a.dropdown-toggle{"aria-expanded": "false", "data-toggle": "dropdown", href: "#", role: "button"}
+            Professor Menu
             %span.caret
-          %ul.dropdown-menu{:role => "menu"}
+          %ul.dropdown-menu{role: "menu"}
             %li{class: active_class(semesters_path)}
               =link_to 'Semesters', semesters_path
             %li{class: active_class(groups_path)}
@@ -26,19 +25,17 @@
               =link_to 'Quizzes', quizzes_path
             %li.divider
             %li
-              %a{:href => "#"} Separated link
+              %a{href: "#"} Separated link
 
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %a.dropdown-toggle{"aria-expanded": "false", "data-toggle": "dropdown", href: "#", role: "button"}
             Professor Account
             %span.caret
-          %ul.dropdown-menu{:role => "menu"}
+          %ul.dropdown-menu{role: "menu"}
             %li=current_professor.name
             %li=current_professor.email
             %li.divider
-            %li
-              - if current_professor
-                #{link_to "Logout", destroy_professor_session_path, method: :delete}
+            %li=link_to "Logout", destroy_professor_session_path, method: :delete
     / /.navbar-collapse
   / /.container-fluid

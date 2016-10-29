@@ -46,6 +46,32 @@ $success-color-dark: #007e33;
 $info-color: #33b5e5;
 $info-color-dark: #09c;
 
+.navbar-header {
+  margin-top: 0.15em;
+
+  .logo-anchor {
+    width: 100%;
+
+    .logo-image {
+      vertical-align: middle;
+    }
+  }
+}
+
+.main-wrapper {
+  max-width: 75em;
+  margin: 0 auto;
+  text-align: center;
+  border: 0.1em solid f00;
+  padding: 1em;
+  padding-top: 55px;
+}
+
+.flash-container {
+  height: 54px;
+  width: 100%;
+}
+
 .nested-fields {
   position: relative;
   text-align: left;
@@ -121,17 +147,4 @@ textarea {
 
 .ordered_list {
   font-weight: bold;
-}
-
-
-.logo {
-  width: 1.5em;
-}
-
-.main-wrapper {
-  max-width: 75em;
-  margin: 4em auto;
-  text-align: center;
-  border: 0.1em solid f00;
-  padding: 1em;
 }

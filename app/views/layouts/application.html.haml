@@ -14,10 +14,10 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    -if current_student || current_professor
+    -if current_student
       = render "shared/topNav"
     .main-wrapper
-      .container
+      .flash-container
         - flash.each do |name, msg|
           = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
             %button.close{type: "button", data: {dismiss: "alert"} }

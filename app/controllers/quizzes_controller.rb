@@ -33,7 +33,7 @@ class QuizzesController < Professors::ApplicationController
   # PATCH/PUT /quizzes/1
   def update
     if @quiz.update(quiz_params)
-      redirect_to @quiz, notice: ''
+      redirect_to @quiz, notice: 'Quiz was successfully updated.'
     else
       render :edit
     end
@@ -41,10 +41,20 @@ class QuizzesController < Professors::ApplicationController
 
   def toggle_quiz
     if @quiz.update_attributes(active: params[:active])
-      redirect_to :back, notice: 'Quiz was successfully updated.'
-      # render js: "window.location = '#{polymorphic_path(@quiz.object)}'"
+      respond_to do |format|
+        if @quiz.active
+          @ajax_status_text = "Successfully activated quiz."
+          @flash_status = "success"
+        else
+          @ajax_status_text = "Successfully deactivated quiz."
+          @flash_status = "warning"
+        end
+        format.js
+      end
     else
-      redirect_to :back, notice: 'Quiz was unsuccessfully updated.'
+      @ajax_status_text = "Request Failed"
+      @flash_status = "danger"
+      format.js
     end
   end
 

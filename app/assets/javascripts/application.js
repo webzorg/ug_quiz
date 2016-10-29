@@ -18,9 +18,14 @@
 //= require cocoon
 //= require_tree .
 
-$("#dropdown").select2({
-    theme: "bootstrap"
-});
+let alertTimeout;
+function clearFlash(){
+  clearTimeout(alertTimeout);
+  alertTimeout = setTimeout(function(){
+    $(".alert").animate({opacity: 0}, 1500);
+  }, 3000);  //Flash fade
+}
+clearFlash();
 
 $(document).ready(function() {
 
@@ -37,16 +42,6 @@ $(document).ready(function() {
     labelWidth: 10
   });
 
-  // let toggleQuizSwitch = $('.toggle-quiz').bootstrapSwitch('toggleReadonly');
-  //let printasd = function(){ console.log(123)};
-
-  function clearNotice(){
-    $(".alert").animate({opacity:'0'}, 2500);
-  }
-  var ready = function() {
-    setTimeout(clearNotice, 1000);  //Flash fade
-  };
-
   $('.toggle-quiz').bootstrapSwitch({
     onColor: "success",
     offColor: "warning",
@@ -55,18 +50,12 @@ $(document).ready(function() {
     labelWidth: 10,
     animate: true,
     onSwitchChange: function(event, state) {
+      clearFlash();
       $.ajax({
         url: '/quizzes/' + this.value + '/toggle_quiz',
         type: 'PATCH',
         data: {'active': this.checked}
       });
-      setTimeout(function(){
-        $('.toggle-quiz').bootstrapSwitch('toggleReadonly');
-      }, 300);
-      setTimeout(function(){
-        $('.toggle-quiz').bootstrapSwitch('toggleReadonly');
-      }, 3000);
-      ready();
     }
   });
 
