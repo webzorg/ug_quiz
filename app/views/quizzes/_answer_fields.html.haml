@@ -7,6 +7,6 @@
     .answers
       = f.text_area :content, class: "answer-content"
       .btn-group{"data-toggle" => "buttons", class: "correct-switch"}
-        %label{class: "btn btn-danger"}
+        %label{class: "btn btn-danger #{"active" if f.object.correct}"}
           = f.check_box :correct
           Correct?

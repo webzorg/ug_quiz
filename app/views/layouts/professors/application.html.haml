@@ -13,12 +13,12 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
-    = render "shared/professors/topNav"
+  %body#bootstrap-overrides
     .main-wrapper
+      = render "shared/professors/topNav"
       .flash-container
         - flash.each do |name, msg|
-          = content_tag :div, class: "alert alert-#{name == "error" ? "danger" : "success" } alert-dismissable", role: "alert" do
+          = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable alert-general", role: "alert" do
             %button.close{type: "button", data: {dismiss: "alert"} }
               %span{aria: {hidden: "true"} } &times;
               %span.sr-only Close

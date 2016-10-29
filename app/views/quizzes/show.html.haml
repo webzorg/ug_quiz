@@ -2,6 +2,7 @@
   = link_to quizzes_path, class: 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
     Back
+  &nbsp
   = link_to edit_quiz_path(@quiz), class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-pencil
     Edit
@@ -10,14 +11,25 @@
 %dl.dl-horizontal
   %dt Belongs To Groups:
   %dd
-    - @quiz.groups.each do |group|
-      = group.name
-      %br/
+    %ul
+      - @quiz.groups.each do |group|
+        %li
+          = group.name
+
+  %dt Status:
+  %dd
+    = @quiz.active ? "Quiz is actived" : "Quiz is deactivated"
+  %br
+  %dt Weight:
+  %dd
+    = total_weight(@quiz)
   %br
   %dt Questions:
-
-  - @quiz.questions.each.with_index(1) do |question, index|
-    %dd
-      %span.ordered_list= "#{index})"
-      =link_to question.content, question_path(question)
-    %br
+  %dd
+    %ol
+      - @quiz.questions.each do |question|
+        %li= "(#{question.weight}) - #{question.content}"
+        %ol{type: "A", class: "answerList"}
+          -question.answers.all.oldest_first.each do |answer|
+            %li{class: "#{answer.correct ? 'tick' : 'cross'  }"}
+              =answer.content

@@ -8,19 +8,21 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th Name
-        %th Semester
+        %th.col-xs-2 Group ID
+        %th.col-sm-2 Name
+        %th.col-sm-2 Semester
         %th Professor
-        %th
-        %th
-        %th
+        %th.col-sm-1
+        %th.col-sm-1
+        %th.col-sm-1
 
     %tbody
       - @groups.each do |group|
         %tr
+          %td= group.group_id
           %td= group.name
           %td= group.semester.semester_name_concat
           %td= group.professor.name
-          %td= link_to 'Show', group
-          %td= link_to 'Edit', edit_group_path(group)
-          %td= link_to 'Destroy', group, data: { confirm: 'Are you sure?' }, method: :delete
+          %td= link_to 'Show', group, class: "btn btn-primary"
+          %td= link_to 'Edit', edit_group_path(group), class: "btn btn-warning"
+          %td= link_to 'Destroy', group, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"

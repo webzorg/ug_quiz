@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.navbar-fixed-top
+%nav.navbar.navbar-default
   .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{"data-target": "#bs-example-navbar-collapse-1", "data-toggle": "collapse", type: "button"}
@@ -30,10 +30,9 @@
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded": "false", "data-toggle": "dropdown", href: "#", role: "button"}
-            Professor Account
+            =current_professor.name
             %span.caret
           %ul.dropdown-menu{role: "menu"}
-            %li=current_professor.name
             %li=current_professor.email
             %li.divider
             %li=link_to "Logout", destroy_professor_session_path, method: :delete

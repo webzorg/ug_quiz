@@ -15,6 +15,11 @@
       = f.collection_select(:group_ids, current_professor.groups, :id, :name,
       {include_hidden: false}, { id: 'include_groups_in_quiz', class: 'form-control', multiple: true })
 
+  .form-group
+    = f.label :status, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.check_box :active, class: "toggle-quiz"
+
   -# ***** questions *****
   .form-group
     = f.label :add_questions, class: 'col-sm-2 control-label'
@@ -22,8 +27,8 @@
       = f.fields_for :questions do |question|
         = render 'question_fields', f: question
       .links
-        = link_to_add_association button_tag('Add Question', class: "btn btn-success"), f, :questions
-    %br
-    %br
+        = link_to_add_association button_tag('Add Question', class: "btn btn-primary"), f, :questions
+
     .col-sm-offset-2.col-sm-10
-      = f.submit class: 'btn btn-primary'
+      %br
+      = f.submit class: 'btn-lg btn-primary'

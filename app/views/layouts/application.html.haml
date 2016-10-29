@@ -13,10 +13,10 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
-    -if current_student
-      = render "shared/topNav"
+  %body#bootstrap-overrides
     .main-wrapper
+      -if current_student
+        = render "shared/topNav"
       .flash-container
         - flash.each do |name, msg|
           = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

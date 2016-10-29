@@ -8,17 +8,17 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th Year
+        %th.col-sm-1 Year
         %th Academic Term
-        %th
-        %th
-        %th
+        %th.col-sm-1
+        %th.col-sm-1
+        %th.col-sm-1
 
     %tbody
       - @semesters.each do |semester|
         %tr
           %td= semester.year
           %td= semester.semester_name_concat
-          %td= link_to 'Show', semester
-          %td= link_to 'Edit', edit_semester_path(semester)
-          %td= link_to 'Destroy', semester, data: { confirm: 'Are you sure?' }, method: :delete
+          %td= link_to 'Show', semester, class: "btn btn-primary"
+          %td= link_to 'Edit', edit_semester_path(semester), class: "btn btn-warning"
+          %td= link_to 'Destroy', semester, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"

@@ -46,11 +46,21 @@ $success-color-dark: #007e33;
 $info-color: #33b5e5;
 $info-color-dark: #09c;
 
+// misc **************************************
+
+#bootstrap-overrides
+.form-group,
+.form-horizontal {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .navbar-header {
   margin-top: 0.15em;
 
   .logo-anchor {
-    width: 100%;
+    margin-left: 0.2em;
+    float: left;
 
     .logo-image {
       vertical-align: middle;
@@ -58,17 +68,38 @@ $info-color-dark: #09c;
   }
 }
 
+.dropdown-menu {
+  li {
+    white-space: normal;
+    padding: 0 0.5em;
+  }
+}
+
+#bootstrap-overrides td,
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+
 .main-wrapper {
   max-width: 75em;
   margin: 0 auto;
   text-align: center;
   border: 0.1em solid f00;
-  padding: 1em;
-  padding-top: 55px;
+  padding: 0 0.25em;
+
+  td:first-of-type,
+  td:nth-last-child(1),
+  td:nth-last-child(2),
+  td:nth-last-child(3) {
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+  }
 }
 
 .flash-container {
-  height: 54px;
+  //height: 54px;
   width: 100%;
 }
 
@@ -90,6 +121,29 @@ textarea {
   resize: vertical;
 }
 
+.dl-horizontal {
+  text-align: left;
+  ol {
+    // text-align: left;
+    li:before {
+        counter-increment: item;
+        color: red;
+    }
+  }
+}
+
+
+.answerList li.tick::before {
+  content: "\2713";
+  color: $success-color-dark;
+}
+
+.answerList li.cross::before {
+  content: "\2717";
+  color: $danger-color-dark;
+}
+
+
 .questions-fieldset {
 
   .questions-legend {
@@ -108,6 +162,7 @@ textarea {
     position: absolute;
     top: 3em;
     right: 0.5em;
+    z-index: 99;
   }
 
   .questions {
@@ -138,7 +193,7 @@ textarea {
   .correct-switch {
     display: table-cell;
     width: 25%;
-
+    vertical-align: bottom;
     .btn {
       margin-left: 1em;
     }

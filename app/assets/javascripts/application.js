@@ -22,8 +22,8 @@ let alertTimeout;
 function clearFlash(){
   clearTimeout(alertTimeout);
   alertTimeout = setTimeout(function(){
-    $(".alert").animate({opacity: 0}, 1500);
-  }, 3000);  //Flash fade
+    $(".alert-general").slideUp(1500);
+  }, 8500);  //Flash fade
 }
 clearFlash();
 
@@ -33,8 +33,6 @@ $(document).ready(function() {
   $("#include_groups_in_quiz").select2();
 
   $('.js-switch').bootstrapSwitch({
-    onText: "Fall",
-    offText: "Spring",
     onColor: "warning",
     offColor: "success",
     size: "large",

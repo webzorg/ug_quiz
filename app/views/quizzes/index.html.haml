@@ -8,13 +8,13 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th Quiz ID
+        %th.col-sm-1 Quiz ID
         %th Groups
-        %th Active?
-        %th
-        %th
-        %th
-
+        %th.col-sm-1 Status
+        %th.col-sm-1 Weight
+        %th.col-sm-1
+        %th.col-sm-1
+        %th.col-sm-1
     %tbody
       - @quizzes.each.with_index(1) do |quiz, index|
         %tr
@@ -25,6 +25,7 @@
                 %li
                   = group.name
           %td= check_box_tag(:active, quiz.id, quiz.active, {class: 'toggle-quiz'})
-          %td= link_to 'Show', quiz
-          %td= link_to 'Edit', edit_quiz_path(quiz)
-          %td= link_to 'Destroy', quiz, data: { confirm: 'Are you sure?' }, method: :delete
+          %td= total_weight(quiz)
+          %td= link_to 'Show', quiz, class: "btn btn-primary"
+          %td= link_to 'Edit', edit_quiz_path(quiz), class: "btn btn-warning"
+          %td= link_to 'Destroy', quiz, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
