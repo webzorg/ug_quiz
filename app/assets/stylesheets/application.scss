@@ -170,9 +170,14 @@ textarea {
 
     .question-content {
       border: 1px solid $black;
-      min-width: 80%;
+      min-width: 60%;
       background-color: $gray-lighter2;
     }
+
+    .question-weight {
+      margin-top: 0.2em;
+    }
+
   }
 }
 
@@ -185,6 +190,7 @@ textarea {
   // margin-bottom: 1em;
 
   .answer-content {
+    border: 1px solid $black;
     display: table-cell;
     width: 100%;
     background-color: $gray-lighter2;

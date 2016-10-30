@@ -7,8 +7,9 @@
 
     .questions
       = f.text_area :content, class: "question-content"
-      %br
-      = f.number_field :weight, class: "text_field", step: "any"
+      .question-weight
+        = f.label :weight
+        = f.number_field :weight, step: "any"
 
     = f.fields_for :answers, f.object.answers.all.oldest_first do |answer|
       = render 'answer_fields.html.haml', f: answer

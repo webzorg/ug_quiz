@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      quiz:
+        group_ids: "Groups"
+    errors:
+      models:
+        quiz:
+          attributes:
+            group_ids:
+              # blank: "is required"

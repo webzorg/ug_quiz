@@ -15,6 +15,12 @@
       = f.collection_select(:group_ids, current_professor.groups, :id, :name,
       {include_hidden: false}, { id: 'include_groups_in_quiz', class: 'form-control', multiple: true })
 
+  -# .form-group
+    = f.label :add_to_groups, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = collection_select(:quiz, :others_group_ids, Group.all, :id, :name,
+      {include_hidden: true}, { id: 'include_groups_in_quiz', class: 'form-control', multiple: true })
+
   .form-group
     = f.label :status, class: 'col-sm-2 control-label'
     .col-sm-10

@@ -3,7 +3,7 @@ class QuizzesController < Professors::ApplicationController
 
   # GET /quizzes
   def index
-    @quizzes = Quiz.all.oldest_first
+    @quizzes = current_professor.quizzes
   end
 
   # GET /quizzes/1
@@ -26,6 +26,9 @@ class QuizzesController < Professors::ApplicationController
     if @quiz.save
       redirect_to @quiz, notice: 'Quiz was successfully created.'
     else
+      logger.debug "**********************************************************************"
+      logger.debug @quiz.errors.inspect
+      logger.debug "**********************************************************************"
       render :new
     end
   end
