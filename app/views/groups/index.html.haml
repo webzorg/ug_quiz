@@ -26,3 +26,5 @@
           %td= link_to 'Show', group, class: "btn btn-primary"
           %td= link_to 'Edit', edit_group_path(group), class: "btn btn-warning"
           %td= link_to 'Destroy', group, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+
+= paginate @groups

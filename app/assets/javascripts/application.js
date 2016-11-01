@@ -33,8 +33,8 @@ $(document).ready(function() {
   $("#include_groups_in_quiz").select2();
 
   $('.js-switch').bootstrapSwitch({
-    onColor: "warning",
-    offColor: "success",
+    onColor: "success",
+    offColor: "warning",
     size: "large",
     handleWidth: 150,
     labelWidth: 10

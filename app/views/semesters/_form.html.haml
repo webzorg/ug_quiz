@@ -17,7 +17,7 @@
   .form-group
     = f.label :academic_term, class: 'col-sm-2 control-label'
     .col-sm-10
-      = f.check_box :academicterm, class: 'js-switch',  'data-on-text': 'Fall', 'data-off-text': 'Spring'
+      = f.check_box :academicterm, class: 'js-switch',  'data-off-text': t(:fall), 'data-on-text': t(:spring)
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: 'btn btn-primary'

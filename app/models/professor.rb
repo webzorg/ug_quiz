@@ -6,6 +6,6 @@ class Professor < ApplicationRecord
 
   validates :professor_id, presence: true, uniqueness: true
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable,
+         :rememberable, :trackable, :validatable
 end

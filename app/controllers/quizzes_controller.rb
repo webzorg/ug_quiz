@@ -1,9 +1,11 @@
 class QuizzesController < Professors::ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
+  load_and_authorize_resource
 
   # GET /quizzes
   def index
-    @quizzes = current_professor.quizzes
+    @quizzes = current_professor.admin? ? Quiz.all : current_professor.quizzes
+    @quizzes = @quizzes.page(params[:page]).per(25)
   end
 
   # GET /quizzes/1

@@ -22,3 +22,5 @@
           %td= link_to 'Show', semester, class: "btn btn-primary"
           %td= link_to 'Edit', edit_semester_path(semester), class: "btn btn-warning"
           %td= link_to 'Destroy', semester, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+
+= paginate @semesters

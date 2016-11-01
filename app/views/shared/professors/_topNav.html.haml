@@ -26,6 +26,15 @@
             %li.divider
             %li
               %a{href: "#"} Separated link
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded": "false", "data-toggle": "dropdown", href: "#", role: "button"}
+            = t(:user_management)
+            %span.caret
+          %ul.dropdown-menu{role: "menu"}
+            %li{class: active_class(professors_professors_path)}
+              =link_to 'Professors', professors_professors_path
+            %li{class: active_class(professors_students_path)}
+              =link_to 'Students', professors_students_path
 
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
@@ -33,7 +42,7 @@
             =current_professor.name
             %span.caret
           %ul.dropdown-menu{role: "menu"}
-            %li=current_professor.email
+            %li= link_to :account_settings, professors_professor_path(current_professor)
             %li.divider
             %li=link_to "Logout", destroy_professor_session_path, method: :delete
     / /.navbar-collapse

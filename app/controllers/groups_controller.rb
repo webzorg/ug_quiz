@@ -1,9 +1,10 @@
 class GroupsController < Professors::ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /groups
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page]).per(25)
   end
 
   # GET /groups/1
@@ -55,6 +56,6 @@ class GroupsController < Professors::ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def group_params
-    params.require(:group).permit(:name, :semester_id, student_ids: [])
+    params.require(:group).permit(:name, :group_id, :semester_id, student_ids: [])
   end
 end

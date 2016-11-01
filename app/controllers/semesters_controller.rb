@@ -1,9 +1,10 @@
 class SemestersController < Professors::ApplicationController
   before_action :set_semester, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /semesters
   def index
-    @semesters = Semester.all
+    @semesters = Semester.all.newest_first.page(params[:page]).per(25)
   end
 
   # GET /semesters/1

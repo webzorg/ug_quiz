@@ -1,0 +1,31 @@
+.page-header
+  = link_to new_professors_professor_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    = :new_professor
+  %h1= :professor_index
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th= :name
+        %th= :professor_id
+        %th= :email
+        %th.col-sm-1= :admin?
+        %th.col-sm-1
+        %th.col-sm-1
+        %th.col-sm-1
+
+    %tbody
+      - @professors_professors.each do |professors_professor|
+        %tr
+          %td= professors_professor.name
+          %td= professors_professor.professor_id
+          %td= professors_professor.email
+          %td.col-sm-1
+            = professors_professor.admin ? "\u2713" : "\u2717"
+          %td.col-sm-1= link_to 'Show', professors_professor_path(professors_professor), class: "btn btn-primary"
+          %td.col-sm-1= link_to 'Edit', edit_professors_professor_path(professors_professor), class: "btn btn-warning"
+          %td.col-sm-1= link_to 'Destroy', professors_professor_path(professors_professor), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+
+= paginate @professors_professors

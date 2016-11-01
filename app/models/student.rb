@@ -5,8 +5,8 @@ class Student < ApplicationRecord
   validates :student_id, presence: true, uniqueness: true
   validates :name, presence: true
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable,
+         :rememberable, :trackable, :validatable
 
   has_many :groups_students
   has_many :groups, through: :groups_students
