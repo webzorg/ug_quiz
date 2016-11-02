@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_quiz_path, class: 'btn btn-primary' do
+  = link_to new_quiz_path, class: "btn btn-primary #{can_class(:create, Quiz)}" do
     %span.glyphicon.glyphicon-plus
     New Quiz
   %h1 Listing quizzes
@@ -9,7 +9,7 @@
     %thead
       %tr
         %th.col-sm-1 Quiz ID
-        %th.col-sm-4{style: "white-space: normal;"} Groups
+        %th.col-sm-6 Groups
         %th.col-sm-1 Status
         %th.col-sm-1 Weight
         %th.col-sm-1
@@ -24,10 +24,10 @@
               - quiz.groups.each do |group|
                 %li
                   = group.name
-          %td= check_box_tag(:active, quiz.id, quiz.active, {class: 'toggle-quiz'})
+          %td= check_box_tag(:active, quiz.id, quiz.active, {class: "toggle-quiz"})
           %td= total_weight(quiz)
-          %td= link_to 'Show', quiz, class: "btn btn-primary"
-          %td= link_to 'Edit', edit_quiz_path(quiz), class: "btn btn-warning"
-          %td= link_to 'Destroy', quiz, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+          %td= link_to "Show", quiz, class: "btn btn-primary #{can_class(:show, Quiz)}"
+          %td= link_to "Edit", edit_quiz_path(quiz), class: "btn btn-warning #{can_class(:update, Quiz)}"
+          %td= link_to "Destroy", quiz, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, Quiz)}"
 
 = paginate @quizzes

@@ -2,11 +2,11 @@
   %fieldset.answers-fieldset
     %legend.answers-legend
       = f.label :content, "Answer"
-    = link_to_remove_association button_tag('X', class: "btn btn-danger custom-close"), f
+    = link_to_remove_association button_tag("X", class: "btn btn-danger custom-close"), f
 
     .answers
       = f.text_area :content, class: "answer-content"
       .btn-group{"data-toggle" => "buttons", class: "correct-switch"}
-        %label{class: "btn btn-danger #{"active" if f.object.correct}"}
+        %label{class: "btn btn-danger #{'active' if f.object.correct}"}
           = f.check_box :correct
           Correct?

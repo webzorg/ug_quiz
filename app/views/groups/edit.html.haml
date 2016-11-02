@@ -1,11 +1,11 @@
 .page-header
-  = link_to groups_path, class: 'btn btn-default' do
+  = link_to :back, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp
-  = link_to @group, class: 'btn btn-primary' do
+  = link_to @group, class: "btn btn-primary" do
     %span.glyphicon.glyphicon-info-sign
     Show
   %h1 Editing group
 
-= render 'form'
+= render "form"

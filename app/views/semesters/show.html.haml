@@ -1,9 +1,9 @@
 .page-header
-  = link_to semesters_path, class: 'btn btn-default' do
+  = link_to semesters_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp
-  = link_to edit_semester_path(@semester), class: 'btn btn-primary' do
+  = link_to edit_semester_path(@semester), class: "btn btn-primary #{can_class(:update, Semester)}" do
     %span.glyphicon.glyphicon-pencil
     Edit
   %h1 Show semester
@@ -16,6 +16,18 @@
   %br
   %dt Groups:
   %dd
-    -@semester.groups.each do |group|
-      =link_to group.name, group_path(group)
-      %br
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th.col-sm-2= t(:group_id)
+            %th.col-sm-10= t(:group_name)
+        %tbody
+          -@semester.groups.each do |group|
+            %tr
+              %td= group.group_id
+              %td
+                - if can? :show, Group
+                  =link_to group.name, group_path(group)
+                - else
+                  = group.name

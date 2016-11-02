@@ -1,0 +1,10 @@
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+StringLiterals:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false

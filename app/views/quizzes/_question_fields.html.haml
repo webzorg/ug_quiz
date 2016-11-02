@@ -3,7 +3,7 @@
     %legend.questions-legend
       = f.label :content, "Question"
 
-    = link_to_remove_association button_tag('X', class: "btn btn-danger custom-close"), f
+    = link_to_remove_association button_tag("X", class: "btn btn-danger custom-close"), f
 
     .questions
       = f.text_area :content, class: "question-content"
@@ -12,9 +12,9 @@
         = f.number_field :weight, step: "any"
 
     = f.fields_for :answers, f.object.answers.all.oldest_first do |answer|
-      = render 'answer_fields.html.haml', f: answer
+      = render "answer_fields.html.haml", f: answer
 
     .links
-      = link_to_add_association button_tag('Add Answer', class: "btn btn-success"), f, :answers
+      = link_to_add_association button_tag("Add Answer", class: "btn btn-success"), f, :answers
     %br
 %br

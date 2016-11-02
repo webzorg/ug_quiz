@@ -1,9 +1,9 @@
 .page-header
-  = link_to quizzes_path, class: 'btn btn-default' do
+  = link_to quizzes_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp
-  = link_to edit_quiz_path(@quiz), class: 'btn btn-primary' do
+  = link_to edit_quiz_path(@quiz), class: "btn btn-primary #{can_class(:update, Quiz)}" do
     %span.glyphicon.glyphicon-pencil
     Edit
   %h1 Show quiz
@@ -14,7 +14,10 @@
     %ul
       - @quiz.groups.each do |group|
         %li
-          = group.name
+          - if can? :read, Group
+            =link_to group.name, group_path(group)
+          - else
+            = group.name
 
   %dt Status:
   %dd
@@ -29,7 +32,7 @@
     %ol
       - @quiz.questions.each do |question|
         %li= "(#{question.weight}) - #{question.content}"
-        %ol{type: "A", class: "answerList"}
+        %ol{class: "answer-list"}
           -question.answers.oldest_first.each do |answer|
             %li{class: "#{answer.correct ? 'tick' : 'cross'  }"}
               =answer.content

@@ -11,26 +11,26 @@
           %li= msg
 
   .form-group
-    = f.label :group_id, class: 'col-sm-2 control-label'
+    = f.label :group_id, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.number_field :group_id, class: 'form-control'
+      = f.number_field :group_id, class: "form-control"
   .form-group
-    = f.label :name, class: 'col-sm-2 control-label'
+    = f.label :name, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :name, class: 'form-control'
+      = f.text_field :name, class: "form-control"
   .form-group
-    = f.label :semester, class: 'col-sm-2 control-label'
+    = f.label :semester, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.collection_select(:semester_id, Semester.all, :id, :semester_name_concat, {include_hidden: true}, { class: 'form-control' })
+      = f.collection_select(:semester_id, Semester.all, :id, :semester_name_concat, {include_hidden: true}, { class: "form-control" })
   .form-group
-    = f.label :professor, class: 'col-sm-2 control-label'
+    = f.label :professor, class: "col-sm-2 control-label"
     .col-sm-10
       = current_professor.name
   .form-group
-    = f.label :students, class: 'col-sm-2 control-label'
+    = f.label :students, class: "col-sm-2 control-label"
     .col-sm-10
       = f.collection_select(:student_ids, Student.all, :id, :student_name_concat,
-      {include_hidden: true}, { id: 'include_students_in_group', class: 'form-control', multiple: true })
+      {include_hidden: true}, { id: "include_students_in_group", class: "form-control", multiple: true })
   .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit class: 'btn btn-primary'
+      = f.submit class: "btn btn-primary"

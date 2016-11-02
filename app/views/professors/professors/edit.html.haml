@@ -1,11 +1,11 @@
 .page-header
-  = link_to professors_professors_path, class: 'btn btn-default' do
+  = link_to :back, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp;
-  = link_to professors_professors_path(@professors_professor), class: 'btn btn-primary' do
+  = link_to professors_professors_path(@professor), class: "btn btn-primary" do
     %span.glyphicon.glyphicon-info-sign
     Show
   %h1= t(:editing_professor)
 
-= render 'form'
+= render "form"

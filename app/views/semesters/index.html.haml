@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_semester_path, class: 'btn btn-primary' do
+  = link_to new_semester_path, class: "btn btn-primary #{can_class(:create, Semester)}" do
     %span.glyphicon.glyphicon-plus
     New Semester
   %h1 Listing semesters
@@ -19,8 +19,8 @@
         %tr
           %td= semester.year
           %td= semester.semester_name_concat
-          %td= link_to 'Show', semester, class: "btn btn-primary"
-          %td= link_to 'Edit', edit_semester_path(semester), class: "btn btn-warning"
-          %td= link_to 'Destroy', semester, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+          %td= link_to "Show", semester, class: "btn btn-primary #{can_class(:show, Semester)}"
+          %td= link_to "Edit", edit_semester_path(semester), class: "btn btn-warning #{can_class(:update, Semester)}"
+          %td= link_to "Destroy", semester, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, Semester)}"
 
 = paginate @semesters

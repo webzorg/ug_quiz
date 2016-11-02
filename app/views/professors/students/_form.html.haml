@@ -1,31 +1,31 @@
-= form_for [:professors, @professors_student], html: { class: "form-horizontal", role: "form" } do |f|
-  -if @professors_student.errors.any?
+= form_for [:professors, @student], html: { class: "form-horizontal", role: "form" } do |f|
+  -if @student.errors.any?
     .alert.alert-danger.alert-dismissable{role: "alert"}
       %button.close{type: "button", data: {dismiss: "alert"} }
         %span{aria: {hidden: "true"} } &times;
         %span.sr-only Close
-      %h4= "#{pluralize(@professors_student.errors.count, "error")} prohibited this professors_student from being saved:"
+      %h4= "#{pluralize(@student.errors.count, "error")} prohibited this professors_student from being saved:"
 
       %ul
-        - @professors_student.errors.full_messages.each do |msg|
+        - @student.errors.full_messages.each do |msg|
           %li= msg
 
   .form-group
-    = f.label :name, class: 'col-sm-2 control-label'
+    = f.label :name, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :name, class: 'form-control'
+      = f.text_field :name, class: "form-control"
   .form-group
-    = f.label :student_id, class: 'col-sm-2 control-label'
+    = f.label :student_id, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.number_field :student_id, class: 'form-control'
+      = f.number_field :student_id, class: "form-control"
   .form-group
-    = f.label :email, class: 'col-sm-2 control-label'
+    = f.label :email, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :email, class: 'form-control'
+      = f.text_field :email, class: "form-control"
   .form-group
-    = f.label :password, class: 'col-sm-2 control-label'
+    = f.label :password, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :password, class: 'form-control'
+      = f.text_field :password, class: "form-control"
   .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit class: 'btn btn-primary'
+      = f.submit class: "btn btn-primary"

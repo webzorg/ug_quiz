@@ -123,26 +123,29 @@ textarea {
 
 .dl-horizontal {
   text-align: left;
+
   ol {
-    // text-align: left;
-    li:before {
-        counter-increment: item;
-        color: red;
+    li::before {
+      counter-increment: item;
+      color: $danger-color;
     }
   }
 }
 
+.answer-list {
+  list-style-type: upper-alpha;
 
-.answerList li.tick::before {
-  content: "\2713";
-  color: $success-color-dark;
+  li.tick::before {
+    content: "\2713";
+    color: $success-color-dark;
+  }
+
+  li.cross::before {
+    content: "\2717";
+    color: $danger-color-dark;
+  }
+
 }
-
-.answerList li.cross::before {
-  content: "\2717";
-  color: $danger-color-dark;
-}
-
 
 .questions-fieldset {
 

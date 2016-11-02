@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_professors_professor_path, class: 'btn btn-primary' do
+  = link_to new_professors_professor_path, class: "btn btn-primary #{can_class(:create, Professor)}" do
     %span.glyphicon.glyphicon-plus
     = :new_professor
   %h1= :professor_index
@@ -17,15 +17,15 @@
         %th.col-sm-1
 
     %tbody
-      - @professors_professors.each do |professors_professor|
+      - @professors.each do |professor|
         %tr
-          %td= professors_professor.name
-          %td= professors_professor.professor_id
-          %td= professors_professor.email
+          %td= professor.name
+          %td= professor.professor_id
+          %td= professor.email
           %td.col-sm-1
-            = professors_professor.admin ? "\u2713" : "\u2717"
-          %td.col-sm-1= link_to 'Show', professors_professor_path(professors_professor), class: "btn btn-primary"
-          %td.col-sm-1= link_to 'Edit', edit_professors_professor_path(professors_professor), class: "btn btn-warning"
-          %td.col-sm-1= link_to 'Destroy', professors_professor_path(professors_professor), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger"
+            = professor.admin ? "\u2713" : "\u2717"
+          %td.col-sm-1= link_to "Show", professors_professor_path(professor), class: "btn btn-primary #{can_class(:show, Professor)}"
+          %td.col-sm-1= link_to "Edit", edit_professors_professor_path(professor), class: "btn btn-warning #{can_class(:update, Professor)}"
+          %td.col-sm-1= link_to "Destroy", professors_professor_path(professor), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, Professor)}"
 
-= paginate @professors_professors
+= paginate @professors

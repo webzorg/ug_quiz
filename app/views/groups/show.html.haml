@@ -1,9 +1,9 @@
 .page-header
-  = link_to groups_path, class: 'btn btn-default' do
+  = link_to groups_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp
-  = link_to edit_group_path(@group), class: 'btn btn-primary' do
+  = link_to edit_group_path(@group), class: "btn btn-primary #{can_class(:update, Group)}" do
     %span.glyphicon.glyphicon-pencil
     Edit
   %h1 Show group
@@ -20,6 +20,18 @@
   %br/
   %dt Students:
   %dd
-    - @group.students.each do |student|
-      =student.student_name_concat
-      %br/
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th.col-sm-2= t(:student_id)
+            %th.col-sm-10= t(:student_name)
+        %tbody
+          -@group.students.each do |student|
+            %tr
+              %td= student.student_id
+              %td
+                - if can? :show, Student
+                  =link_to student.name, professors_student_path(student)
+                - else
+                  = student.name

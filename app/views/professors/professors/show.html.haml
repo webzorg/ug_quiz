@@ -1,19 +1,19 @@
 .page-header
-  = link_to professors_professors_path, class: 'btn btn-default' do
+  = link_to :back, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp;
-  = link_to edit_professors_professor_path(@professors_professor), class: 'btn btn-primary' do
+  = link_to edit_professors_professor_path(@professor), class: "btn btn-primary #{can_class(:update, Professor)}" do
     %span.glyphicon.glyphicon-pencil
     Edit
   %h1= t(:show_professor)
 
 %dl.dl-horizontal
   %dt Name:
-  %dd= @professors_professor.name
+  %dd= @professor.name
   %dt Professor:
-  %dd= @professors_professor.professor_id
+  %dd= @professor.professor_id
   %dt Email:
-  %dd= @professors_professor.email
+  %dd= @professor.email
   %dt Admin:
-  %dd= @professors_professor.admin ? "\u2713" : "\u2717"
+  %dd= @professor.admin ? "\u2713" : "\u2717"
