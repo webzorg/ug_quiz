@@ -1,5 +1,6 @@
 class QuizzesController < Professors::ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
+  before_action :remove_blank_group_ids_if_admin, only: [:update]
   load_and_authorize_resource
 
   def index
@@ -56,11 +57,16 @@ class QuizzesController < Professors::ApplicationController
 
   private
 
+  def remove_blank_group_ids_if_admin
+    return unless current_professor.admin?
+    params[:quiz].delete(:group_ids) if params[:quiz][:group_ids].reject(&:blank?).blank?
+  end
+
   def set_quiz
     @quiz = Quiz.find(params[:id])
   end
 
   def quiz_params
-    params.require(:quiz).permit(:active, group_ids: [], questions_attributes: [:id, :content, :weight, :_destroy, answers_attributes: [:id, :content, :correct, :_destroy]])
+    params.require(:quiz).permit(:active, others_group_ids: [], group_ids: [], questions_attributes: [:id, :content, :weight, :_destroy, answers_attributes: [:id, :content, :correct, :_destroy]])
   end
 end

@@ -23,8 +23,8 @@
           %td= group.name
           %td= group.semester.semester_name_concat
           %td= group.professor.name
-          %td= link_to "Show", group, class: "btn btn-primary #{can_class(:show, Group)}"
-          %td= link_to "Edit", edit_group_path(group), class: "btn btn-warning #{can_class(:update, Group)}"
-          %td= link_to "Destroy", group, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, Group)}"
+          %td= link_to "Show", group, class: "btn btn-primary #{can_class(:show, group)}"
+          %td= link_to "Edit", edit_group_path(group), class: "btn btn-warning #{can_class(:update, group)}"
+          %td= link_to "Destroy", group, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, group)}"
 
 = paginate @groups

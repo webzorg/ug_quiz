@@ -19,8 +19,8 @@
         %tr
           %td= semester.year
           %td= semester.semester_name_concat
-          %td= link_to "Show", semester, class: "btn btn-primary #{can_class(:show, Semester)}"
-          %td= link_to "Edit", edit_semester_path(semester), class: "btn btn-warning #{can_class(:update, Semester)}"
-          %td= link_to "Destroy", semester, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, Semester)}"
+          %td= link_to "Show", semester, class: "btn btn-primary #{can_class(:show, semester)}"
+          %td= link_to "Edit", edit_semester_path(semester), class: "btn btn-warning #{can_class(:update, semester)}"
+          %td= link_to "Destroy", semester, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, semester)}"
 
 = paginate @semesters

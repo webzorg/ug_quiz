@@ -3,7 +3,7 @@
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp
-  = link_to edit_quiz_path(@quiz), class: "btn btn-primary #{can_class(:update, Quiz)}" do
+  = link_to edit_quiz_path(@quiz), class: "btn btn-primary #{can_class(:update, @quiz)}" do
     %span.glyphicon.glyphicon-pencil
     Edit
   %h1 Show quiz
@@ -14,7 +14,7 @@
     %ul
       - @quiz.groups.each do |group|
         %li
-          - if can? :read, Group
+          - if can? :show, group
             =link_to group.name, group_path(group)
           - else
             = group.name

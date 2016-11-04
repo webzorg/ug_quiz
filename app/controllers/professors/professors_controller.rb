@@ -1,6 +1,6 @@
 class Professors::ProfessorsController < Professors::ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
-  before_action :clean_parssword_params, only: [:update]
+  before_action :clean_password_params, only: [:update]
   load_and_authorize_resource
 
   def index
@@ -42,7 +42,7 @@ class Professors::ProfessorsController < Professors::ApplicationController
 
   private
 
-  def clean_parssword_params
+  def clean_password_params
     if params[:professor][:password].blank? &&
        params[:professor][:password_confirmation].blank?
       params[:professor].delete(:password)

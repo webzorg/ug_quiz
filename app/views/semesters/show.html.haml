@@ -3,7 +3,7 @@
     %span.glyphicon.glyphicon-list-alt
     Back
   &nbsp
-  = link_to edit_semester_path(@semester), class: "btn btn-primary #{can_class(:update, Semester)}" do
+  = link_to edit_semester_path(@semester), class: "btn btn-primary #{can_class(:update, @semester)}" do
     %span.glyphicon.glyphicon-pencil
     Edit
   %h1 Show semester
@@ -27,7 +27,7 @@
             %tr
               %td= group.group_id
               %td
-                - if can? :show, Group
+                - if can? :show, group
                   =link_to group.name, group_path(group)
                 - else
                   = group.name
