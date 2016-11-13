@@ -23,9 +23,14 @@
           - question = answer_fields.object.question
           %li.attempt-question= question.content
           .attempt-question
-            = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
-              .attempt-question
-                = b.label { "#{b.check_box} #{b.text}" }
+            -unless question.radio?
+              = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+                .attempt-question
+                  = b.label { "#{b.check_box} #{b.text}" }
+            -else
+              = collection_radio_buttons("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+                .attempt-question
+                  = b.label { "#{b.radio_button} #{b.text}" }
 
 
   .form-group

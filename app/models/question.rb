@@ -9,12 +9,11 @@ class Question < ApplicationRecord
   scope :oldest_first, -> { order(created_at: :asc) }
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  # helpers
-  def correct_options
-    answers.correct
+  def correct_answers_count
+    answers.select(&:correct?).count
   end
 
-  def incorrect_options
-    answers.incorrect
+  def radio?
+    answers.one?(&:correct)
   end
 end

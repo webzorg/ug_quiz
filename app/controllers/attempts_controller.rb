@@ -19,7 +19,6 @@ class AttemptsController < ApplicationController
       params[:attempt][:responses_attributes].map do |key, value|
         { question_id: key, answer_ids: value }
       end
-
     @quiz = @active_quizzes.find(attempt_params[:quiz_id])
     @attempt = @quiz.attempts.new(attempt_params)
     if @attempt.save
@@ -57,10 +56,6 @@ class AttemptsController < ApplicationController
   end
 
   def attempt_params
-    logger.debug "*********************************************"
-    logger.debug params[:attempt].inspect
-    logger.debug "*********************************************"
-
-    params.require(:attempt).permit(:active, :quiz_id, :student_id, responses_attributes: [:id, :question_id, :correct, answer_ids: []])
+    params.require(:attempt).permit(:active, :quiz_id, :student_id, responses_attributes: [:id, :question_id, :correct, :answer_ids, answer_ids: []])
   end
 end
