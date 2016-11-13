@@ -10,6 +10,9 @@ class Student < ApplicationRecord
 
   has_many :groups_students
   has_many :groups, through: :groups_students
+
+  has_many :quizzes, through: :groups
+
   has_many :attempt, dependent: :destroy
 
   def student_name_concat

@@ -5,7 +5,7 @@ class QuizzesController < Professors::ApplicationController
 
   def index
     @quizzes = current_professor.admin? ? Quiz.all : current_professor.quizzes
-    @quizzes = @quizzes.page(params[:page]).per(25)
+    @quizzes = @quizzes.newest_first.page(params[:page]).per(25)
   end
 
   def show

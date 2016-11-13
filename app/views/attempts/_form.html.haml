@@ -1,0 +1,33 @@
+= form_for @attempt, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @attempt.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@attempt.errors.count, "error")} prohibited this attempt from being saved:"
+
+      %ul
+        - @attempt.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.hidden_field :quiz_id
+  = f.hidden_field :student_id, value: current_student.id
+  .form-group
+    .col-sm-2
+      question
+    .col-sm-10
+      answer
+      %br
+      %ol
+        = f.fields_for :responses, @attempt.quiz.questions.map { |q| Response.new( question_id: q.id ) } do |answer_fields|
+          - question = answer_fields.object.question
+          %li.attempt-question= question.content
+          .attempt-question
+            = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+              .attempt-question
+                = b.label { "#{b.check_box} #{b.text}" }
+
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"

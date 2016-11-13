@@ -8,4 +8,13 @@ class Question < ApplicationRecord
 
   scope :oldest_first, -> { order(created_at: :asc) }
   accepts_nested_attributes_for :answers, allow_destroy: true
+
+  # helpers
+  def correct_options
+    answers.correct
+  end
+
+  def incorrect_options
+    answers.incorrect
+  end
 end

@@ -1,0 +1,15 @@
+.page-header
+  %h1 Listing attempts
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th= t(:quizzes)
+        %th
+
+    %tbody
+      - @active_quizzes.each do |quiz|
+        %tr
+          %td= quiz.id
+          %td= link_to 'Show', new_attempt_path(quiz_id: quiz.id)

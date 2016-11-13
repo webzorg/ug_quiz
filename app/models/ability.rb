@@ -9,11 +9,11 @@ class Ability
 
       if user.admin?
         can :manage, :all
-
         cannot :destroy, Professor, admin: user.admin
       end
     when Student
-      can :read, :all
+      can :read, Attempt
+      can :create, Attempt
     end
   end
 end

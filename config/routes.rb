@@ -5,19 +5,19 @@ Rails.application.routes.draw do
   namespace :professors do
     resources :professors
     resources :students
-    get 'home/index'
-    root 'home#index'
+    get "home/index"
+    root "home#index"
   end
 
   resources :answers
   resources :questions
   resources :quizzes do
-    patch 'toggle_quiz', on: :member
+    patch "toggle_quiz", on: :member
   end
   resources :groups
   resources :semesters
 
-  get 'home/index'
-  root 'home#index'
+  resources :attempts
+  root "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

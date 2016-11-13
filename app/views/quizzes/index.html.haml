@@ -9,7 +9,8 @@
     %thead
       %tr
         %th.col-sm-1 Quiz ID
-        %th.col-sm-6 Groups
+        %th.col-sm-3 Belongs To: Groups
+        %th.col-sm-3 Belongs To: Owner
         %th.col-sm-1 Status
         %th.col-sm-1 Weight
         %th.col-sm-1
@@ -23,7 +24,11 @@
             %ul
               - quiz.groups.each do |group|
                 %li
-                  = group.name + " - " +group.professor.name
+                  = group.name
+          %td
+            %ul
+              %li
+                = quiz.groups.first.professor.name
           %td= check_box_tag(:active, quiz.id, quiz.active, {class: "toggle-quiz"})
           %td= total_weight(quiz)
           %td= link_to "Show", quiz, class: "btn btn-primary #{can_class(:show, quiz)}"

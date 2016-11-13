@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103181407) do
+ActiveRecord::Schema.define(version: 20161113114434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20161103181407) do
     t.text     "content"
     t.boolean  "correct"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+  end
+
+  create_table "answers_responses", force: :cascade do |t|
+    t.integer  "answer_id"
+    t.integer  "response_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["answer_id"], name: "index_answers_responses_on_answer_id", using: :btree
+    t.index ["response_id"], name: "index_answers_responses_on_response_id", using: :btree
   end
 
   create_table "attempts", force: :cascade do |t|
@@ -101,11 +110,9 @@ ActiveRecord::Schema.define(version: 20161103181407) do
   create_table "responses", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "attempt_id"
-    t.integer  "answer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "correct"
-    t.index ["answer_id"], name: "index_responses_on_answer_id", using: :btree
     t.index ["attempt_id"], name: "index_responses_on_attempt_id", using: :btree
     t.index ["question_id"], name: "index_responses_on_question_id", using: :btree
   end
@@ -136,6 +143,8 @@ ActiveRecord::Schema.define(version: 20161103181407) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "answers_responses", "answers"
+  add_foreign_key "answers_responses", "responses"
   add_foreign_key "attempts", "quizzes"
   add_foreign_key "attempts", "students"
   add_foreign_key "groups", "professors"

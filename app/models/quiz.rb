@@ -8,5 +8,6 @@ class Quiz < ApplicationRecord
   validates :group_ids, presence: true
 
   scope :newest_first, -> { order(created_at: :desc) }
+  scope :active, -> { where(active: true) }
   accepts_nested_attributes_for :questions, allow_destroy: true
 end
