@@ -4,7 +4,7 @@
       %button.close{type: "button", data: {dismiss: "alert"} }
         %span{aria: {hidden: "true"} } &times;
         %span.sr-only Close
-      %h4= "#{pluralize(@student.errors.count, "error")} prohibited this professors_student from being saved:"
+      %h4= t("errors.template.header", count: @student.errors.count, model: Student.model_name.human)
 
       %ul
         - @student.errors.full_messages.each do |msg|

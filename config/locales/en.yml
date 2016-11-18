@@ -23,6 +23,7 @@ en:
         score: Score
         student: Student
       group:
+        group_id: Group ID
         groups_quizzes: Groups_quizzes
         groups_students: Groups_students
         professor: Professor
@@ -49,6 +50,8 @@ en:
         groups: Groups
         last_sign_in_at: Last sign in at
         last_sign_in_ip: Last sign in ip
+        password: password
+        professor_id: Professor ID
         quizzes: Quizzes
         remember_created_at: Remember created at
         reset_password_sent_at: Reset password sent at
@@ -94,10 +97,13 @@ en:
         groups_students: Groups_students
         last_sign_in_at: Last sign in at
         last_sign_in_ip: Last sign in ip
+        name: Name
+        password: Password
         quizzes: Quizzes
         remember_created_at: Remember created at
         reset_password_sent_at: Reset password sent at
         reset_password_token: Reset password token
+        student_id: Student ID
         translations: Translations
       student/translation:
         globalized_model: Globalized_model
@@ -149,8 +155,11 @@ en:
   editing_student: Editing student
   email: Email
   en: English
+  errors:
+    template:
+      header: Header
   fall: Fall
-  group_id: Group
+  group_id: Group ID
   group_name: Group name
   groups: Groups
   helpers:
@@ -178,8 +187,8 @@ en:
   new_quiz: New quiz
   new_semester: New semester
   new_student: New student
-  off_on: "Off"
-  on_off: "On"
+  off_on: 'Off'
+  on_off: 'On'
   password: Password
   professor: Professor
   professor_id: Professor id

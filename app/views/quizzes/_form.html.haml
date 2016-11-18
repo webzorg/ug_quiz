@@ -4,7 +4,7 @@
       %button.close{ type: "button", data: { dismiss: "alert" } }
         %span{aria: {hidden: "true"} } &times;
         %span.sr-only Close
-      %h4= "#{pluralize(@quiz.errors.count, "error")} prohibited this quiz from being saved:"
+      %h4= t("errors.template.header", count: @quiz.errors.count, model: Quiz.model_name.human)
 
       %ul
         - @quiz.errors.full_messages.each do |msg|

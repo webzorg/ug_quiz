@@ -23,6 +23,7 @@ ka:
         score: ქულა
         student: სტუდენტი
       group:
+        group_id: ჯგუფის ID
         groups_quizzes: groups_quizzes
         groups_students: groups_students
         professor: პროფესორი
@@ -49,6 +50,8 @@ ka:
         groups: ჯგუფები
         last_sign_in_at: ბოლო ავთენტიკაციის დრო
         last_sign_in_ip: ბოლო ავთენტიკაციის IP
+        password: პაროლი
+        professor_id: პროფესორის ID
         quizzes: ქვიზები
         remember_created_at: შექმნის დროის დამახსოვრება
         reset_password_sent_at: პაროლის აღდგენის გაგზავნის დრო
@@ -94,10 +97,13 @@ ka:
         groups_students: ჯგუფები სტუდენტები
         last_sign_in_at: ბოლო ავთენტიკაციის დრო
         last_sign_in_ip: ბოლო ავთენტიკაციის IP
+        name: სახელი
+        password: პაროლი
         quizzes: ტესტები
         remember_created_at: შექმნის დროის დამახსოვრება
         reset_password_sent_at: პაროლის აღდგენის გაგზავნის დრო
         reset_password_token: პაროლის აღდგენის მარკერი
+        student_id: სტუდენტის ID
         translations: თარგმანი
       student/translation:
         globalized_model: globalized_model
@@ -130,7 +136,7 @@ ka:
   add_question: კითხვის დამატება
   add_questions: კითხვების დამატება
   add_to_groups: ჯგუფებში დამატება
-  add_to_others_groups: სხვის ჯგუფებისთვის გაზიარება
+  add_to_others_groups: ჯგუფებისთვის გაზიარება
   admin: ადმინი
   answer: პასუხი
   are_you_sure: დარმუნებული ხართ?
@@ -149,6 +155,9 @@ ka:
   editing_student: სტუდენტის რედაქტირება
   email: ელ-ფოსტა
   en: english
+  errors:
+    template:
+      header: Header
   fall: შემოდგომა
   group_id: ჯგუფის ID
   group_name: ჯგუფის სახელი
