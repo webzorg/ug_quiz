@@ -1,58 +1,224 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  spring: "This is Spring"
-  fall: "This is Fall"
-  professor_id: "Professor ID"
+  academic_term: Semester
+  account_settings: Account settings
   activerecord:
     attributes:
+      answer:
+        answers_responses: Answers_responses
+        correct: Correct
+        question: Question
+        responses: Responses
+        translations: Translations
+      answer/translation:
+        content: Content
+        globalized_model: Globalized_model
+        locale: Locale
+      answers_response:
+        answer: Answer
+        response: Response
+      attempt:
+        quiz: Quiz
+        responses: Responses
+        score: Score
+        student: Student
+      group:
+        groups_quizzes: Groups_quizzes
+        groups_students: Groups_students
+        professor: Professor
+        quizzes: Quizzes
+        semester: Semester
+        students: Students
+        translations: Translations
+      group/translation:
+        globalized_model: Globalized_model
+        locale: Locale
+        name: Name
+      groups_quiz:
+        group: Group
+        quiz: Quiz
+      groups_student:
+        group: Group
+        student: Student
+      professor:
+        admin: Admin
+        current_sign_in_at: Current sign in at
+        current_sign_in_ip: Current sign in ip
+        email: Email
+        encrypted_password: Encrypted password
+        groups: Groups
+        last_sign_in_at: Last sign in at
+        last_sign_in_ip: Last sign in ip
+        quizzes: Quizzes
+        remember_created_at: Remember created at
+        reset_password_sent_at: Reset password sent at
+        reset_password_token: Reset password token
+        translations: Translations
+      professor/translation:
+        globalized_model: Globalized_model
+        locale: Locale
+        name: Name
+      question:
+        answers: Answers
+        quiz: Quiz
+        translations: Translations
+        weight: Score
+      question/translation:
+        content: Text
+        globalized_model: Globalized_model
+        locale: Locale
       quiz:
-        group_ids: "Groups"
+        active: Active
+        attempts: Attempts
+        group_ids: Group ids
+        groups: Groups
+        groups_quizzes: Groups_quizzes
+        questions: Questions
+      response:
+        answers: Answers
+        answers_responses: Answers_responses
+        attempt: Attempt
+        correct: Correct
+        question: Question
+      semester:
+        academicterm: Semester
+        groups: Groups
+        year: Year
+      student:
+        attempt: Attempt
+        current_sign_in_at: Current sign in at
+        current_sign_in_ip: Current sign in ip
+        email: Email
+        encrypted_password: Encrypted password
+        groups: Groups
+        groups_students: Groups_students
+        last_sign_in_at: Last sign in at
+        last_sign_in_ip: Last sign in ip
+        quizzes: Quizzes
+        remember_created_at: Remember created at
+        reset_password_sent_at: Reset password sent at
+        reset_password_token: Reset password token
+        translations: Translations
+      student/translation:
+        globalized_model: Globalized_model
+        locale: Locale
+        name: Name
     errors:
       models:
         quiz:
           attributes:
-            group_ids:
-              # blank: "is required"
-  views:
-    pagination:
-      first: "&laquo; First"
-      last: "Last &raquo;"
-      previous: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
-      truncate: "&hellip;"
+            group_ids: Group ids
+    models:
+      answer: Answer
+      answer/translation: Answer / translation
+      answers_response: Answers_response
+      attempt: Attempt
+      group: Group
+      group/translation: Group / translation
+      groups_quiz: Groups_quiz
+      groups_student: Groups_student
+      professor: Professor
+      professor/translation: Professor / translation
+      question: Question
+      question/translation: Question / translation
+      quiz: Quiz
+      response: Response
+      semester: Semester
+      student: Student
+      student/translation: Student / translation
+  add_answer: Add answer
+  add_question: Add question
+  add_questions: Add questions
+  add_to_groups: Add to groups
+  add_to_others_groups: Share with other groups
+  admin: Admin
+  answer: Answer
+  are_you_sure: Are you sure?
+  attempts: Attempts
+  back: Back
+  belongs_to_groups: Belongs to groups
+  belongs_to_owner: Belongs to owner
+  correct: Correct
+  destroy: Destroy
+  edit: Edit
+  editing_attempt: Editing attempt
+  editing_group: Editing group
+  editing_professor: Editing professor
+  editing_quiz: Editing quiz
+  editing_semester: Editing semester
+  editing_student: Editing student
+  email: Email
+  en: English
+  fall: Fall
+  group_id: Group
+  group_name: Group name
+  groups: Groups
   helpers:
     page_entries_info:
+      more_pages:
+        display_entries: Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total
       one_page:
         display_entries:
-          zero: "No %{entry_name} found"
-          one: "Displaying <b>1</b> %{entry_name}"
-          other: "Displaying <b>all %{count}</b> %{entry_name}"
-      more_pages:
-        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+          one: Displaying <b>1</b> %{entry_name}
+          other: Displaying <b>all %{count}</b> %{entry_name}
+          zero: No %{entry_name} found
+  ka: ქართული
+  language: Language
+  listing_attempts: Listing attempts
+  listing_groups: Groups
+  listing_quizzes: Listing quizzes
+  listing_semesters: Listing semesters
+  logout: Logout
+  main_menu: Main menu
+  name: Name
+  new_group: New group
+  new_password: New password
+  new_password_confirmation: New password confirmation
+  new_professor: New professor
+  new_quiz: New quiz
+  new_semester: New semester
+  new_student: New student
+  off_on: "Off"
+  on_off: "On"
+  password: Password
+  professor: Professor
+  professor_id: Professor id
+  professor_index: Professor index
+  professors: Professors
+  question: Question
+  questions: Questions
+  quiz_id: Quiz
+  quizzes: Quizzes
+  semester: Semester
+  semesters: Semester
+  show: Show
+  show_attempt: Show attempt
+  show_group: Show group
+  show_professor: Show professor
+  show_quiz: Show quiz
+  show_semester: Show semester
+  show_student: Show student
+  spring: Spring
+  status: Status
+  student_id: Student
+  student_index: Student index
+  student_name: Student name
+  students: Students
+  take_quiz: Take quiz
   unauthorized:
-    default: "Default error message text."
+    default: Default error message text.
     manage:
-      all: "Not authorized to %{action} %{subject}."
-      user: "Not allowed to manage other user accounts."
+      all: Not authorized to %{action} %{subject}.
+      user: Not allowed to manage other user accounts.
     update:
-      project: "Not allowed to update this project."
+      project: Not allowed to update this project.
+  user_management: User management
+  views:
+    pagination:
+      first: "&laquo; first"
+      last: Last &raquo;
+      next: Next &rsaquo;
+      previous: "&lsaquo; prev"
+      truncate: "&hellip;"
+  weight: Score
+  year: Year

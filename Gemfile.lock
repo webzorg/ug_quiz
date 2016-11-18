@@ -1,3 +1,21 @@
+GIT
+  remote: git://github.com/globalize/globalize.git
+  revision: abe7786f4cc7edeafbfdda2863c6d17ca7e744d0
+  specs:
+    globalize (5.1.0)
+      activemodel (>= 4.2, < 5.1)
+      activerecord (>= 4.2, < 5.1)
+      request_store (~> 1.0)
+
+GIT
+  remote: git://github.com/svenfuchs/rails-i18n.git
+  revision: a13cc4a5642e3114bf75c304bea27e3f3d225625
+  branch: master
+  specs:
+    rails-i18n (5.0.1)
+      i18n (~> 0.7)
+      railties (~> 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -24,11 +42,21 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.2)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      jsonapi (~> 0.1.1.beta2)
+      railties (>= 4.1, < 6)
     activejob (5.0.0.1)
       activesupport (= 5.0.0.1)
       globalid (>= 0.3.6)
     activemodel (5.0.0.1)
       activesupport (= 5.0.0.1)
+    activemodel-serializers-xml (1.0.1)
+      activemodel (> 5.x)
+      activerecord (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.0.0.1)
       activemodel (= 5.0.0.1)
       activesupport (= 5.0.0.1)
@@ -52,12 +80,19 @@ GEM
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    deep_cloneable (2.2.2)
+      activerecord (>= 3.1.0, < 5.2.0)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.1.1)
+    easy_translate (0.5.0)
+      json
+      thread
+      thread_safe
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -93,6 +128,7 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    highline (1.7.8)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -100,10 +136,28 @@ GEM
       ruby_parser (~> 3.5)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
+    i18n-tasks (0.9.6)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      easy_translate (>= 0.5.0)
+      erubis
+      highline (>= 1.7.3)
+      i18n
+      parser (>= 2.2.3.0)
+      term-ansicolor (>= 1.3.2)
+      terminal-table (>= 1.5.1)
+    i18n_generators (2.1.1)
+      rails (>= 3.0.0)
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    json (2.0.2)
+    jsonapi (0.1.1.beta6)
+      jsonapi-parser (= 0.1.1.beta3)
+      jsonapi-renderer (= 0.1.1.beta1)
+    jsonapi-parser (0.1.1.beta3)
+    jsonapi-renderer (0.1.1.beta1)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -169,9 +223,6 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails-i18n (5.0.1)
-      i18n (~> 0.7)
-      railties (~> 5.0)
     railties (5.0.0.1)
       actionpack (= 5.0.0.1)
       activesupport (= 5.0.0.1)
@@ -183,6 +234,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    request_store (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rubocop (0.45.0)
@@ -219,9 +271,15 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    term-ansicolor (1.4.0)
+      tins (~> 1.0)
+    terminal-table (1.7.3)
+      unicode-display_width (~> 1.1.1)
     thor (0.19.1)
+    thread (0.2.2)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    tins (1.12.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.3)
@@ -242,14 +300,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.0)
+  activemodel-serializers-xml
   bootstrap-generators (~> 3.3.4)
   bootstrap-switch-rails
   cancancan (~> 1.10)
   cocoon
+  deep_cloneable (~> 2.2.2)
   devise
+  devise-i18n
   foreman
+  globalize!
   guard-livereload (~> 2.5)
   haml-rails (~> 0.9)
+  i18n-tasks (~> 0.9.6)
+  i18n_generators (~> 2.1, >= 2.1.1)
   jquery-rails
   kaminari
   listen (~> 3.0.5)
@@ -259,7 +324,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 5.0.0)
   rails-erd
-  rails-i18n (~> 5.0.0)
+  rails-i18n!
   rubocop
   sass-rails (~> 5.0)
   select2-rails

@@ -9,31 +9,33 @@
       %ul
         - @quiz.errors.full_messages.each do |msg|
           %li= msg
+
   .form-group
-    = f.label :add_to_groups, class: "col-sm-2 control-label"
+    = f.label t(:add_to_groups), class: "col-sm-2 control-label"
     .col-sm-10
       = f.collection_select(:group_ids, current_professor.groups, :id, :name,
       {include_hidden: true}, { id: "include_groups_in_quiz", class: "form-control", multiple: true })
 
-  -# .form-group
-    = f.label :add_to_others_groups, class: "col-sm-2 control-label"
+  .form-group
+    = f.label t(:add_to_others_groups), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.collection_select(:others_group_ids , Group.where.not(professor_id: current_professor.id), :id, :name,
-      {include_hidden: true}, { id: "include_others_groups_in_quiz", class: "form-control", multiple: true })
+      = collection_select(nil, :others_group_ids, Group.where.not(professor_id: current_professor.id), :id, :name,
+      {include_hidden: false, selected: @quiz.groups.map(&:id)}, {id: "include_others_groups_in_quiz", class: "form-control", multiple: true })
+
 
   .form-group
-    = f.label :status, class: "col-sm-2 control-label"
+    = f.label t(:status), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.check_box :active, class: "toggle-quiz"
+      = f.check_box :active, class: "toggle-quiz",  "data-on-text": t(:on_off), "data-off-text": t(:off_on)
 
   -# ***** questions *****
   .form-group
-    = f.label :add_questions, class: "col-sm-2 control-label"
+    = f.label t(:add_questions), class: "col-sm-2 control-label"
     .col-sm-10
       = f.fields_for :questions do |question|
         = render "question_fields", f: question
       .links
-        = link_to_add_association button_tag("Add Question", class: "btn btn-primary"), f, :questions
+        = link_to_add_association button_tag(t(:add_question), class: "btn btn-primary"), f, :questions
 
     .col-sm-offset-2.col-sm-10
       %br

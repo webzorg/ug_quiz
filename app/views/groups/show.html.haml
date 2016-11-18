@@ -1,24 +1,24 @@
 .page-header
   = link_to groups_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
-    Back
+    =t(:back)
   &nbsp
   = link_to edit_group_path(@group), class: "btn btn-primary #{can_class(:update, @group)}" do
     %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show group
+    =t(:edit)
+  %h1=t(:show_group)
 
 %dl.dl-horizontal
-  %dt Group ID:
+  %dt=t(:group_id)
   %dd= @group.group_id
-  %dt Name:
+  %dt=t(:name)
   %dd= @group.name
-  %dt Semester:
+  %dt=t(:semester)
   %dd= @group.semester.semester_name_concat
-  %dt Professor:
+  %dt=t(:professor)
   %dd= @group.professor.name
-  %br/
-  %dt Students:
+  %br
+  %dt=t(:students)
   %dd
     .table-responsive
       %table.table.table-hover

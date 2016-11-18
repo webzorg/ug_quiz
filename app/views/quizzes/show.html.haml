@@ -1,15 +1,15 @@
 .page-header
   = link_to quizzes_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
-    Back
+    =t(:back)
   &nbsp
   = link_to edit_quiz_path(@quiz), class: "btn btn-primary #{can_class(:update, @quiz)}" do
     %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show quiz
+    =t(:edit)
+  %h1=t(:show_quiz)
 
 %dl.dl-horizontal
-  %dt Belongs To Groups:
+  %dt=t(:belongs_to_groups)
   %dd
     %ul
       - @quiz.groups.each do |group|
@@ -19,15 +19,15 @@
           - else
             = group.name
 
-  %dt Status:
+  %dt=t(:status)
   %dd
-    = @quiz.active ? "Quiz is actived" : "Quiz is deactivated"
+    = @quiz.active ? t(:on_off) : t(:off_on)
   %br
-  %dt Weight:
+  %dt=t(:weight)
   %dd
     = total_weight(@quiz)
   %br
-  %dt Questions:
+  %dt=t(:questions)
   %dd
     %ol
       - @quiz.questions.each do |question|

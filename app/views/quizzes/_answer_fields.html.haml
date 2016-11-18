@@ -1,7 +1,7 @@
 .nested-fields
   %fieldset.answers-fieldset
     %legend.answers-legend
-      = f.label :content, "Answer"
+      = f.label t(:answer)
     = link_to_remove_association button_tag("X", class: "btn btn-danger custom-close"), f
 
     .answers
@@ -9,4 +9,4 @@
       .btn-group{"data-toggle" => "buttons", class: "correct-switch"}
         %label{class: "btn btn-danger #{'active' if f.object.correct}"}
           = f.check_box :correct
-          Correct?
+          =t(:correct)

@@ -1,7 +1,7 @@
 .nested-fields
   %fieldset.questions-fieldset
     %legend.questions-legend
-      = f.label :content, "Question"
+      = f.label t(:question)
 
     = link_to_remove_association button_tag("X", class: "btn btn-danger custom-close"), f
 
@@ -15,6 +15,6 @@
       = render "answer_fields.html.haml", f: answer
 
     .links
-      = link_to_add_association button_tag("Add Answer", class: "btn btn-success"), f, :answers
+      = link_to_add_association button_tag(t(:add_answer), class: "btn btn-success"), f, :answers
     %br
 %br

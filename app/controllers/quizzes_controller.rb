@@ -1,11 +1,13 @@
 class QuizzesController < Professors::ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
   before_action :remove_blank_group_ids_if_admin, only: [:update]
+  # before_action :add_others_group_ids, only: [:create, :update]
   load_and_authorize_resource
 
   def index
     @quizzes = current_professor.admin? ? Quiz.all : current_professor.quizzes
-    @quizzes = @quizzes.newest_first.page(params[:page]).per(25)
+    @quizzes = @quizzes.oldest_first.page(params[:page]).per(25)
+    fresh_when(etag: @quizzes, last_modified: @quizzes.maximum(:updated_at), public: true)
   end
 
   def show
@@ -20,17 +22,18 @@ class QuizzesController < Professors::ApplicationController
 
   def create
     @quiz = Quiz.new(quiz_params)
-
+    add_others_group_ids
     if @quiz.save
-      redirect_to @quiz, notice: 'Quiz was successfully created.'
+      redirect_to @quiz, notice: "Quiz was successfully created."
     else
-      logger.debug @quiz.errors.inspect
+      render :new
     end
   end
 
   def update
     if @quiz.update(quiz_params)
-      redirect_to @quiz, notice: 'Quiz was successfully updated.'
+      add_others_group_ids
+      redirect_to @quiz, notice: "Quiz was successfully updated."
     else
       render :edit
     end
@@ -52,10 +55,19 @@ class QuizzesController < Professors::ApplicationController
 
   def destroy
     @quiz.destroy
-    redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.'
+    redirect_to quizzes_url, notice: "Quiz was successfully destroyed."
   end
 
   private
+
+  def add_others_group_ids
+    return unless params[:others_group_ids].present?
+    params[:others_group_ids].reject(&:blank?).each do |group_id|
+      quiz_temp = @quiz.deep_clone include: [:questions, { questions: :answers }]
+      quiz_temp.groups << Group.find(group_id)
+      quiz_temp.save
+    end
+  end
 
   def remove_blank_group_ids_if_admin
     return unless current_professor.admin?

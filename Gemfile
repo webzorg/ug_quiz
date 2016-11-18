@@ -11,30 +11,31 @@ gem "haml-rails", "~> 0.9"
 gem "sass-rails", "~> 5.0"
 # Use Uglifier as compressor for JavaScript assets
 gem "uglifier", ">= 1.3.0"
-
 # Use jquery as the JavaScript library
 gem "jquery-rails"
-
+# Pagination
 gem "kaminari"
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem "jbuilder", "~> 2.5"
-# Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 3.0"
-# Use ActiveModel has_secure_password
-# gem "bcrypt", "~> 3.1.7"
+# API
+gem "active_model_serializers", "~> 0.10.0"
+# I18n
+gem "rails-i18n", github: "svenfuchs/rails-i18n", branch: "master"
+gem "globalize", github: "globalize/globalize"
+gem "activemodel-serializers-xml"
+gem "devise-i18n"
+gem "i18n_generators", "~> 2.1", ">= 2.1.1"
+gem "i18n-tasks", "~> 0.9.6"
 
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
+
 gem "bootstrap-generators", "~> 3.3.4"
 gem "select2-rails"
 gem "bootstrap-switch-rails"
 
 gem "cocoon"
+gem "deep_cloneable", "~> 2.2.2"
 gem "devise"
 gem "cancancan", "~> 1.10"
-
-gem "rails-i18n", "~> 5.0.0"
 
 group :development, :test do
   gem "pry-byebug"

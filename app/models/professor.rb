@@ -1,4 +1,5 @@
 class Professor < ApplicationRecord
+  translates :name, fallbacks_for_empty_translations: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :groups

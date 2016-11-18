@@ -10,16 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113114434) do
+ActiveRecord::Schema.define(version: 20161116144143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_translations", force: :cascade do |t|
+    t.integer  "answer_id",  null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "content"
+    t.index ["answer_id"], name: "index_answer_translations_on_answer_id", using: :btree
+    t.index ["locale"], name: "index_answer_translations_on_locale", using: :btree
+  end
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.text     "content"
     t.boolean  "correct"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
   end
@@ -43,8 +52,17 @@ ActiveRecord::Schema.define(version: 20161113114434) do
     t.index ["student_id"], name: "index_attempts_on_student_id", using: :btree
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "group_translations", force: :cascade do |t|
+    t.integer  "group_id",   null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "name"
+    t.index ["group_id"], name: "index_group_translations_on_group_id", using: :btree
+    t.index ["locale"], name: "index_group_translations_on_locale", using: :btree
+  end
+
+  create_table "groups", force: :cascade do |t|
     t.integer  "semester_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -72,6 +90,16 @@ ActiveRecord::Schema.define(version: 20161113114434) do
     t.index ["student_id"], name: "index_groups_students_on_student_id", using: :btree
   end
 
+  create_table "professor_translations", force: :cascade do |t|
+    t.integer  "professor_id", null: false
+    t.string   "locale",       null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "name"
+    t.index ["locale"], name: "index_professor_translations_on_locale", using: :btree
+    t.index ["professor_id"], name: "index_professor_translations_on_professor_id", using: :btree
+  end
+
   create_table "professors", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -85,15 +113,23 @@ ActiveRecord::Schema.define(version: 20161113114434) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "name"
     t.integer  "professor_id"
     t.boolean  "admin",                  default: false
     t.index ["email"], name: "index_professors_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "question_translations", force: :cascade do |t|
+    t.integer  "question_id", null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "content"
+    t.index ["locale"], name: "index_question_translations_on_locale", using: :btree
+    t.index ["question_id"], name: "index_question_translations_on_question_id", using: :btree
+  end
+
   create_table "questions", force: :cascade do |t|
-    t.text     "content"
     t.integer  "quiz_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -124,6 +160,16 @@ ActiveRecord::Schema.define(version: 20161113114434) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "student_translations", force: :cascade do |t|
+    t.integer  "student_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.index ["locale"], name: "index_student_translations_on_locale", using: :btree
+    t.index ["student_id"], name: "index_student_translations_on_student_id", using: :btree
+  end
+
   create_table "students", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -137,7 +183,6 @@ ActiveRecord::Schema.define(version: 20161113114434) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "name"
     t.integer  "student_id"
     t.index ["email"], name: "index_students_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree

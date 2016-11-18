@@ -19,10 +19,11 @@ class AttemptsController < ApplicationController
       params[:attempt][:responses_attributes].map do |key, value|
         { question_id: key, answer_ids: value }
       end
+
     @quiz = @active_quizzes.find(attempt_params[:quiz_id])
     @attempt = @quiz.attempts.new(attempt_params)
     if @attempt.save
-      redirect_to @attempt, notice: 'Attempt was successfully created.'
+      redirect_to @attempt, notice: "Attempt was successfully created."
     else
       render :new
     end
@@ -30,7 +31,7 @@ class AttemptsController < ApplicationController
 
   def update
     if @attempt.update(attempt_params)
-      redirect_to @attempt, notice: 'Attempt was successfully updated.'
+      redirect_to @attempt, notice: "Attempt was successfully updated."
     else
       render :edit
     end
@@ -38,7 +39,7 @@ class AttemptsController < ApplicationController
 
   def destroy
     @attempt.destroy
-    redirect_to attempts_url, notice: 'Attempt was successfully destroyed.'
+    redirect_to attempts_url, notice: "Attempt was successfully destroyed."
   end
 
   private

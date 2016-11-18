@@ -1,17 +1,17 @@
 .page-header
   = link_to new_group_path, class: "btn btn-primary #{can_class(:create, Group)}" do
     %span.glyphicon.glyphicon-plus
-    New Group
-  %h1 Listing groups
+    =t(:new_group)
+  %h1=t(:listing_groups)
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th.col-sm-2 Group ID
-        %th.col-sm-2 Name
-        %th.col-sm-2 Semester
-        %th Professor
+        %th.col-sm-2=t(:group_id)
+        %th.col-sm-2=t(:name)
+        %th.col-sm-2=t(:semester)
+        %th=t(:professor)
         %th.col-sm-1
         %th.col-sm-1
         %th.col-sm-1
@@ -23,8 +23,8 @@
           %td= group.name
           %td= group.semester.semester_name_concat
           %td= group.professor.name
-          %td= link_to "Show", group, class: "btn btn-primary #{can_class(:show, group)}"
-          %td= link_to "Edit", edit_group_path(group), class: "btn btn-warning #{can_class(:update, group)}"
-          %td= link_to "Destroy", group, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, group)}"
+          %td= link_to t(:show), group, class: "btn btn-primary #{can_class(:show, group)}"
+          %td= link_to t(:edit), edit_group_path(group), class: "btn btn-warning #{can_class(:update, group)}"
+          %td= link_to t(:destroy), group, data: { confirm: t(:are_you_sure) }, method: :delete, class: "btn btn-danger #{can_class(:destroy, group)}"
 
 = paginate @groups

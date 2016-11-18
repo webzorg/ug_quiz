@@ -1,11 +1,11 @@
 .page-header
-  = link_to :back, class: "btn btn-default" do
+  = link_to quizzes_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
-    Back
+    =t(:back)
   &nbsp
   = link_to @quiz, class: "btn btn-primary" do
     %span.glyphicon.glyphicon-info-sign
-    Show
-  %h1 Editing quiz
+    =t(:show)
+  %h1=t(:editing_quiz)
 
 = render "form"

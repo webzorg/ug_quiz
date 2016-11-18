@@ -1,19 +1,19 @@
 .page-header
   = link_to professors_students_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
-    Back
+    =t(:back)
   &nbsp;
   = link_to edit_professors_student_path(@student), class: "btn btn-primary #{can_class(:update, @student)}" do
     %span.glyphicon.glyphicon-pencil
-    Edit
+    =t(:edit)
   %h1= t(:show_student)
 
 %dl.dl-horizontal
-  %dt Name:
+  %dt=t(:name)
   %dd= @student.name
   %br
-  %dt Student:
+  %dt=t(:student_id)
   %dd= @student.student_id
   %br
-  %dt Email:
+  %dt=t(:email)
   %dd= @student.email

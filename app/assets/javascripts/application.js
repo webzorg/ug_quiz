@@ -31,7 +31,7 @@ $(document).ready(function() {
 
   $("#include_students_in_group").select2();
   $("#include_groups_in_quiz").select2();
-  // $("#include_others_groups_in_quiz").select2();
+  $("#include_others_groups_in_quiz").select2();
 
   $('.js-switch').bootstrapSwitch({
     onColor: "success",
@@ -45,7 +45,7 @@ $(document).ready(function() {
     onColor: "success",
     offColor: "warning",
     size: "small",
-    handleWidth: 30,
+    handleWidth: 80,
     labelWidth: 10,
     animate: true,
     onSwitchChange: function(event, state) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
       $.ajax({
         url: '/quizzes/' + this.value + '/toggle_quiz',
         type: 'PATCH',
-        data: {'active': this.checked}
+        data: {'active': this.checked},
       });
     }
   });

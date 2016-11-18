@@ -11,7 +11,7 @@
           %li= msg
 
   .form-group
-    = f.label :name, class: "col-sm-2 control-label"
+    = f.label t(:name), class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_field :name, class: "form-control"
   .form-group
@@ -19,11 +19,11 @@
     .col-sm-10
       = f.number_field :professor_id, class: "form-control"
   .form-group
-    = f.label :email, class: "col-sm-2 control-label"
+    = f.label t(:email), class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_field :email, class: "form-control"
   .form-group
-    = f.label :admin, class: "col-sm-2 control-label"
+    = f.label t(:admin), class: "col-sm-2 control-label"
     -if current_professor.id == f.object.id
       .col-sm-10
         = f.label :label, "#{current_professor.admin? ? "Admin Professor" : "Professor"}" , class: "control-label"
@@ -31,13 +31,13 @@
       .btn-group{"data-toggle" => "buttons", class: "correct-switch"}
         %label{class: "btn btn-danger #{"active" if f.object.admin} #{"disabled" if current_professor.id == f.object.id}"}
           = f.check_box :admin
-          Admin
+          =t(:admin)
 
   .form-group
-    = f.label :new_password, class: "col-sm-2 control-label"
+    = f.label t(:new_password), class: "col-sm-2 control-label"
     .col-sm-10= f.text_field :password, type: :password, placeholder: :optional , class: "form-control"
   .form-group
-    = f.label :new_password_confirmation, class: "col-sm-2 control-label"
+    = f.label t(:new_password_confirmation), class: "col-sm-2 control-label"
     .col-sm-10= f.text_field :password_confirmation, type: :password, placeholder: :optional, class: "form-control"
 
   .form-group

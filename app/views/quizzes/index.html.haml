@@ -1,18 +1,18 @@
 .page-header
   = link_to new_quiz_path, class: "btn btn-primary #{can_class(:create, Quiz)}" do
     %span.glyphicon.glyphicon-plus
-    New Quiz
-  %h1 Listing quizzes
+    =t(:new_quiz)
+  %h1=t(:listing_quizzes)
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th.col-sm-1 Quiz ID
-        %th.col-sm-3 Belongs To: Groups
-        %th.col-sm-3 Belongs To: Owner
-        %th.col-sm-1 Status
-        %th.col-sm-1 Weight
+        %th.col-sm-1=t(:quiz_id)
+        %th.col-sm-3=t(:belongs_to_groups)
+        %th.col-sm-3=t(:belongs_to_owner)
+        %th.col-sm-1=t(:status)
+        %th.col-sm-1=t(:weight)
         %th.col-sm-1
         %th.col-sm-1
         %th.col-sm-1
@@ -29,10 +29,10 @@
             %ul
               %li
                 = quiz.groups.first.professor.name
-          %td= check_box_tag(:active, quiz.id, quiz.active, {class: "toggle-quiz"})
+          %td= check_box_tag(:active, quiz.id, quiz.active, {class: "toggle-quiz", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
           %td= total_weight(quiz)
-          %td= link_to "Show", quiz, class: "btn btn-primary #{can_class(:show, quiz)}"
-          %td= link_to "Edit", edit_quiz_path(quiz), class: "btn btn-warning #{can_class(:update, quiz)}"
-          %td= link_to "Destroy", quiz, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, quiz)}"
+          %td= link_to t(:show), quiz, class: "btn btn-primary #{can_class(:show, quiz)}"
+          %td= link_to t(:edit), edit_quiz_path(quiz), class: "btn btn-warning #{can_class(:update, quiz)}"
+          %td= link_to t(:destroy), quiz, data: { confirm: t(:are_you_sure) }, method: :delete, class: "btn btn-danger #{can_class(:destroy, quiz)}"
 
 = paginate @quizzes

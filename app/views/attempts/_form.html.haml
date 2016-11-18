@@ -13,26 +13,22 @@
   = f.hidden_field :quiz_id
   = f.hidden_field :student_id, value: current_student.id
   .form-group
-    .col-sm-2
-      question
-    .col-sm-10
-      answer
+    .col-sm-2=t(:question)
+    .col-sm-10=t(:answer)
       %br
       %ol
         = f.fields_for :responses, @attempt.quiz.questions.map { |q| Response.new( question_id: q.id ) } do |answer_fields|
           - question = answer_fields.object.question
           %li.attempt-question= question.content
           .attempt-question
-            -unless question.radio?
-              = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
-                .attempt-question
-                  = b.label { "#{b.check_box} #{b.text}" }
-            -else
+            -if question.radio?
               = collection_radio_buttons("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
                 .attempt-question
                   = b.label { "#{b.radio_button} #{b.text}" }
-
-
+            -else
+              = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+                .attempt-question
+                  = b.label { "#{b.check_box} #{b.text}" }
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"

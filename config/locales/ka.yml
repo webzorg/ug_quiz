@@ -1,0 +1,224 @@
+---
+ka:
+  academic_term: სემესტრი
+  account_settings: ანგარიშის პარამეტრები
+  activerecord:
+    attributes:
+      answer:
+        answers_responses: answers_responses
+        correct: სწორი
+        question: კითხვა
+        responses: პასუხები
+        translations: თარგმანი
+      answer/translation:
+        content: ტექსტი
+        globalized_model: globalized_model
+        locale: locale
+      answers_response:
+        answer: პასუხი
+        response: პასუხი
+      attempt:
+        quiz: ქვიზი
+        responses: პასუხები
+        score: ქულა
+        student: სტუდენტი
+      group:
+        groups_quizzes: groups_quizzes
+        groups_students: groups_students
+        professor: პროფესორი
+        quizzes: ქვიზები
+        semester: სემესტრი
+        students: სტუდენტები
+        translations: თარგმნა
+      group/translation:
+        globalized_model: globalized_model
+        locale: locale
+        name: სახელი
+      groups_quiz:
+        group: ჯგუფი
+        quiz: ქვიზი
+      groups_student:
+        group: ჯგუფი
+        student: სტუდენტი
+      professor:
+        admin: ადმინი
+        current_sign_in_at: მოქმედი ავთენტიკაციის დრო
+        current_sign_in_ip: მოქმედი ავთენტიკაციის IP
+        email: ელ-ფოსტა
+        encrypted_password: დაშიფრული პაროლი
+        groups: ჯგუფები
+        last_sign_in_at: ბოლო ავთენტიკაციის დრო
+        last_sign_in_ip: ბოლო ავთენტიკაციის IP
+        quizzes: ქვიზები
+        remember_created_at: შექმნის დროის დამახსოვრება
+        reset_password_sent_at: პაროლის აღდგენის გაგზავნის დრო
+        reset_password_token: პაროლის აღდგენის მარკერი
+        translations: თარგმანი
+      professor/translation:
+        globalized_model: globalized_model
+        locale: locale
+        name: სახელი
+      question:
+        answers: პასუხები
+        quiz: ქვიზი
+        translations: თარგმნა
+        weight: ქულა
+      question/translation:
+        content: ტექსტი
+        globalized_model: globalized_model
+        locale: locale
+      quiz:
+        active: აქტიური
+        attempts: მცდელობა
+        group_ids: ჯგუფის ID-ები
+        groups: ჯგუფები
+        groups_quizzes: groups_quizzes
+        questions: კითხვები
+      response:
+        answers: პასუხები
+        answers_responses: answers_responses
+        attempt: მცდელობა
+        correct: სწორი
+        question: კითხვა
+      semester:
+        academicterm: სემესტრი
+        groups: ჯგუფები
+        year: წელი
+      student:
+        attempt: მცდელობა
+        current_sign_in_at: მოქმედი ავტენთიკაციის დრო
+        current_sign_in_ip: მოქმედი ავტენთიკაციის IP
+        email: ელ-ფოსტა
+        encrypted_password: დაშიფრული პაროლი
+        groups: ჯგუფები
+        groups_students: ჯგუფები სტუდენტები
+        last_sign_in_at: ბოლო ავთენტიკაციის დრო
+        last_sign_in_ip: ბოლო ავთენტიკაციის IP
+        quizzes: ტესტები
+        remember_created_at: შექმნის დროის დამახსოვრება
+        reset_password_sent_at: პაროლის აღდგენის გაგზავნის დრო
+        reset_password_token: პაროლის აღდგენის მარკერი
+        translations: თარგმანი
+      student/translation:
+        globalized_model: globalized_model
+        locale: locale
+        name: სახელი
+    errors:
+      models:
+        quiz:
+          attributes:
+            group_ids: ჯგუფის ID-ები
+    models:
+      answer: პასუხი
+      answer/translation: პასუხი / თარგმანი
+      answers_response: answers_response
+      attempt: მცდელობა
+      group: ჯგუფი
+      group/translation: ჯგუფი / თარგმანი
+      groups_quiz: groups_quiz
+      groups_student: groups_student
+      professor: პროფესორი
+      professor/translation: პროფესორი / თარგმანი
+      question: კითხვა
+      question/translation: კითხვა / თარგმანი
+      quiz: ქვიზი
+      response: პასუხი
+      semester: სემესტრი
+      student: სტუდენტი
+      student/translation: სტუდენტი / თარგმანი
+  add_answer: პასუხის დამატება
+  add_question: კითხვის დამატება
+  add_questions: კითხვების დამატება
+  add_to_groups: ჯგუფებში დამატება
+  add_to_others_groups: სხვის ჯგუფებისთვის გაზიარება
+  admin: ადმინი
+  answer: პასუხი
+  are_you_sure: დარმუნებული ხართ?
+  attempts: მცდელობები
+  back: უკან
+  belongs_to_groups: ეკუთვნის ჯგუფებს
+  belongs_to_owner: ეკუთვნის პროფესორს
+  correct: სწორია
+  destroy: წაშლა
+  edit: რედაქტირება
+  editing_attempt: ცვლილების რედაქტირება
+  editing_group: ჯგუფის რედაქტირება
+  editing_professor: პროფესორის რედაქტირება
+  editing_quiz: ქვიზის რედაქტირება
+  editing_semester: სემესტრის რედაქტირება
+  editing_student: სტუდენტის რედაქტირება
+  email: ელ-ფოსტა
+  en: english
+  fall: შემოდგომა
+  group_id: ჯგუფის ID
+  group_name: ჯგუფის სახელი
+  groups: ჯგუფები
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: ნაჩვენებია %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> სულ <b>%{total}</b>-დან
+      one_page:
+        display_entries:
+          one: ნაჩვენებია <b>1</b> %{entry_name}
+          other: ნაჩვენებია <b>ყველა %{count}</b> %{entry_name}
+          zero: "%{entry_name} არ მოიძებნა"
+  ka: ქართული
+  language: ენა
+  listing_attempts: მცდელობების ინდექსი
+  listing_groups: ჯგუფების ინდექსი
+  listing_quizzes: ქვიზების ინდექსი
+  listing_semesters: სემესტრების ინდექსი
+  logout: გამოსვლა
+  main_menu: მთავარი მენიუ
+  name: სახელი
+  new_group: ახალი ჯგუფი
+  new_password: ახალი პაროლი
+  new_password_confirmation: ახალი პაროლის დადასტურება
+  new_professor: ახალი პროფესორი
+  new_quiz: ახალი ქვიზი
+  new_semester: ახალი სემესტრი
+  new_student: ახალი სტუდენტი
+  off_on: გამორთული
+  on_off: ჩართული
+  password: პაროლი
+  professor: პროფესორი
+  professor_id: პროფესორის ID
+  professor_index: პროფესორების ინდექსი
+  professors: პროფესორები
+  question: კითხვა
+  questions: კითხვები
+  quiz_id: ქვიზის ID
+  quizzes: ქვიზები
+  semester: სემესტრი
+  semesters: სემესტრები
+  show: ჩვენება
+  show_attempt: მცდელობის ჩვენება
+  show_group: ჯგუფის ჩვენება
+  show_professor: პროფესორის ჩვენება
+  show_quiz: ქვიზის ჩვენება
+  show_semester: სემესტრის ჩვენება
+  show_student: სტუდენტის ჩვენება
+  spring: გაზაფხული
+  status: სტატუსი
+  student_id: სტუდენტის ID
+  student_index: სტუდენტების ინდექსი
+  student_name: სტუდენტის სახელი
+  students: სტუდენტები
+  take_quiz: ქვიზის დაწყება
+  unauthorized:
+    default: დაფიქსირდა შეცდომა.
+    manage:
+      all: არ გაქვთ ავტორიზაცია %{action} %{subject}.
+      user: არ გაქვთ სხვა მომხმარებლების მართვის უფლება.
+    update:
+      project: ამ პროექტის რედაქტირების უფლება არ გაქვთ.
+  user_management: მომხმარებლების მართვა
+  views:
+    pagination:
+      first: "&laquo; პირველი"
+      last: ბოლო &raquo;
+      next: შემდეგი &rsaquo;
+      previous: "&lsaquo; წინა"
+      truncate: "&hellip;"
+  weight: ქულა
+  year: წელი

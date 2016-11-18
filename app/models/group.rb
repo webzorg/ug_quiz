@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+  translates :name, fallbacks_for_empty_translations: true
+
   belongs_to :semester
   belongs_to :professor
   has_many :groups_students, dependent: :destroy

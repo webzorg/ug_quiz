@@ -6,5 +6,7 @@ StringLiterals:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
+Metrics/MethodLength:
+  Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
