@@ -155,9 +155,6 @@ en:
   editing_student: Editing student
   email: Email
   en: English
-  errors:
-    template:
-      header: Header
   fall: Fall
   group_id: Group ID
   group_name: Group name

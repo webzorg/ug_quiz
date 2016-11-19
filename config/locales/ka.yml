@@ -155,9 +155,6 @@ ka:
   editing_student: სტუდენტის რედაქტირება
   email: ელ-ფოსტა
   en: english
-  errors:
-    template:
-      header: Header
   fall: შემოდგომა
   group_id: ჯგუფის ID
   group_name: ჯგუფის სახელი
