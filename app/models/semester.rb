@@ -1,6 +1,6 @@
 class Semester < ApplicationRecord
   has_many :groups, dependent: :destroy
-
+  has_many :courses
   scope :newest_first, -> { order(created_at: :desc) }
 
   def semester_name_concat

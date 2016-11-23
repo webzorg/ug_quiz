@@ -3,6 +3,7 @@ class Group < ApplicationRecord
 
   belongs_to :semester
   belongs_to :professor
+  belongs_to :course
   has_many :groups_students, dependent: :destroy
   has_many :students, through: :groups_students
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116144143) do
+ActiveRecord::Schema.define(version: 20161123230338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20161116144143) do
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_attempts_on_quiz_id", using: :btree
     t.index ["student_id"], name: "index_attempts_on_student_id", using: :btree
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "course_name"
+    t.string   "course_code"
+    t.integer  "semester_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "group_id"
+    t.index ["group_id"], name: "index_courses_on_group_id", using: :btree
+    t.index ["semester_id"], name: "index_courses_on_semester_id", using: :btree
   end
 
   create_table "group_translations", force: :cascade do |t|
@@ -192,6 +203,7 @@ ActiveRecord::Schema.define(version: 20161116144143) do
   add_foreign_key "answers_responses", "responses"
   add_foreign_key "attempts", "quizzes"
   add_foreign_key "attempts", "students"
+  add_foreign_key "courses", "groups"
   add_foreign_key "groups", "professors"
   add_foreign_key "groups", "semesters"
   add_foreign_key "groups_quizzes", "groups"
