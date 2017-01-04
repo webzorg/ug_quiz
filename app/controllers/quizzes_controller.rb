@@ -79,6 +79,6 @@ class QuizzesController < Professors::ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:active, others_group_ids: [], group_ids: [], questions_attributes: [:id, :content, :weight, :_destroy, answers_attributes: [:id, :content, :correct, :_destroy]])
+    params.require(:quiz).permit(:active, :questions_per_quizzes, others_group_ids: [], group_ids: [], questions_attributes: [:id, :content, :weight, :_destroy, answers_attributes: [:id, :content, :correct, :_destroy]])
   end
 end

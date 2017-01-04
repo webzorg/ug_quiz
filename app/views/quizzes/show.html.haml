@@ -27,6 +27,10 @@
   %dd
     = total_weight(@quiz)
   %br
+  %dt=t(:questions_per_quizzes)
+  %dd
+    = @quiz.questions_per_quizzes
+  %br
   %dt=t(:questions)
   %dd
     %ol

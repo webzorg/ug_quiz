@@ -11,8 +11,8 @@ class AttemptsController < ApplicationController
     @attempt = @quiz.attempts.new
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def create
     params[:attempt][:responses_attributes] =
@@ -23,24 +23,24 @@ class AttemptsController < ApplicationController
     @quiz = @active_quizzes.find(attempt_params[:quiz_id])
     @attempt = @quiz.attempts.new(attempt_params)
     if @attempt.save
-      redirect_to @attempt, notice: "Attempt was successfully created."
+      redirect_to attempts_path, notice: I18n.t(:attempt_successfully_created)
     else
-      render :new
+      render :new, quiz_id: @quiz.id
     end
   end
 
-  def update
-    if @attempt.update(attempt_params)
-      redirect_to @attempt, notice: "Attempt was successfully updated."
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @attempt.destroy
-    redirect_to attempts_url, notice: "Attempt was successfully destroyed."
-  end
+  # def update
+  #   if @attempt.update(attempt_params)
+  #     redirect_to @attempt, notice: "Attempt was successfully updated."
+  #   else
+  #     render :edit
+  #   end
+  # end
+  #
+  # def destroy
+  #   @attempt.destroy
+  #   redirect_to attempts_url, notice: "Attempt was successfully destroyed."
+  # end
 
   private
 

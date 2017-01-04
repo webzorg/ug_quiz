@@ -9,11 +9,6 @@ ka:
         correct: სწორი
         question: კითხვა
         responses: პასუხები
-        translations: თარგმანი
-      answer/translation:
-        content: ტექსტი
-        globalized_model: globalized_model
-        locale: locale
       answers_response:
         answer: პასუხი
         response: პასუხი
@@ -30,11 +25,6 @@ ka:
         quizzes: ქვიზები
         semester: სემესტრი
         students: სტუდენტები
-        translations: თარგმნა
-      group/translation:
-        globalized_model: globalized_model
-        locale: locale
-        name: სახელი
       groups_quiz:
         group: ჯგუფი
         quiz: ქვიზი
@@ -56,23 +46,13 @@ ka:
         remember_created_at: შექმნის დროის დამახსოვრება
         reset_password_sent_at: პაროლის აღდგენის გაგზავნის დრო
         reset_password_token: პაროლის აღდგენის მარკერი
-        translations: თარგმანი
-      professor/translation:
-        globalized_model: globalized_model
-        locale: locale
-        name: სახელი
       question:
         answers: პასუხები
         quiz: ქვიზი
-        translations: თარგმნა
         weight: ქულა
-      question/translation:
-        content: ტექსტი
-        globalized_model: globalized_model
-        locale: locale
       quiz:
         active: აქტიური
-        attempts: მცდელობა
+        attempts: ქვიზები
         group_ids: ჯგუფის ID-ები
         groups: ჯგუფები
         groups_quizzes: groups_quizzes
@@ -80,7 +60,7 @@ ka:
       response:
         answers: პასუხები
         answers_responses: answers_responses
-        attempt: მცდელობა
+        attempt: ქვიზი
         correct: სწორი
         question: კითხვა
       semester:
@@ -88,7 +68,7 @@ ka:
         groups: ჯგუფები
         year: წელი
       student:
-        attempt: მცდელობა
+        attempt: ქვიზი
         current_sign_in_at: მოქმედი ავტენთიკაციის დრო
         current_sign_in_ip: მოქმედი ავტენთიკაციის IP
         email: ელ-ფოსტა
@@ -104,11 +84,6 @@ ka:
         reset_password_sent_at: პაროლის აღდგენის გაგზავნის დრო
         reset_password_token: პაროლის აღდგენის მარკერი
         student_id: სტუდენტის ID
-        translations: თარგმანი
-      student/translation:
-        globalized_model: globalized_model
-        locale: locale
-        name: სახელი
     errors:
       models:
         quiz:
@@ -116,22 +91,17 @@ ka:
             group_ids: ჯგუფის ID-ები
     models:
       answer: პასუხი
-      answer/translation: პასუხი / თარგმანი
       answers_response: answers_response
-      attempt: მცდელობა
+      attempt: ქვიზი
       group: ჯგუფი
-      group/translation: ჯგუფი / თარგმანი
       groups_quiz: groups_quiz
       groups_student: groups_student
       professor: პროფესორი
-      professor/translation: პროფესორი / თარგმანი
       question: კითხვა
-      question/translation: კითხვა / თარგმანი
       quiz: ქვიზი
       response: პასუხი
       semester: სემესტრი
       student: სტუდენტი
-      student/translation: სტუდენტი / თარგმანი
   add_answer: პასუხის დამატება
   add_question: კითხვის დამატება
   add_questions: კითხვების დამატება
@@ -140,7 +110,7 @@ ka:
   admin: ადმინი
   answer: პასუხი
   are_you_sure: დარმუნებული ხართ?
-  attempts: მცდელობები
+  attempts: ქვიზები
   back: უკან
   belongs_to_groups: ეკუთვნის ჯგუფებს
   belongs_to_owner: ეკუთვნის პროფესორს
@@ -170,14 +140,14 @@ ka:
           zero: "%{entry_name} არ მოიძებნა"
   ka: ქართული
   language: ენა
-  listing_attempts: მცდელობების ინდექსი
+  listing_attempts: ქვიზები
   listing_groups: ჯგუფების ინდექსი
   listing_quizzes: ქვიზების ინდექსი
   listing_semesters: სემესტრების ინდექსი
   logout: გამოსვლა
   main_menu: მთავარი მენიუ
   name: სახელი
-  new_attempt: ახალი მცდელობა
+  new_attempt: ქვიზი
   new_group: ახალი ჯგუფი
   new_password: ახალი პაროლი
   new_password_confirmation: ახალი პაროლის დადასტურება
@@ -194,6 +164,7 @@ ka:
   professors: პროფესორები
   question: კითხვა
   questions: კითხვები
+  questions_per_quizzes: კითხვების რაოდენობა ქვიზში
   quiz_id: ქვიზის ID
   quizzes: ქვიზები
   semester: სემესტრი

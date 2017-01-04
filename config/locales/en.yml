@@ -9,11 +9,6 @@ en:
         correct: Correct
         question: Question
         responses: Responses
-        translations: Translations
-      answer/translation:
-        content: Content
-        globalized_model: Globalized_model
-        locale: Locale
       answers_response:
         answer: Answer
         response: Response
@@ -30,11 +25,6 @@ en:
         quizzes: Quizzes
         semester: Semester
         students: Students
-        translations: Translations
-      group/translation:
-        globalized_model: Globalized_model
-        locale: Locale
-        name: Name
       groups_quiz:
         group: Group
         quiz: Quiz
@@ -56,20 +46,10 @@ en:
         remember_created_at: Remember created at
         reset_password_sent_at: Reset password sent at
         reset_password_token: Reset password token
-        translations: Translations
-      professor/translation:
-        globalized_model: Globalized_model
-        locale: Locale
-        name: Name
       question:
         answers: Answers
         quiz: Quiz
-        translations: Translations
         weight: Score
-      question/translation:
-        content: Text
-        globalized_model: Globalized_model
-        locale: Locale
       quiz:
         active: Active
         attempts: Attempts
@@ -104,11 +84,6 @@ en:
         reset_password_sent_at: Reset password sent at
         reset_password_token: Reset password token
         student_id: Student ID
-        translations: Translations
-      student/translation:
-        globalized_model: Globalized_model
-        locale: Locale
-        name: Name
     errors:
       models:
         quiz:
@@ -116,22 +91,17 @@ en:
             group_ids: Group ids
     models:
       answer: Answer
-      answer/translation: Answer / translation
       answers_response: Answers_response
       attempt: Attempt
       group: Group
-      group/translation: Group / translation
       groups_quiz: Groups_quiz
       groups_student: Groups_student
       professor: Professor
-      professor/translation: Professor / translation
       question: Question
-      question/translation: Question / translation
       quiz: Quiz
       response: Response
       semester: Semester
       student: Student
-      student/translation: Student / translation
   add_answer: Add answer
   add_question: Add question
   add_questions: Add questions
@@ -177,6 +147,7 @@ en:
   logout: Logout
   main_menu: Main menu
   name: Name
+  new_attempt: Start Quiz
   new_group: New group
   new_password: New password
   new_password_confirmation: New password confirmation
@@ -193,6 +164,7 @@ en:
   professors: Professors
   question: Question
   questions: Questions
+  questions_per_quizzes: Questions per Quiz
   quiz_id: Quiz
   quizzes: Quizzes
   semester: Semester

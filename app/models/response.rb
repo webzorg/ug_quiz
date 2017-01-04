@@ -4,7 +4,6 @@ class Response < ApplicationRecord
   has_many :answers_responses
   has_many :answers, through: :answers_responses
 
-  validates :answers, presence: true
   after_validation :response_correct_setter
 
   def correct_answers_count

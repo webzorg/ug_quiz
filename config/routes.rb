@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :professors
   devise_for :students
 
-  scope "/:locale", locale: /#{I18n.available_locales.join("|")}/, defaults: { locale: "ka" } do
+  scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     namespace :professors do
       resources :professors
       resources :students
@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     end
     resources :groups
     resources :semesters
-
     resources :attempts
+
     root "home#index"
   end
 
