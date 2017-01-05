@@ -9,7 +9,11 @@
       -# = f.text_area :content, class: "question-content"
       .question-category-weight
         = f.label t(:question_category_weight)
-        = f.number_field :category_weight, step: "any"
+        = f.number_field :weight, step: "any"
+        %br
+        %br
+        = f.label t(:questions_per_category)
+        = f.number_field :questions_per_category, step: 1
 
     = f.fields_for :questions do |question|
       = render "question_fields", f: question

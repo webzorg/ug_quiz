@@ -7,7 +7,7 @@ class QuizzesController < Professors::ApplicationController
   def index
     @quizzes = current_professor.admin? ? Quiz.all : current_professor.quizzes
     @quizzes = @quizzes.newest_first.page(params[:page]).per(25)
-    fresh_when(etag: @quizzes, last_modified: @quizzes.maximum(:updated_at), public: true)
+    fresh_when last_modified: @quizzes.maximum(:updated_at), public: true
   end
 
   def show
@@ -63,11 +63,10 @@ class QuizzesController < Professors::ApplicationController
   def add_others_group_ids
     return unless params[:others_group_ids].present?
     params[:others_group_ids].reject(&:blank?).each do |group_id|
-      # quiz_temp = @quiz.deep_clone include: [:questions, { questions: :answers }]
       quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
       quiz_temp.groups << Group.find(group_id)
-      quiz_temp.save
     end
+    quiz_temp.save
   end
 
   def remove_blank_group_ids_if_admin
@@ -87,13 +86,14 @@ class QuizzesController < Professors::ApplicationController
       group_ids: [],
       question_categories_attributes: [
         :id,
-        :category_weight,
+        :weight,
+        :questions_per_category,
         :_destroy,
         questions_attributes: [
           :id,
           :content,
-          :weight,
-          :_destroy, answers_attributes: [
+          :_destroy,
+          answers_attributes: [
             :id,
             :content,
             :correct,

@@ -35,7 +35,7 @@
   %dd
     %ol
       - @quiz.questions.each do |question|
-        %li= "(#{question.weight}) - #{question.content}"
+        %li= "(#{question.question_category.weight}) - #{question.content}"
         %ol{class: "answer-list"}
           -question.answers.oldest_first.each do |answer|
             %li{class: "#{answer.correct ? 'tick' : 'cross'  }"}

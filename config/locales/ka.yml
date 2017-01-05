@@ -166,8 +166,9 @@ ka:
   professors: პროფესორები
   question: კითხვა
   question_category: კითხვების კატეგორია
-  question_category_weight: კითხვების კატეგორიის ქულა
+  question_category_weight: თითო კითხვის ქულა კატეგორიაში
   questions: კითხვები
+  questions_per_category: კითხვების რაოდენობა კატეგორიიდან
   questions_per_quizzes: კითხვების რაოდენობა ქვიზში
   quiz_id: ქვიზის ID
   quizzes: ქვიზები

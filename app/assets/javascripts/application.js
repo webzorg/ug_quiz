@@ -51,7 +51,7 @@ $(document).ready(function() {
     onSwitchChange: function(event, state) {
       clearFlash();
       $.ajax({
-        url: '/quizzes/' + this.value + '/toggle_quiz',
+        url: '/ka/quizzes/' + this.value + '/toggle_quiz',
         type: 'PATCH',
         data: {'active': this.checked},
       });

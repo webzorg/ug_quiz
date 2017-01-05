@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105191641) do
+ActiveRecord::Schema.define(version: 20170105215950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,10 +131,11 @@ ActiveRecord::Schema.define(version: 20170105191641) do
   end
 
   create_table "question_categories", force: :cascade do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.float    "category_weight", default: 1.0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.float    "weight",                 default: 1.0
     t.integer  "quiz_id"
+    t.integer  "questions_per_category"
     t.index ["quiz_id"], name: "index_question_categories_on_quiz_id", using: :btree
   end
 
@@ -149,18 +150,18 @@ ActiveRecord::Schema.define(version: 20170105191641) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.float    "weight",               default: 1.0
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "question_category_id"
     t.index ["question_category_id"], name: "index_questions_on_question_category_id", using: :btree
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.boolean  "active"
     t.integer  "questions_per_quizzes"
+    t.float    "total_weight",          default: 0.0
   end
 
   create_table "responses", force: :cascade do |t|

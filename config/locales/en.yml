@@ -168,6 +168,7 @@ en:
   question_category: Question category
   question_category_weight: Question category weight
   questions: Questions
+  questions_per_category: Questions per category
   questions_per_quizzes: Questions per Quiz
   quiz_id: Quiz
   quizzes: Quizzes
