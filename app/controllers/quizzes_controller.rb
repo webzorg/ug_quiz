@@ -6,7 +6,7 @@ class QuizzesController < Professors::ApplicationController
 
   def index
     @quizzes = current_professor.admin? ? Quiz.all : current_professor.quizzes
-    @quizzes = @quizzes.oldest_first.page(params[:page]).per(25)
+    @quizzes = @quizzes.newest_first.page(params[:page]).per(25)
     fresh_when(etag: @quizzes, last_modified: @quizzes.maximum(:updated_at), public: true)
   end
 
@@ -22,8 +22,8 @@ class QuizzesController < Professors::ApplicationController
 
   def create
     @quiz = Quiz.new(quiz_params)
-    add_others_group_ids
     if @quiz.save
+      add_others_group_ids
       redirect_to @quiz, notice: "Quiz was successfully created."
     else
       render :new
@@ -63,7 +63,8 @@ class QuizzesController < Professors::ApplicationController
   def add_others_group_ids
     return unless params[:others_group_ids].present?
     params[:others_group_ids].reject(&:blank?).each do |group_id|
-      quiz_temp = @quiz.deep_clone include: [:questions, { questions: :answers }]
+      # quiz_temp = @quiz.deep_clone include: [:questions, { questions: :answers }]
+      quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
       quiz_temp.groups << Group.find(group_id)
       quiz_temp.save
     end
@@ -79,6 +80,27 @@ class QuizzesController < Professors::ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:active, :questions_per_quizzes, others_group_ids: [], group_ids: [], questions_attributes: [:id, :content, :weight, :_destroy, answers_attributes: [:id, :content, :correct, :_destroy]])
+    params.require(:quiz).permit(
+      :active,
+      :questions_per_quizzes,
+      others_group_ids: [],
+      group_ids: [],
+      question_categories_attributes: [
+        :id,
+        :category_weight,
+        :_destroy,
+        questions_attributes: [
+          :id,
+          :content,
+          :weight,
+          :_destroy, answers_attributes: [
+            :id,
+            :content,
+            :correct,
+            :_destroy
+          ]
+        ]
+      ]
+    )
   end
 end

@@ -15,16 +15,18 @@
 @import "select2";
 @import "select2-bootstrap";
 @import "bootstrap3-switch";
-
-@mixin prefix($property, $value, $prefixes: ()) {
-  @each $prefix in $prefixes {
-    #{"-" + $prefix + "-" + $property}: $value;
-  }
-  // Output standard non-prefixed declaration
-  #{$property}: $value;
-}
 //@include prefix(box-shadow, inset 0 1px 1px $box-shadow, webkit ms);
-
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color;
+    -moz-box-shadow: inset $top $left $blur $color;
+    box-shadow: inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
 
 
 $box-shadow: rgba(0, 0, 0, .05);
@@ -103,6 +105,17 @@ th {
   width: 100%;
 }
 
+.first-nested-fields {
+  .second-nested-fields {
+    width: 97.5%;
+
+    .third-nested-fields {
+      width: 97.5%;
+    }
+  }
+}
+
+
 .nested-fields {
   position: relative;
   text-align: left;
@@ -147,19 +160,7 @@ textarea {
 
 }
 
-.questions-fieldset {
-
-  .questions-legend {
-    // placeholder
-  }
-
-  .answers-fieldset {
-    margin: 1em 0 0 2em;
-
-    .answers-legend {
-      font-size: 1.2em;
-    }
-  }
+.question-category-fieldset {
 
   .custom-close {
     position: absolute;
@@ -168,19 +169,45 @@ textarea {
     z-index: 99;
   }
 
-  .questions {
+  .question-category-legend {
+    @include box-shadow(0, 0.1em, 0, $primary-color, false);
+    color: $primary-color;
+  }
+
+  .questions-fieldset {
+    border-radius: 1em;
     padding: 0.5em;
+    margin: 1em 0 0 2.5%;
 
-    .question-content {
-      border: 1px solid $black;
-      min-width: 60%;
-      background-color: $gray-lighter2;
+    .questions-legend {
+      @include box-shadow(0, 0.1em, 0, $warning-color, false);
+      color: $warning-color;
     }
 
-    .question-weight {
-      margin-top: 0.2em;
+    .answers-fieldset {
+      padding: 1.5em;
+      margin: 1em 0 0 2.5%;
+
+      .answers-legend {
+        @include box-shadow(0, 0.1em, 0, $success-color, false);
+        color: $success-color;
+      }
     }
 
+    .questions {
+      padding: 0.5em;
+
+      .question-content {
+        border: 1px solid $black;
+        min-width: 60%;
+        background-color: $gray-lighter2;
+      }
+
+      .question-weight {
+        margin-top: 0.2em;
+      }
+
+    }
   }
 }
 

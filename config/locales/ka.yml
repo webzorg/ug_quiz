@@ -104,12 +104,14 @@ ka:
       student: სტუდენტი
   add_answer: პასუხის დამატება
   add_question: კითხვის დამატება
+  add_question_category: კითხვების კატეგორიის დამატება
   add_questions: კითხვების დამატება
   add_to_groups: ჯგუფებში დამატება
   add_to_others_groups: ჯგუფებისთვის გაზიარება
   admin: ადმინი
   answer: პასუხი
   are_you_sure: დარმუნებული ხართ?
+  attempt_successfully_created: ქვიზი ჩაბარებულია წარმატებით
   attempts: ქვიზები
   back: უკან
   belongs_to_groups: ეკუთვნის ჯგუფებს
@@ -163,6 +165,8 @@ ka:
   professor_index: პროფესორების ინდექსი
   professors: პროფესორები
   question: კითხვა
+  question_category: კითხვების კატეგორია
+  question_category_weight: კითხვების კატეგორიის ქულა
   questions: კითხვები
   questions_per_quizzes: კითხვების რაოდენობა ქვიზში
   quiz_id: ქვიზის ID

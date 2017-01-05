@@ -36,10 +36,10 @@
   .form-group
     = f.label t(:add_questions), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.fields_for :questions do |question|
-        = render "question_fields", f: question
+      = f.fields_for :question_categories do |question_category|
+        = render "question_category_fields", f: question_category
       .links
-        = link_to_add_association button_tag(t(:add_question), class: "btn btn-primary"), f, :questions
+        = link_to_add_association button_tag(t(:add_question_category), class: "btn btn-primary"), f, :question_categories
 
     .col-sm-offset-2.col-sm-10
       %br

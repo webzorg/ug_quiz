@@ -1,0 +1,20 @@
+.nested-fields.first-nested-fields
+  %fieldset.question-category-fieldset
+    %legend.question-category-legend
+      = f.label t(:question_category)
+
+    = link_to_remove_association button_tag("X", class: "btn btn-danger custom-close"), f
+
+    .question-categories
+      -# = f.text_area :content, class: "question-content"
+      .question-category-weight
+        = f.label t(:question_category_weight)
+        = f.number_field :category_weight, step: "any"
+
+    = f.fields_for :questions do |question|
+      = render "question_fields", f: question
+    .links
+      = link_to_add_association button_tag(t(:add_question), class: "btn btn-warning"), f, :questions
+
+    %br
+%br

@@ -1,4 +1,4 @@
-.nested-fields
+.nested-fields.second-nested-fields
   %fieldset.questions-fieldset
     %legend.questions-legend
       = f.label t(:question)
@@ -7,11 +7,8 @@
 
     .questions
       = f.text_area :content, class: "question-content"
-      .question-weight
-        = f.label :weight
-        = f.number_field :weight, step: "any"
 
-    = f.fields_for :answers, f.object.answers.all.oldest_first do |answer|
+    = f.fields_for :answers do |answer|
       = render "answer_fields.html.haml", f: answer
 
     .links

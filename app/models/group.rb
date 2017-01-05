@@ -10,6 +10,6 @@ class Group < ApplicationRecord
   has_many :groups_quizzes, dependent: :destroy
   has_many :quizzes, through: :groups_quizzes
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
   validates :group_id, presence: true, uniqueness: true, numericality: { only_integer: true }
 end

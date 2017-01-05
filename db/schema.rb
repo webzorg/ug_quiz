@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104083342) do
+ActiveRecord::Schema.define(version: 20170105191641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,14 @@ ActiveRecord::Schema.define(version: 20170104083342) do
     t.index ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "question_categories", force: :cascade do |t|
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.float    "category_weight", default: 1.0
+    t.integer  "quiz_id"
+    t.index ["quiz_id"], name: "index_question_categories_on_quiz_id", using: :btree
+  end
+
   create_table "question_translations", force: :cascade do |t|
     t.integer  "question_id", null: false
     t.string   "locale",      null: false
@@ -141,11 +149,11 @@ ActiveRecord::Schema.define(version: 20170104083342) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer  "quiz_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.float    "weight",     default: 1.0
-    t.index ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.float    "weight",               default: 1.0
+    t.integer  "question_category_id"
+    t.index ["question_category_id"], name: "index_questions_on_question_category_id", using: :btree
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -209,5 +217,6 @@ ActiveRecord::Schema.define(version: 20170104083342) do
   add_foreign_key "groups", "semesters"
   add_foreign_key "groups_quizzes", "groups"
   add_foreign_key "groups_quizzes", "quizzes"
-  add_foreign_key "questions", "quizzes"
+  add_foreign_key "question_categories", "quizzes"
+  add_foreign_key "questions", "question_categories"
 end
