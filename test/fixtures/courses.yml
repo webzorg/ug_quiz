@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id          :integer          not null, primary key
+#  course_name :string
+#  course_code :string
+#  semester_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  group_id    :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

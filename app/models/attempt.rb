@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: attempts
+#
+#  id         :integer          not null, primary key
+#  quiz_id    :integer
+#  student_id :integer
+#  score      :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Attempt < ApplicationRecord
   belongs_to :quiz
   belongs_to :student

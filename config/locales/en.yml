@@ -116,6 +116,8 @@ en:
   back: Back
   belongs_to_groups: Belongs to groups
   belongs_to_owner: Belongs to owner
+  category_max_score_sum: Category max score sum
+  category_possible_score_sum: Category possible score sum
   correct: Correct
   destroy: Destroy
   edit: Edit
@@ -157,6 +159,9 @@ en:
   new_quiz: New quiz
   new_semester: New semester
   new_student: New student
+  number_of_active_questions: Number of active questions
+  number_of_questions: Number of questions
+  number_of_questions_requested_in_quiz_exceeds_question_amount: Number of questions requested in quiz exceeds question amount
   off_on: 'Off'
   on_off: 'On'
   password: Password
@@ -172,6 +177,7 @@ en:
   questions_per_quizzes: Questions per Quiz
   quiz_id: Quiz
   quizzes: Quizzes
+  score_per_question: Score per question
   semester: Semester
   semesters: Semester
   show: Show

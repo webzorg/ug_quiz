@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: attempts
+#
+#  id         :integer          not null, primary key
+#  quiz_id    :integer
+#  student_id :integer
+#  score      :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

@@ -14,7 +14,7 @@
     = f.label t(:add_to_groups), class: "col-sm-2 control-label"
     .col-sm-10
       = f.collection_select(:group_ids, current_professor.groups, :id, :name,
-      {include_hidden: true, selected: @quiz.groups.map(&:id)}, { id: "include_groups_in_quiz", class: "form-control", multiple: true })
+      {include_hidden: true}, { id: "include_groups_in_quiz", class: "form-control", multiple: true })
 
   .form-group
     = f.label t(:add_to_others_groups), class: "col-sm-2 control-label"
@@ -32,11 +32,11 @@
     .col-sm-10
       = f.number_field :questions_per_quizzes, class: "questions-per-quizzes"
 
-  -# ***** questions *****
+  -# ***** question-categories *****
   .form-group
     = f.label t(:add_questions), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.fields_for :question_categories do |question_category|
+      = f.fields_for :question_categories, f.object.question_categories do |question_category|
         = render "question_category_fields", f: question_category
       .links
         = link_to_add_association button_tag(t(:add_question_category), class: "btn btn-primary"), f, :question_categories

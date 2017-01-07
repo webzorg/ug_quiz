@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: semesters
+#
+#  id           :integer          not null, primary key
+#  year         :integer
+#  academicterm :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Semester < ApplicationRecord
   has_many :groups, dependent: :destroy
   has_many :courses

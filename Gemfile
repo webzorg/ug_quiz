@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "annotate"
   gem "rubocop", require: false
   gem "rails-erd"
   gem "rack-livereload"

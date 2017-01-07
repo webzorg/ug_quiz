@@ -116,6 +116,8 @@ ka:
   back: უკან
   belongs_to_groups: ეკუთვნის ჯგუფებს
   belongs_to_owner: ეკუთვნის პროფესორს
+  category_max_score_sum: Category max score sum
+  category_possible_score_sum: Category possible score sum
   correct: სწორია
   destroy: წაშლა
   edit: შესწორება
@@ -157,6 +159,9 @@ ka:
   new_quiz: ახალი ქვიზი
   new_semester: ახალი სემესტრი
   new_student: ახალი სტუდენტი
+  number_of_active_questions: Number of active questions
+  number_of_questions: Number of questions
+  number_of_questions_requested_in_quiz_exceeds_question_amount: Number of questions requested in quiz exceeds question amount
   off_on: გამორთული
   on_off: ჩართული
   password: პაროლი
@@ -172,6 +177,7 @@ ka:
   questions_per_quizzes: კითხვების მაქს რაოდენობა
   quiz_id: ქვიზის ID
   quizzes: ქვიზები
+  score_per_question: თითო კითხვის ქულა
   semester: სემესტრი
   semesters: სემესტრები
   show: ჩვენება

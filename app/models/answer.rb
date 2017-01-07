@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id          :integer          not null, primary key
+#  question_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  correct     :boolean
+#
+
 class Answer < ApplicationRecord
   translates :content, fallbacks_for_empty_translations: true
 

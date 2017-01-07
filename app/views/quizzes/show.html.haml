@@ -23,24 +23,49 @@
   %dd
     = @quiz.active ? t(:on_off) : t(:off_on)
   %br
-  %dt=t(:weight)
+  %dt=t(:number_of_questions)
   %dd
-    = total_weight(@quiz)
+    = @quiz.questions.count
   %br
   %dt=t(:questions_per_quizzes)
   %dd
     = @quiz.questions_per_quizzes
   %br
-  %dt=t(:number_of_questions)
+  %dt=t(:total_weight)
   %dd
-    = @quiz.questions.count
+    = @quiz.total_weight
+  %br
+  %dt=t(:total_possible_weight)
+  %dd
+    = @quiz.total_possible_weight
+  %br
+  %dt=t(:number_of_active_questions)
+  %dd
+    = @quiz.number_of_active_questions
   %br
   %dt=t(:questions)
   %dd
-    %ol
-      - @quiz.questions.oldest_first.each do |question|
-        %li= "(#{question.question_category.weight}) - #{question.content}"
-        %ol{class: "answer-list"}
-          -question.answers.oldest_first.each do |answer|
-            %li{class: "#{answer.correct ? 'tick' : 'cross'  }"}
-              =answer.content
+    %ol{class: "quiz-ol-show"}
+      - @quiz.question_categories.each.with_index(1) do |question_category, index|
+        .question-category-container
+          .question-category-detail-pane
+            %h3= "#{index.ordinalize} Category Details"
+            %dl.dl-horizontal
+              %dt= t(:number_of_questions)
+              %dd= question_category.number_of_questions
+              %dt= t(:number_of_active_questions)
+              %dd= question_category.questions_per_category
+              %dt= t(:score_per_question)
+              %dd= question_category.weight
+              %dt= t(:category_max_score_sum)
+              %dd= question_category.category_max_score_sum
+              %dt= t(:category_possible_score_sum)
+              %dd= question_category.category_possible_score_sum
+          .question-category-show
+            - question_category.questions.each do |question|
+              .question-show
+                %li= question.content
+                %ol{class: "answer-list-show"}
+                  -question.answers.oldest_first.each do |answer|
+                    %li{class: "#{answer.correct ? 'tick' : 'cross'  }"}
+                      =answer.content

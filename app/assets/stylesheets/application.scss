@@ -35,6 +35,7 @@ $white: #fff;
 $gray-dark: #444;
 $gray-norm: #999;
 $gray-light: #ccc;
+$gray-lighter0: #ddd;
 $gray-lighter: #f9f9f9;
 $gray-lighter2: #fcfcfc;
 
@@ -74,6 +75,14 @@ $info-color-dark: #09c;
   li {
     white-space: normal;
     padding: 0 0.5em;
+  }
+}
+
+.dl-horizontal {
+  text-align: left;
+
+  dt {
+    white-space: normal;
   }
 }
 
@@ -134,19 +143,68 @@ textarea {
   resize: vertical;
 }
 
-.dl-horizontal {
-  text-align: left;
+$question-category-show-width: 60%;
+$padding-top: 0.5em;
+$padding-side: 1em;
+$padding-detail-pane: 0.2em;
 
-  ol {
-    li::before {
-      counter-increment: item;
-      color: $danger-color;
+.quiz-ol-show {
+  .question-category-container {
+    min-height: 14em;
+    border-radius: 1em;
+    padding: $padding-top $padding-side;
+    border: 1px solid $gray-norm;
+    background-color: $gray-lighter2;
+    position: relative;
+
+    .question-category-show {
+      //placeholder
     }
+
+    .question-category-detail-pane {
+      background-color: $gray-lighter0;
+      border-radius: 0.5em;
+      border: 1px solid $gray-dark;
+      padding: $padding-detail-pane;
+
+    }
+
+    .question-show {
+      padding: 0.5em 2em;
+      border: 1px solid $gray-light;
+      background-color: $gray-lighter;
+      border-radius: 0.5em;
+      margin: 0.5em 0;
+    }
+
   }
 }
 
-.answer-list {
+.question-category-detail-pane {
+  dt {
+    width: calc(50% - #{$padding-detail-pane});
+    border-bottom: 1px solid $gray-norm;
+  }
+
+  dd {
+    font-weight: bold;
+    margin-left: calc(50% + #{$padding-detail-pane});
+    border-bottom: 1px solid $gray-norm;
+  }
+
+  h3 {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 0.5em;
+  }
+}
+
+
+
+
+.answer-list-show {
   list-style-type: upper-alpha;
+  margin-left: -1em;
 
   li.tick::before {
     content: "\2713";
@@ -157,7 +215,6 @@ textarea {
     content: "\2717";
     color: $danger-color-dark;
   }
-
 }
 
 .question-category-fieldset {
