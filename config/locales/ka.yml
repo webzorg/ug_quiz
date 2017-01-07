@@ -118,7 +118,7 @@ ka:
   belongs_to_owner: ეკუთვნის პროფესორს
   correct: სწორია
   destroy: წაშლა
-  edit: რედაქტირება
+  edit: შესწორება
   editing_attempt: ცვლილების რედაქტირება
   editing_group: ჯგუფის რედაქტირება
   editing_professor: პროფესორის რედაქტირება
@@ -166,10 +166,10 @@ ka:
   professors: პროფესორები
   question: კითხვა
   question_category: კითხვების კატეგორია
-  question_category_weight: თითო კითხვის ქულა კატეგორიაში
+  question_category_weight: თითოეული კითხვის ქულა
   questions: კითხვები
-  questions_per_category: კითხვების რაოდენობა კატეგორიიდან
-  questions_per_quizzes: კითხვების რაოდენობა ქვიზში
+  questions_per_category: კითხვები კატეგორიიდან
+  questions_per_quizzes: კითხვების მაქს რაოდენობა
   quiz_id: ქვიზის ID
   quizzes: ქვიზები
   semester: სემესტრი

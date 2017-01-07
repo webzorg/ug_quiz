@@ -47,6 +47,15 @@ $(document).ready(function() {
     size: "small",
     handleWidth: 80,
     labelWidth: 10,
+    animate: true
+  });
+
+  $('.async-toggle-quiz').bootstrapSwitch({
+    onColor: "success",
+    offColor: "warning",
+    size: "small",
+    handleWidth: 80,
+    labelWidth: 10,
     animate: true,
     onSwitchChange: function(event, state) {
       clearFlash();

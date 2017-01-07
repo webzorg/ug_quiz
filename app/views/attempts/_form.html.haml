@@ -18,18 +18,19 @@
       =t(:answer)
       %br
       %ol
-        = f.fields_for :responses, @attempt.quiz.questions.map { |q| Response.new( question_id: q.id ) } do |answer_fields|
-          - question = answer_fields.object.question
-          %li.attempt-question= question.content
-          .attempt-question
-            -if question.radio?
-              = collection_radio_buttons("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
-                .attempt-question
-                  = b.label { "#{b.radio_button} #{b.text}" }
-            -else
-              = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
-                .attempt-question
-                  = b.label { "#{b.check_box} #{b.text}" }
+        - @attempt.quiz.question_categories.each do |question_category|
+          = f.fields_for :responses, question_category.questions.questions_per_category(question_category).map { |q| Response.new( question_id: q.id ) } do |response|
+            - question = response.object.question
+            %li.attempt-question=question.content
+            .attempt-question
+              -if question.radio?
+                = collection_radio_buttons("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+                  .attempt-question
+                    = b.label { "#{b.radio_button} #{b.text}" }
+              -else
+                = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+                  .attempt-question
+                    = b.label { "#{b.check_box} #{b.text}" }
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"

@@ -7,6 +7,8 @@ class Attempt < ApplicationRecord
   after_validation :attempt_score_setter
 
   def attempt_score_setter
-    update_attribute(:score, responses.select(&:correct).map(&:question).map(&:weight).sum)
+    update_attribute(:score, responses.select(&:correct).map(&:question).inject(0) do |acc, elem|
+      acc + elem.question_category.weight.to_f
+    end)
   end
 end

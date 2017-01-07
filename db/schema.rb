@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105215950) do
+ActiveRecord::Schema.define(version: 20170107001632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20170105215950) do
     t.datetime "updated_at",                           null: false
     t.float    "weight",                 default: 1.0
     t.integer  "quiz_id"
-    t.integer  "questions_per_category"
+    t.integer  "questions_per_category", default: 1
     t.index ["quiz_id"], name: "index_question_categories_on_quiz_id", using: :btree
   end
 

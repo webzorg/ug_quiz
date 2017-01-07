@@ -14,7 +14,7 @@ module UgQuiz
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.available_locales = [:ka, :en]
     config.i18n.default_locale = :ka
-    config.i18n.fallbacks = [:en]
+    config.i18n.fallbacks = [en: :ka, ka: :en]
     # config.i18n.fallbacks = true
 
     # Include the authenticity token in remote forms.

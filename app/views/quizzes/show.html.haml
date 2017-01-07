@@ -31,10 +31,14 @@
   %dd
     = @quiz.questions_per_quizzes
   %br
+  %dt=t(:number_of_questions)
+  %dd
+    = @quiz.questions.count
+  %br
   %dt=t(:questions)
   %dd
     %ol
-      - @quiz.questions.each do |question|
+      - @quiz.questions.oldest_first.each do |question|
         %li= "(#{question.question_category.weight}) - #{question.content}"
         %ol{class: "answer-list"}
           -question.answers.oldest_first.each do |answer|

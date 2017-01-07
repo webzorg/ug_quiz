@@ -1,7 +1,7 @@
 class Response < ApplicationRecord
   belongs_to :attempt
   belongs_to :question
-  has_many :answers_responses
+  has_many :answers_responses, dependent: :destroy
   has_many :answers, through: :answers_responses
 
   after_validation :response_correct_setter
@@ -21,6 +21,8 @@ class Response < ApplicationRecord
   end
 
   def response_correct_setter
+    puts "***********************************"
+    puts "*************** #{question.id}"
     correct_method_name = question.radio? ? radio_correct? : checkbox_correct?
     update_attribute(:correct, correct_method_name)
   end

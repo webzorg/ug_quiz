@@ -62,8 +62,9 @@ class QuizzesController < Professors::ApplicationController
 
   def add_others_group_ids
     return unless params[:others_group_ids].present?
+
+    quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
     params[:others_group_ids].reject(&:blank?).each do |group_id|
-      quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
       quiz_temp.groups << Group.find(group_id)
     end
     quiz_temp.save
