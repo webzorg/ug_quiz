@@ -30,7 +30,7 @@
               %li
                 = quiz.groups.first.professor.name
           %td= check_box_tag(:active, quiz.id, quiz.active, {class: "async-toggle-quiz", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
-          %td= total_weight(quiz)
+          %td= quiz.total_weight
           %td= link_to t(:show), quiz, class: "btn btn-primary #{can_class(:show, quiz)}"
           %td= link_to t(:edit), edit_quiz_path(quiz), class: "btn btn-warning #{can_class(:update, quiz)}"
           %td= link_to t(:destroy), quiz, data: { confirm: t(:are_you_sure) }, method: :delete, class: "btn btn-danger #{can_class(:destroy, quiz)}"
