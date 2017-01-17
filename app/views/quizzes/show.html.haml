@@ -29,7 +29,7 @@
   %br
   %dt=t(:questions_per_quizzes)
   %dd
-    = @quiz.questions_per_quizzes
+    = @quiz.question_categories.sum(&:questions_per_category)
   %br
   %dt=t(:total_weight)
   %dd

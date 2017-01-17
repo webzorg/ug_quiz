@@ -1,7 +1,9 @@
 class QuizzesController < Professors::ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
   before_action :remove_blank_group_ids_if_admin, only: [:update]
-  # before_action :add_others_group_ids, only: [:create, :update]
+  before_action :groups_set_for_create, only: [:create]
+  before_action :groups_set_for_update, only: [:update]
+  after_action :permutate_quiz, only: [:create, :update]
   load_and_authorize_resource
 
   def index
@@ -60,14 +62,65 @@ class QuizzesController < Professors::ApplicationController
 
   private
 
-  def add_others_group_ids
-    return unless params[:others_group_ids].present?
+  def groups_set_for_create
+    group_ids = params[:quiz][:group_ids].reject(&:empty?)
+    group_ids += params[:others_group_ids] if params[:others_group_ids].present?
+    @temp_groups = Group.find(group_ids)
+  end
 
-    quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
-    params[:others_group_ids].reject(&:blank?).each do |group_id|
-      quiz_temp.groups << Group.find(group_id)
+  def groups_set_for_update
+    group_ids = params[:quiz][:group_ids].present? ? params[:quiz][:group_ids].reject(&:empty?) : []
+    group_ids += params[:others_group_ids] if params[:others_group_ids].present?
+    group_ids = group_ids.map(&:to_i)
+    @temp_groups = Group.find(group_ids)
+  end
+
+  def permutate_quiz
+    return unless @quiz.valid?
+    logger.debug "********************************* TEMP_QUIZZ #{@temp_quizzes}"
+    logger.debug "********************************* GROUPS SIZE #{@temp_groups}"
+
+    @zipped_quizzes_groups = @temp_quizzes.zip(@temp_groups)
+    group_ids_param_size = params[:quiz][:group_ids].reject(&:empty?).size
+
+    if group_ids_param_size > 1
+      (group_ids_param_size - 1).times do
+        @zipped_quizzes_groups = @temp_quizzes.unshift(@temp_quizzes[0]).zip(@temp_groups) + @zipped_quizzes_groups
+      end
     end
-    quiz_temp.save
+    logger.debug "************************* #{@zipped_quizzes_groups}"
+
+    @zipped_quizzes_groups.each do |quiz, group|
+      logger.debug "************************* #{quiz.id}"
+      logger.debug "************************* #{group.id}"
+      group.students.each do |student|
+        quiz_permutation = QuizPermutation.find_or_create_by(quiz_id: quiz.id, student_id: student.id, group_id: group.id)
+        @quiz.question_categories.each do |question_category|
+          question_category.questions.sample(question_category.questions_per_category).each do |question|
+            QuestionPermutation.find_or_create_by(
+              quiz_permutation_id: quiz_permutation.id,
+              question_id: question.id,
+              question_category_id: question_category.id
+            )
+          end # questions.sample.each
+        end # question_categories.each
+      end # students.each
+    end # temp_quizzes.each
+  end
+
+  def add_others_group_ids
+    @temp_quizzes = [@quiz]
+    return unless params[:others_group_ids].present?
+    others_group_ids = params[:others_group_ids].reject(&:blank?).map(&:to_i)
+    groups = Group.where(id: others_group_ids)
+    professors = Professor.where(id: groups.map(&:professor_id).uniq)
+
+    professors.each do |professor|
+      quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
+      quiz_temp.groups << Group.where(id: others_group_ids & professor.groups.map(&:id))
+      @temp_quizzes << quiz_temp
+      quiz_temp.save
+    end
   end
 
   def remove_blank_group_ids_if_admin

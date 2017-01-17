@@ -22,6 +22,8 @@ class Group < ApplicationRecord
   has_many :groups_quizzes, dependent: :destroy
   has_many :quizzes, through: :groups_quizzes
 
+  has_many :quiz_permutations
+
   validates :name, presence: true, uniqueness: true
   validates :group_id, presence: true, uniqueness: true, numericality: { only_integer: true }
 end

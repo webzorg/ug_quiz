@@ -2,12 +2,11 @@
 #
 # Table name: quizzes
 #
-#  id                    :integer          not null, primary key
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  active                :boolean
-#  questions_per_quizzes :integer
-#  total_weight          :float            default(0.0)
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  active       :boolean
+#  total_weight :float            default(0.0)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -27,11 +27,6 @@
     .col-sm-10
       = f.check_box :active, class: "toggle-quiz",  "data-on-text": t(:on_off), "data-off-text": t(:off_on)
 
-  .form-group
-    = f.label t(:questions_per_quizzes), class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.number_field :questions_per_quizzes, class: "questions-per-quizzes"
-
   -# ***** question-categories *****
   .form-group
     = f.label t(:add_questions), class: "col-sm-2 control-label"

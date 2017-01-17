@@ -10,6 +10,7 @@
 
 class Question < ApplicationRecord
   translates :content, fallbacks_for_empty_translations: true
+  has_many :question_permutations, dependent: :destroy
 
   belongs_to :question_category, optional: true
   has_many :answers, dependent: :destroy

@@ -12,6 +12,7 @@
 
 class QuestionCategory < ApplicationRecord
   has_many :questions, dependent: :destroy
+  has_many :question_permutations
   belongs_to :quiz, optional: true
 
   validates :weight, numericality: { only_float: true, greater_than_or_equal_to: 0.1 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107001632) do
+ActiveRecord::Schema.define(version: 20170117123943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,18 @@ ActiveRecord::Schema.define(version: 20170107001632) do
     t.index ["quiz_id"], name: "index_question_categories_on_quiz_id", using: :btree
   end
 
+  create_table "question_permutations", force: :cascade do |t|
+    t.text     "questions",            default: [],              array: true
+    t.integer  "quiz_permutation_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "question_id"
+    t.integer  "question_category_id"
+    t.index ["question_category_id"], name: "index_question_permutations_on_question_category_id", using: :btree
+    t.index ["question_id"], name: "index_question_permutations_on_question_id", using: :btree
+    t.index ["quiz_permutation_id"], name: "index_question_permutations_on_quiz_permutation_id", using: :btree
+  end
+
   create_table "question_translations", force: :cascade do |t|
     t.integer  "question_id", null: false
     t.string   "locale",      null: false
@@ -156,12 +168,23 @@ ActiveRecord::Schema.define(version: 20170107001632) do
     t.index ["question_category_id"], name: "index_questions_on_question_category_id", using: :btree
   end
 
+  create_table "quiz_permutations", force: :cascade do |t|
+    t.text     "questions",  default: [],              array: true
+    t.integer  "quiz_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "student_id"
+    t.integer  "group_id"
+    t.index ["group_id"], name: "index_quiz_permutations_on_group_id", using: :btree
+    t.index ["quiz_id"], name: "index_quiz_permutations_on_quiz_id", using: :btree
+    t.index ["student_id"], name: "index_quiz_permutations_on_student_id", using: :btree
+  end
+
   create_table "quizzes", force: :cascade do |t|
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.boolean  "active"
-    t.integer  "questions_per_quizzes"
-    t.float    "total_weight",          default: 0.0
+    t.float    "total_weight", default: 0.0
   end
 
   create_table "responses", force: :cascade do |t|
@@ -220,4 +243,5 @@ ActiveRecord::Schema.define(version: 20170107001632) do
   add_foreign_key "groups_quizzes", "quizzes"
   add_foreign_key "question_categories", "quizzes"
   add_foreign_key "questions", "question_categories"
+  add_foreign_key "quiz_permutations", "students"
 end

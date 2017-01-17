@@ -2,12 +2,11 @@
 #
 # Table name: quizzes
 #
-#  id                    :integer          not null, primary key
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  active                :boolean
-#  questions_per_quizzes :integer
-#  total_weight          :float            default(0.0)
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  active       :boolean
+#  total_weight :float            default(0.0)
 #
 
 class Quiz < ApplicationRecord
@@ -16,10 +15,13 @@ class Quiz < ApplicationRecord
 
   has_many :question_categories, dependent: :destroy
   has_many :questions, through: :question_categories
+
   has_many :attempts, dependent: :destroy
 
+  has_many :quiz_permutations, dependent: :destroy
+  # has_many :question_permutations, through: :quiz_permutations
+
   validates :groups, presence: true
-  validates :questions_per_quizzes, numericality: { only_integer: true }
   validate :validate_questions_per_quizzes
 
   scope :newest_first, -> { order(created_at: :desc) }
@@ -47,16 +49,19 @@ class Quiz < ApplicationRecord
 
   def validate_questions_per_quizzes
     marked_for_destruction_counter = 0
-    recount_questions = 0
-
+    marked_for_destruction = false
     question_categories.each do |question_category|
+      recount_questions = 0
       question_category.questions.each do |question|
+        marked_for_destruction = question.marked_for_destruction?
         marked_for_destruction_counter += 1 if question.marked_for_destruction?
         recount_questions += 1
       end
+      if question_category.questions_per_category > recount_questions - marked_for_destruction_counter && marked_for_destruction
+        errors.add(" ", I18n.t(:number_of_questions_requested_in_quiz_exceeds_question_amount))
+      end
     end
 
-    errors.add(:questions_per_quizzes, I18n.t(:number_of_questions_requested_in_quiz_exceeds_question_amount)) if questions_per_quizzes > recount_questions - marked_for_destruction_counter
   end
 
 end
