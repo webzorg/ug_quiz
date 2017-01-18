@@ -3,6 +3,7 @@ class QuizzesController < Professors::ApplicationController
   before_action :remove_blank_group_ids_if_admin, only: [:update]
   before_action :groups_set_for_create, only: [:create]
   before_action :groups_set_for_update, only: [:update]
+  before_action :cleanup_permutations_for_removed_groups, only: [:update]
   after_action :permutate_quiz, only: [:create, :update]
   load_and_authorize_resource
 
@@ -78,12 +79,6 @@ class QuizzesController < Professors::ApplicationController
 
   def permutate_quiz
     return unless @quiz.valid?
-
-    logger.debug "********************************* TEMP_QUIZZ #{@temp_quizzes}"
-    logger.debug "********************************* GROUPS SIZE #{@temp_groups}"
-    logger.debug "********************************* GROUPS #{@quiz.id}"
-    logger.debug "********************************* GROUPS #{@belongs_to_group_ids}"
-
     @zipped_quizzes_groups = @temp_quizzes.zip(@temp_groups)
     group_ids_param_size = params[:quiz][:group_ids].reject(&:empty?).size
 
@@ -94,23 +89,18 @@ class QuizzesController < Professors::ApplicationController
       end
     end
 
-    # cleaning up permutations after removing it from group
-    QuizPermutation.where(quiz_id: @quiz.id).where.not(group_id: @belongs_to_group_ids).destroy_all
-
-    logger.debug "************************* #{@zipped_quizzes_groups}"
-
     @zipped_quizzes_groups.each do |quiz, group|
-      logger.debug "************************* #{quiz.id}"
-      logger.debug "************************* #{group.id}"
       group.students.each do |student|
         quiz_permutation = QuizPermutation.find_or_create_by(quiz_id: quiz.id, student_id: student.id, group_id: group.id)
-        @quiz.question_categories.each do |question_category|
+        quiz.question_categories.each do |question_category|
+          logger.debug "***************************************************************** #{question_category.questions_per_category}"
           question_category.questions.sample(question_category.questions_per_category).each do |question|
             QuestionPermutation.find_or_create_by(
               quiz_permutation_id: quiz_permutation.id,
               question_id: question.id,
               question_category_id: question_category.id
             )
+            logger.debug "********************************** #{question_category.id}"
           end # questions.sample.each
         end # question_categories.each
       end # students.each
@@ -135,6 +125,11 @@ class QuizzesController < Professors::ApplicationController
   def remove_blank_group_ids_if_admin
     return unless current_professor.admin?
     params[:quiz].delete(:group_ids) if params[:quiz][:group_ids].reject(&:blank?).blank?
+  end
+
+  def cleanup_permutations_for_removed_groups
+    # cleaning up permutations after removing it from group
+    QuizPermutation.where(quiz_id: @quiz.id).where.not(group_id: @belongs_to_group_ids).destroy_all
   end
 
   def set_quiz

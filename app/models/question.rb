@@ -16,7 +16,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   scope :oldest_first, -> { order(created_at: :asc) }
-  scope :randomize_and_limit_questions_per_category, ->(q) { order("RANDOM()").limit(q.questions_per_category) }
+  # scope :randomize_and_limit_questions_per_category, ->(q) { order("RANDOM()").limit(q.questions_per_category) }
 
   delegate :questions_per_category, to: :question_category
   default_scope { order(created_at: :asc) } # oldest_first
