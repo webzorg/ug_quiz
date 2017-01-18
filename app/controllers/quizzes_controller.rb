@@ -70,6 +70,7 @@ class QuizzesController < Professors::ApplicationController
 
   def groups_set_for_update
     group_ids = params[:quiz][:group_ids].present? ? params[:quiz][:group_ids].reject(&:empty?) : []
+    @belongs_to_group_ids = group_ids
     group_ids += params[:others_group_ids] if params[:others_group_ids].present?
     group_ids = group_ids.map(&:to_i)
     @temp_groups = Group.find(group_ids)
@@ -77,17 +78,25 @@ class QuizzesController < Professors::ApplicationController
 
   def permutate_quiz
     return unless @quiz.valid?
+
     logger.debug "********************************* TEMP_QUIZZ #{@temp_quizzes}"
     logger.debug "********************************* GROUPS SIZE #{@temp_groups}"
+    logger.debug "********************************* GROUPS #{@quiz.id}"
+    logger.debug "********************************* GROUPS #{@belongs_to_group_ids}"
 
     @zipped_quizzes_groups = @temp_quizzes.zip(@temp_groups)
     group_ids_param_size = params[:quiz][:group_ids].reject(&:empty?).size
 
+    # handling adding to more than one group
     if group_ids_param_size > 1
       (group_ids_param_size - 1).times do
         @zipped_quizzes_groups = @temp_quizzes.unshift(@temp_quizzes[0]).zip(@temp_groups) + @zipped_quizzes_groups
       end
     end
+
+    # cleaning up permutations after removing it from group
+    QuizPermutation.where(quiz_id: @quiz.id).where.not(group_id: @belongs_to_group_ids).destroy_all
+
     logger.debug "************************* #{@zipped_quizzes_groups}"
 
     @zipped_quizzes_groups.each do |quiz, group|
