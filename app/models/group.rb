@@ -12,7 +12,7 @@
 #
 
 class Group < ApplicationRecord
-  default_scope { order(created_at: :desc) } # newest_first
+  # default_scope { order(created_at: :desc) } # newest_first # breaks globalize gem.
   translates :name, fallbacks_for_empty_translations: true
 
   belongs_to :semester

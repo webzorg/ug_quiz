@@ -11,7 +11,7 @@ class AttemptsController < ApplicationController
   # end
 
   def edit
-    completed_quiz_fallback unless @attempt.status?
+    completed_quiz_fallback unless @attempt.status? # dev tempo Not for production
   end
 
   # def create

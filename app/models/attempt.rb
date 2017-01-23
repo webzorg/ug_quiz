@@ -17,7 +17,7 @@ class Attempt < ApplicationRecord
   belongs_to :quiz_permutation
   has_many :responses, dependent: :destroy
 
-  accepts_nested_attributes_for :responses
+  accepts_nested_attributes_for :responses, update_only: true
   after_validation :attempt_score_setter
 
   def attempt_score_setter

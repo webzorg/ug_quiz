@@ -1,2 +1,25 @@
-%h1 Professor index
-%p Find me in app/views/professor/home/index.html.erb
+.page-header
+  = link_to new_quiz_path, class: "btn btn-primary #{can_class(:create, Quiz)}" do
+    %span.glyphicon.glyphicon-plus
+    = t(:student_results)
+  %h1=t(:listing_quizzes)
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th.col-sm-1=t(:course_name)
+        %th.col-sm-1=t(:group_name)
+        %th.col-sm-1=t(:student_id)
+        %th.col-sm-1=t(:student_name)
+        %th.col-sm-1
+    %tbody
+      - @attempts.each do |attempt|
+        %tr
+          %td= attempt.quiz_permutation.group.course.course_name_concat
+          %td= attempt.quiz_permutation.group.name
+          %td= attempt.student.student_id
+          %td= attempt.student.name
+          %td= attempt.score
+
+= paginate @attempts
