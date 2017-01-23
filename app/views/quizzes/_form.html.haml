@@ -38,4 +38,7 @@
 
     .col-sm-offset-2.col-sm-10
       %br
-      = f.submit class: "btn-lg btn-primary"
+      -if @quiz.persisted?
+        = f.submit class: "btn-lg btn-primary", data: { confirm: t(:by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted) }
+      -else
+        = f.submit class: "btn-lg btn-primary"

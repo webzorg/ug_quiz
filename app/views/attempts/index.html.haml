@@ -7,7 +7,7 @@
       %tr
         %th= t(:course_code)
         %th= t(:quiz_number)
-        %th= t(:status)
+        %th= t(:completed)
         %th= t(:group_name)
         %th
 
@@ -16,6 +16,6 @@
         %tr
           %td= attempt.quiz_permutation.group.course.course_name_concat
           %td= (attempt.quiz_permutation.group.quizzes.index { |h| h == attempt.quiz_permutation.quiz } + 1 ).ordinalize + " quiz"
-          %td= raw attempt.status ? "&#x2717;" : "&#x2713;"
+          %td= raw attempt.completed? ? "&#x2713;" : "&#x2717;"
           %td= attempt.quiz_permutation.group.name
           %td= link_to t(:take_quiz), edit_attempt_path(attempt)

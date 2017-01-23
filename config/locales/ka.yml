@@ -116,9 +116,14 @@ ka:
   back: უკან
   belongs_to_groups: ეკუთვნის ჯგუფებს
   belongs_to_owner: ეკუთვნის პროფესორს
+  by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted:
+    არსებული ქვიზის განახლებით, თქვენ წაშლით ყველა სტუდენტების მიერ ჩაბარებულ პასუხს. ასევე იქნება გენერირებული ახალი კითხვების კომბინაციები.
   category_max_score_sum: Category max score sum
   category_possible_score_sum: Category possible score sum
   correct: სწორია
+  course: Course
+  course_code: Course code
+  course_name: Course name
   destroy: წაშლა
   edit: შესწორება
   editing_attempt: ცვლილების რედაქტირება
@@ -176,7 +181,9 @@ ka:
   questions_per_category: კითხვები კატეგორიიდან
   questions_per_quizzes: კითხვების მაქს რაოდენობა
   quiz_id: ქვიზის ID
+  quiz_number: Quiz number
   quizzes: ქვიზები
+  score: Score
   score_per_question: თითო კითხვის ქულა
   semester: სემესტრი
   semesters: სემესტრები
@@ -192,8 +199,12 @@ ka:
   student_id: სტუდენტის ID
   student_index: სტუდენტების ინდექსი
   student_name: სტუდენტის სახელი
+  student_results: Student results
   students: სტუდენტები
   take_quiz: ქვიზის დაწყება
+  taking_quiz: Taking quiz
+  total_possible_weight: Total possible weight
+  total_weight: Total weight
   unauthorized:
     default: დაფიქსირდა შეცდომა.
     manage:

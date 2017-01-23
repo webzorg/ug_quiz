@@ -116,9 +116,14 @@ en:
   back: Back
   belongs_to_groups: Belongs to groups
   belongs_to_owner: Belongs to owner
+  by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted:
+    By updating existing quiz, all existing answers submitted by the students will be destroyed. New question combinations will be generated.
   category_max_score_sum: Category max score sum
   category_possible_score_sum: Category possible score sum
   correct: Correct
+  course: Course
+  course_code: Course code
+  course_name: Course name
   destroy: Destroy
   edit: Edit
   editing_attempt: Editing attempt
@@ -176,7 +181,9 @@ en:
   questions_per_category: Questions per category
   questions_per_quizzes: Questions per Quiz
   quiz_id: Quiz
+  quiz_number: Quiz number
   quizzes: Quizzes
+  score: Score
   score_per_question: Score per question
   semester: Semester
   semesters: Semester
@@ -192,8 +199,12 @@ en:
   student_id: Student
   student_index: Student index
   student_name: Student name
+  student_results: Student results
   students: Students
   take_quiz: Take quiz
+  taking_quiz: Taking quiz
+  total_possible_weight: Total possible weight
+  total_weight: Total weight
   unauthorized:
     default: Default error message text.
     manage:

@@ -93,8 +93,10 @@ class QuizzesController < Professors::ApplicationController
     @zipped_quizzes_groups.each do |quiz, group|
       group.students.each do |student|
         quiz_permutation = QuizPermutation.find_or_create_by(quiz_id: quiz.id, student_id: student.id, group_id: group.id)
-        quiz_permutation.attempt = Attempt.find_or_create_by(student_id: student.id)
-        # quiz_permutation.attempt.responses.destroy_all
+
+        # Find attempt, set completed to false and delete all responses.
+        attempts_handler(quiz_permutation, student)
+
         quiz.question_categories.shuffle.each do |question_category|
           question_category.questions.sample(question_category.questions_per_category).each do |question|
             QuestionPermutation.create(
@@ -107,6 +109,12 @@ class QuizzesController < Professors::ApplicationController
         end # question_categories.each
       end # students.each
     end # temp_quizzes.each
+  end
+
+  def attempts_handler(quiz_permutation, student)
+    quiz_permutation.attempt = Attempt.find_or_create_by(student_id: student.id)
+    quiz_permutation.attempt.update_attributes(completed: false)
+    quiz_permutation.attempt.responses.destroy_all # delete all student responses on quiz update
   end
 
   def add_others_group_ids

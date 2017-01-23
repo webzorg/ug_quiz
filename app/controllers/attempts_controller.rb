@@ -11,7 +11,7 @@ class AttemptsController < ApplicationController
   # end
 
   def edit
-    completed_quiz_fallback unless @attempt.status? # dev tempo Not for production
+    completed_quiz_fallback if @attempt.completed? # dev tempo Not for production
   end
 
   # def create
@@ -30,14 +30,14 @@ class AttemptsController < ApplicationController
   # end
 
   def update
-
-    params[:attempt][:responses_attributes].delete_if {|key, value| value.is_a?(Hash) } # cleaning rails checkbox automagics
+    params[:attempt][:responses_attributes].delete_if { |_key, value| value.is_a?(Hash) } # cleaning rails checkbox automagics
     params[:attempt][:responses_attributes] =
       params[:attempt][:responses_attributes].map do |key, value|
         { question_id: key, answer_ids: value }
       end
 
     if @attempt.update(attempt_params)
+      @attempt.update_attributes(completed: true)
       redirect_to attempts_path, notice: "Attempt was successfully updated."
     else
       render :edit
@@ -68,6 +68,6 @@ class AttemptsController < ApplicationController
   end
 
   def attempt_params
-    params.require(:attempt).permit(:active, :student_id, responses_attributes: [:id, :question_id, :correct, :answer_ids, answer_ids: []])
+    params.require(:attempt).permit(:student_id, responses_attributes: [:id, :question_id, :correct, :answer_ids, answer_ids: []])
   end
 end

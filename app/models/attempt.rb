@@ -8,7 +8,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  quiz_permutation_id :integer
-#  status              :boolean          default(TRUE)
+#  completed           :boolean          default(FALSE)
 #
 
 class Attempt < ApplicationRecord
@@ -18,12 +18,11 @@ class Attempt < ApplicationRecord
   has_many :responses, dependent: :destroy
 
   accepts_nested_attributes_for :responses, update_only: true
-  after_validation :attempt_score_setter
+  before_save :attempt_score_setter
 
   def attempt_score_setter
-    update_attribute(
-      :score, responses.select(&:correct).map(&:question).inject(0) { |acc, elem| acc + elem.question_category.weight.to_f }
+    update_columns(
+      score: responses.select(&:correct).map(&:question).map(&:question_category).sum(&:weight)
     )
-    update_attribute(:status, false)
   end
 end

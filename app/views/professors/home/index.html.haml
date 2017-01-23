@@ -1,8 +1,5 @@
 .page-header
-  = link_to new_quiz_path, class: "btn btn-primary #{can_class(:create, Quiz)}" do
-    %span.glyphicon.glyphicon-plus
-    = t(:student_results)
-  %h1=t(:listing_quizzes)
+  %h1=t(:listing_attempts)
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
@@ -12,7 +9,8 @@
         %th.col-sm-1=t(:group_name)
         %th.col-sm-1=t(:student_id)
         %th.col-sm-1=t(:student_name)
-        %th.col-sm-1
+        %th.col-sm-1=t(:completed)
+        %th.col-sm-1=t(:score)
     %tbody
       - @attempts.each do |attempt|
         %tr
@@ -20,6 +18,7 @@
           %td= attempt.quiz_permutation.group.name
           %td= attempt.student.student_id
           %td= attempt.student.name
+          %td= raw attempt.completed? ? "&#x2713;" : "&#x2717;"
           %td= attempt.score
 
 = paginate @attempts
