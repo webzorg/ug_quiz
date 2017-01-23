@@ -23,6 +23,10 @@
     .col-sm-10
       = f.collection_select(:semester_id, Semester.all, :id, :semester_name_concat, {include_hidden: true}, { class: "form-control" })
   .form-group
+    = f.label t(:course), class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.collection_select(:course_id, Course.all, :id, :course_name_concat, {include_hidden: true}, { class: "form-control" })
+  .form-group
     = f.label t(:professor), class: "col-sm-2 control-label"
     .col-sm-10
       = current_professor.name

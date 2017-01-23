@@ -7,10 +7,12 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  professor_id :integer
+#  course_id    :integer
 #  group_id     :integer
 #
 
 class Group < ApplicationRecord
+  default_scope { order(created_at: :desc) } # newest_first
   translates :name, fallbacks_for_empty_translations: true
 
   belongs_to :semester

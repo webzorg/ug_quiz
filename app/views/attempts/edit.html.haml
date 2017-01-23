@@ -2,10 +2,6 @@
   = link_to attempts_path, class: "btn btn-default" do
     %span.glyphicon.glyphicon-list-alt
     =t(:back)
-  &nbsp
-  = link_to @attempt, class: "btn btn-primary" do
-    %span.glyphicon.glyphicon-info-sign
-    =t(:show)
-  %h1=t(:editing_attempt)
+  %h1=t(:taking_quiz)
 
 = render "form"

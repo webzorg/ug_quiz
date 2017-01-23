@@ -3,7 +3,6 @@
 # Table name: quiz_permutations
 #
 #  id         :integer          not null, primary key
-#  questions  :text             default([]), is an Array
 #  quiz_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

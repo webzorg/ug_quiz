@@ -48,6 +48,6 @@ class GroupsController < Professors::ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :group_id, :semester_id, student_ids: [])
+    params.require(:group).permit(:name, :group_id, :course_id, :semester_id, student_ids: [])
   end
 end

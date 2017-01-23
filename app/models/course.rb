@@ -8,10 +8,13 @@
 #  semester_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  group_id    :integer
 #
 
 class Course < ApplicationRecord
   belongs_to :semester
   has_many :groups
+
+  def course_name_concat
+    "#{course_code} - #{course_name}"
+  end
 end

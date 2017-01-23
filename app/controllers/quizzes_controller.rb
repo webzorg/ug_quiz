@@ -3,7 +3,8 @@ class QuizzesController < Professors::ApplicationController
   before_action :remove_blank_group_ids_if_admin, only: [:update]
   before_action :groups_set_for_create, only: [:create]
   before_action :groups_set_for_update, only: [:update]
-  before_action :cleanup_permutations_for_removed_groups, only: [:update]
+  before_action :cleanup_quiz_permutations_for_removed_groups, only: [:update]
+  before_action :cleanup_questions_permutations_for_removed_groups, only: [:update]
   after_action :permutate_quiz, only: [:create, :update]
   load_and_authorize_resource
 
@@ -73,7 +74,7 @@ class QuizzesController < Professors::ApplicationController
     group_ids = params[:quiz][:group_ids].present? ? params[:quiz][:group_ids].reject(&:empty?) : []
     @belongs_to_group_ids = group_ids
     group_ids += params[:others_group_ids] if params[:others_group_ids].present?
-    group_ids = group_ids.map(&:to_i)
+    group_ids.map!(&:to_i)
     @temp_groups = Group.find(group_ids)
   end
 
@@ -92,15 +93,16 @@ class QuizzesController < Professors::ApplicationController
     @zipped_quizzes_groups.each do |quiz, group|
       group.students.each do |student|
         quiz_permutation = QuizPermutation.find_or_create_by(quiz_id: quiz.id, student_id: student.id, group_id: group.id)
-        quiz.question_categories.each do |question_category|
-          logger.debug "***************************************************************** #{question_category.questions_per_category}"
+        quiz_permutation.attempt = Attempt.find_or_create_by(student_id: student.id)
+        # quiz_permutation.attempt.responses.destroy_all
+        quiz.question_categories.shuffle.each do |question_category|
           question_category.questions.sample(question_category.questions_per_category).each do |question|
-            QuestionPermutation.find_or_create_by(
+            QuestionPermutation.create(
               quiz_permutation_id: quiz_permutation.id,
               question_id: question.id,
               question_category_id: question_category.id
             )
-            logger.debug "********************************** #{question_category.id}"
+            # quiz_permutation.attempt.responses << Response.create(question_id: question.id)
           end # questions.sample.each
         end # question_categories.each
       end # students.each
@@ -127,9 +129,14 @@ class QuizzesController < Professors::ApplicationController
     params[:quiz].delete(:group_ids) if params[:quiz][:group_ids].reject(&:blank?).blank?
   end
 
-  def cleanup_permutations_for_removed_groups
-    # cleaning up permutations after removing it from group
+  def cleanup_quiz_permutations_for_removed_groups
+    # cleaning up quiz permutations after removing it from group
     QuizPermutation.where(quiz_id: @quiz.id).where.not(group_id: @belongs_to_group_ids).destroy_all
+  end
+
+  def cleanup_questions_permutations_for_removed_groups
+    # cleaning up question permutations before generating new ones
+    QuestionPermutation.where(quiz_permutation_id: @quiz.quiz_permutations).destroy_all
   end
 
   def set_quiz

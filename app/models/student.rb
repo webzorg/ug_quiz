@@ -34,7 +34,7 @@ class Student < ApplicationRecord
 
   has_many :quizzes, through: :groups
 
-  has_many :attempt, dependent: :destroy
+  has_many :attempts, dependent: :destroy
 
   def student_name_concat
     "#{student_id} - #{name}"

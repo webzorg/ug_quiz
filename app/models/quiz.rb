@@ -16,9 +16,8 @@ class Quiz < ApplicationRecord
   has_many :question_categories, dependent: :destroy
   has_many :questions, through: :question_categories
 
-  has_many :attempts, dependent: :destroy
-
   has_many :quiz_permutations, dependent: :destroy
+  has_many :attempts, through: :quiz_permutations
   # has_many :question_permutations, through: :quiz_permutations
 
   validates :groups, presence: true

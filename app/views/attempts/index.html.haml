@@ -5,11 +5,17 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th= t(:quizzes)
+        %th= t(:course_code)
+        %th= t(:quiz_number)
+        %th= t(:status)
+        %th= t(:group_name)
         %th
 
     %tbody
-      - @active_quizzes.each do |quiz|
+      - @attempts.each do |attempt|
         %tr
-          %td= quiz.id
-          %td= link_to t(:take_quiz), new_attempt_path(quiz_id: quiz.id)
+          %td= attempt.quiz_permutation.group.course.course_name_concat
+          %td= (attempt.quiz_permutation.group.quizzes.index { |h| h == attempt.quiz_permutation.quiz } + 1 ).ordinalize + " quiz"
+          %td= raw attempt.status ? "&#x2717;" : "&#x2713;"
+          %td= attempt.quiz_permutation.group.name
+          %td= link_to t(:take_quiz), edit_attempt_path(attempt)

@@ -15,7 +15,7 @@
 @import "select2";
 @import "select2-bootstrap";
 @import "bootstrap3-switch";
-//@include prefix(box-shadow, inset 0 1px 1px $box-shadow, webkit ms);
+// @include prefix(box-shadow, inset 0 1px 1px $box-shadow, webkit ms);
 @mixin box-shadow($top, $left, $blur, $color, $inset: false) {
   @if $inset {
     -webkit-box-shadow: inset $top $left $blur $color;

@@ -13,8 +13,9 @@ class Ability
         cannot :destroy, Professor, admin: user.admin
       end
     when Student
-      can :read, Attempt
-      can :create, Attempt
+      can :index, Attempt
+      can :edit, Attempt
+      can :update, Attempt
     end
   end
 end

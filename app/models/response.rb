@@ -27,14 +27,13 @@ class Response < ApplicationRecord
   end
 
   def checkbox_correct?
-    question.correct_answers_count == correct_answers_count &&
+    question.correct_answers_count ==
+      correct_answers_count &&
       !answers.empty? &&
       answers.all?(&:correct?)
   end
 
   def response_correct_setter
-    puts "***********************************"
-    puts "*************** #{question.id}"
     correct_method_name = question.radio? ? radio_correct? : checkbox_correct?
     update_attribute(:correct, correct_method_name)
   end

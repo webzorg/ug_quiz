@@ -30,5 +30,19 @@ Student.create(name: "studentName 0", student_id: "1221256", email: "user0@stude
 
 Semester.create(year: 2017, academicterm: true)
 
-Group.create(group_id: "123456", name: "Main Professor's Group", semester_id: 1, professor_id: 1, student_ids: [1,2,3,4,5,6,7,8,9,10])
-Group.create(group_id: "923456", name: "Second Professor's Group", semester_id: 1, professor_id: 2, student_ids: [1,2,3])
+Group.create(group_id: "123456", name: "Main Professor's Group", semester_id: 1, professor_id: 1, student_ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+Group.create(group_id: "923456", name: "Second Professor's Group", semester_id: 1, professor_id: 2, student_ids: [1, 2, 3])
+
+Course.create(semester_id: 1, course_code: "HCA 300", course_name: "The Health Care System")
+Course.create(semester_id: 1, course_code: "HCA 312", course_name: "Health Personnel Management")
+Course.create(semester_id: 1, course_code: "HCA 340", course_name: "Legal Aspects of Health Administration")
+Course.create(semester_id: 1, course_code: "HCA 341", course_name: "Financial Management of Health Care Institutions")
+Course.create(semester_id: 1, course_code: "HCA 353", course_name: "Marketing for Health Services Organizations")
+Course.create(semester_id: 1, course_code: "HCA 410", course_name: "Health Management and Organizations")
+Course.create(semester_id: 1, course_code: "HCA 416", course_name: "Management and Information Systems")
+Course.create(semester_id: 1, course_code: "HCA 428", course_name: "Population Health Mgmt. for Health Care Administrators")
+Course.create(semester_id: 1, course_code: "HCA 450", course_name: "Quality Assurance in Health Care")
+Course.create(semester_id: 1, course_code: "HCA 465", course_name: "Analysis and Evaluation of Health Care Services")
+Course.create(semester_id: 1, course_code: "HCA 468", course_name: "Principles of Risk Management and Patient Safety")
+Course.create(semester_id: 1, course_code: "HCA 480", course_name: "Internship in Health Care Administration (FAQ's)")
+Course.create(semester_id: 1, course_code: "HCA 481", course_name: "Internship and Career Development in HCA")
