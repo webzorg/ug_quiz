@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     root "home#index"
   end
 
+  # read-only API
+  resources :reports, only: [:index, :show] do
+    get "by_groups", on: :member
+    get "by_students", on: :member
+  end
+
   # professors namespace root shortcut
   get "/pro", to: "professors/home#index"
 

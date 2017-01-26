@@ -16,8 +16,9 @@ gem "jquery-rails"
 # Pagination
 gem "kaminari"
 # API
-gem "activemodel-serializers-xml"
-gem "active_model_serializers", "~> 0.10.0"
+# gem "activemodel-serializers-xml"
+# gem "active_model_serializers", "~> 0.10.0"
+gem "jbuilder"
 # I18n
 gem "devise-i18n"
 gem "globalize", github: "globalize/globalize"
