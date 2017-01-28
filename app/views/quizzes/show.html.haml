@@ -9,15 +9,13 @@
   %h1=t(:show_quiz)
 
 %dl.dl-horizontal
-  %dt=t(:belongs_to_groups)
+  %dt=t(:belongs_to_group)
   %dd
-    %ul
-      - @quiz.groups.each do |group|
-        %li
-          - if can? :show, group
-            =link_to group.name, group_path(group)
-          - else
-            = group.name
+    - group = @quiz.group
+    - if can? :show, group
+      =link_to group.name, group_path(group)
+    - else
+      = group.name
 
   %dt=t(:status)
   %dd

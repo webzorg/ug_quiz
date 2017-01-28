@@ -1,6 +1,6 @@
 class QuizzesController < Professors::ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
-  before_action :remove_blank_group_ids_if_admin, only: [:update]
+  # before_action :remove_blank_group_ids_if_admin, only: [:update]
   before_action :groups_set_for_create, only: [:create]
   before_action :groups_set_for_update, only: [:update]
   before_action :cleanup_quiz_permutations_for_removed_groups, only: [:update]
@@ -65,14 +65,16 @@ class QuizzesController < Professors::ApplicationController
   private
 
   def groups_set_for_create
-    group_ids = params[:quiz][:group_ids].reject(&:empty?)
+    group_ids = []
+    group_ids << params[:quiz][:group_id]
     group_ids += params[:others_group_ids] if params[:others_group_ids].present?
     @temp_groups = Group.find(group_ids)
   end
 
   def groups_set_for_update
-    group_ids = params[:quiz][:group_ids].present? ? params[:quiz][:group_ids].reject(&:empty?) : []
-    @belongs_to_group_ids = group_ids
+    group_ids = []
+    group_ids << params[:quiz][:group_id]
+    @belongs_to_group_id = group_ids
     group_ids += params[:others_group_ids] if params[:others_group_ids].present?
     group_ids.map!(&:to_i)
     @temp_groups = Group.find(group_ids)
@@ -80,17 +82,9 @@ class QuizzesController < Professors::ApplicationController
 
   def permutate_quiz
     return unless @quiz.valid?
-    @zipped_quizzes_groups = @temp_quizzes.zip(@temp_groups)
-    group_ids_param_size = params[:quiz][:group_ids].reject(&:empty?).size
 
-    # handling adding to more than one group
-    if group_ids_param_size > 1
-      (group_ids_param_size - 1).times do
-        @zipped_quizzes_groups = @temp_quizzes.unshift(@temp_quizzes[0]).zip(@temp_groups) + @zipped_quizzes_groups
-      end
-    end
+    @temp_quizzes.zip(@temp_groups).each do |quiz, group|
 
-    @zipped_quizzes_groups.each do |quiz, group|
       group.students.each do |student|
         quiz_permutation = QuizPermutation.find_or_create_by(quiz_id: quiz.id, student_id: student.id, group_id: group.id)
 
@@ -112,7 +106,7 @@ class QuizzesController < Professors::ApplicationController
   end
 
   def attempts_handler(quiz_permutation, student)
-    quiz_permutation.attempt = Attempt.find_or_create_by(student_id: student.id)
+    quiz_permutation.attempt = Attempt.find_or_create_by(student_id: student.id, quiz_permutation_id: quiz_permutation.id)
     quiz_permutation.attempt.update_attributes(completed: false)
     quiz_permutation.attempt.responses.destroy_all # delete all student responses on quiz update
   end
@@ -120,32 +114,33 @@ class QuizzesController < Professors::ApplicationController
   def add_others_group_ids
     @temp_quizzes = [@quiz]
     return unless params[:others_group_ids].present?
-    others_group_ids = params[:others_group_ids].reject(&:blank?).map(&:to_i)
-    groups = Group.where(id: others_group_ids)
+    groups = Group.where(id: params[:others_group_ids].reject(&:blank?).map(&:to_i))
     professors = Professor.where(id: groups.map(&:professor_id).uniq)
 
-    professors.each do |professor|
+    groups.each do |group|
       quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
-      quiz_temp.groups << Group.where(id: others_group_ids & professor.groups.map(&:id))
+      quiz_temp.group = group
       @temp_quizzes << quiz_temp
       quiz_temp.save
     end
   end
 
-  def remove_blank_group_ids_if_admin
-    return unless current_professor.admin?
-    params[:quiz].delete(:group_ids) if params[:quiz][:group_ids].reject(&:blank?).blank?
-  end
+
 
   def cleanup_quiz_permutations_for_removed_groups
     # cleaning up quiz permutations after removing it from group
-    QuizPermutation.where(quiz_id: @quiz.id).where.not(group_id: @belongs_to_group_ids).destroy_all
+    QuizPermutation.where(quiz_id: @quiz.id).where.not(group_id: @belongs_to_group_id).destroy_all
   end
 
   def cleanup_questions_permutations_for_removed_groups
     # cleaning up question permutations before generating new ones
     QuestionPermutation.where(quiz_permutation_id: @quiz.quiz_permutations).destroy_all
   end
+
+  # def remove_blank_group_ids_if_admin
+  #   return unless current_professor.admin?
+  #   params[:quiz].delete(:group_ids) if params[:quiz][:group_ids].reject(&:blank?).blank?
+  # end
 
   def set_quiz
     @quiz = Quiz.find(params[:id])
@@ -155,8 +150,8 @@ class QuizzesController < Professors::ApplicationController
     params.require(:quiz).permit(
       :active,
       :questions_per_quizzes,
+      :group_id,
       others_group_ids: [],
-      group_ids: [],
       question_categories_attributes: [
         :id,
         :weight,

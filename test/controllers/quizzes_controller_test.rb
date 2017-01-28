@@ -7,6 +7,7 @@
 #  updated_at   :datetime         not null
 #  active       :boolean
 #  total_weight :float            default(0.0)
+#  group_id     :integer
 #
 
 require 'test_helper'

@@ -14,6 +14,25 @@
   %dt=t(:academic_term)
   %dd= @semester.semester_name_concat
   %br
+  %dt=t(:courses)
+  %dd
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th.col-sm-2= t(:course_name_concat)
+        %tbody
+          -@semester.courses.each do |course|
+            %tr
+              %td
+                - if can? :show, course
+                  =link_to course.course_name_concat, course_path(course)
+                - else
+                  = course.course_name_concat
+  %br
+  %hr
+  %br
+
   %dt=t(:groups)
   %dd
     .table-responsive
@@ -23,11 +42,12 @@
             %th.col-sm-2= t(:group_id)
             %th.col-sm-10= t(:group_name)
         %tbody
-          -@semester.groups.each do |group|
-            %tr
-              %td= group.group_id
-              %td
-                - if can? :show, group
-                  =link_to group.name, group_path(group)
-                - else
-                  = group.name
+          -@semester.courses_semesters.each do |course_semester|
+            -course_semester.groups.each do |group|
+              %tr
+                %td= group.group_id
+                %td
+                  - if can? :show, group
+                    =link_to group.name, group_path(group)
+                  - else
+                    = group.name

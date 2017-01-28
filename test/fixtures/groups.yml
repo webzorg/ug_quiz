@@ -2,13 +2,13 @@
 #
 # Table name: groups
 #
-#  id           :integer          not null, primary key
-#  semester_id  :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  professor_id :integer
-#  course_id    :integer
-#  group_id     :integer
+#  id                  :integer          not null, primary key
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  professor_id        :integer
+#  group_id            :integer
+#  name                :string
+#  courses_semester_id :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

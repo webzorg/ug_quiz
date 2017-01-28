@@ -11,16 +11,17 @@
           %li= msg
 
   .form-group
-    = f.label t(:add_to_groups), class: "col-sm-2 control-label"
+    = f.label t(:add_to_group ), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.collection_select(:group_ids, current_professor.groups, :id, :name,
-      {include_hidden: true}, { id: "include_groups_in_quiz", class: "form-control", multiple: true })
+      = f.collection_select(:group_id, current_professor.groups, :id, :name,
+      {include_hidden: true}, { id: "include_groups_in_quiz", class: "form-control", multiple: false })
 
   .form-group
     = f.label t(:add_to_others_groups), class: "col-sm-2 control-label"
     .col-sm-10
-      = collection_select(nil, :others_group_ids, Group.where.not(professor_id: current_professor.id), :id, :name,
-      {include_hidden: false, selected: @quiz.groups.map(&:id)}, {id: "include_others_groups_in_quiz", class: "form-control", multiple: true })
+      - groups = @quiz.group.present? ? Group.where.not(id: @quiz.group.id) : Group.where.not(professor_id: current_professor.id)
+      = collection_select(nil, :others_group_ids, groups, :id, :name,
+      {include_hidden: false}, {id: "include_others_groups_in_quiz", class: "form-control", multiple: true })
 
   .form-group
     = f.label t(:status), class: "col-sm-2 control-label"

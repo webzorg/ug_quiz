@@ -29,6 +29,7 @@ clearFlash();
 
 $(document).ready(function() {
 
+  $("#include_semesters_in_course").select2();
   $("#include_students_in_group").select2();
   $("#include_groups_in_quiz").select2();
   $("#include_others_groups_in_quiz").select2();

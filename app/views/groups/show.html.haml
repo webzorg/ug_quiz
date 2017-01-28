@@ -13,10 +13,8 @@
   %dd= @group.group_id
   %dt=t(:name)
   %dd= @group.name
-  %dt=t(:semester)
-  %dd= @group.semester.semester_name_concat
-  %dt=t(:course)
-  %dd= @group.course.course_name_concat
+  %dt=t(:course_and_semester)
+  %dd= @group.courses_semester.courses_semester_name_concat
   %dt=t(:professor)
   %dd= @group.professor.name
   %br

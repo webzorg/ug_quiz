@@ -10,6 +10,9 @@ class Ability
       can [:read, :update], user
       if user.admin?
         can :manage, :all
+        cannot :update, Quiz, Quiz do |quiz|
+          user.groups.map(&:id).exclude?(quiz.group_id)
+        end
         cannot :destroy, Professor, admin: user.admin
       end
     when Student

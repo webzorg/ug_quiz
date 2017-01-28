@@ -17,15 +17,15 @@
   .form-group
     = f.label t(:name), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :name, class: "form-control"
+      = @group.name if @group.name.present?
+  -# .form-group
+  -#   = f.label t(:semester), class: "col-sm-2 control-label"
+  -#   .col-sm-10
+  -#     = f.collection_select(:semester_id, Semester.all, :id, :semester_name_concat, {include_hidden: true}, { class: "form-control" })
   .form-group
-    = f.label t(:semester), class: "col-sm-2 control-label"
+    = f.label t(:belongs_to_course_semester), class: "col-sm-2 control-label"
     .col-sm-10
-      = f.collection_select(:semester_id, Semester.all, :id, :semester_name_concat, {include_hidden: true}, { class: "form-control" })
-  .form-group
-    = f.label t(:course), class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.collection_select(:course_id, Course.all, :id, :course_name_concat, {include_hidden: true}, { class: "form-control" })
+      = f.collection_select(:courses_semester_id, CoursesSemester.all, :id, :courses_semester_name_concat, {include_hidden: true}, { class: "form-control" })
   .form-group
     = f.label t(:professor), class: "col-sm-2 control-label"
     .col-sm-10

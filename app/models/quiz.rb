@@ -7,11 +7,11 @@
 #  updated_at   :datetime         not null
 #  active       :boolean
 #  total_weight :float            default(0.0)
+#  group_id     :integer
 #
 
 class Quiz < ApplicationRecord
-  has_many :groups_quizzes, dependent: :destroy
-  has_many :groups, through: :groups_quizzes
+  belongs_to :group
 
   has_many :question_categories, dependent: :destroy
   has_many :questions, through: :question_categories
@@ -20,7 +20,7 @@ class Quiz < ApplicationRecord
   has_many :attempts, through: :quiz_permutations
   # has_many :question_permutations, through: :quiz_permutations
 
-  validates :groups, presence: true
+  validates :group, presence: true
   validate :validate_questions_per_quizzes
 
   scope :newest_first, -> { order(created_at: :desc) }

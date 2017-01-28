@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123101316) do
+ActiveRecord::Schema.define(version: 20170128184352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,44 +53,41 @@ ActiveRecord::Schema.define(version: 20170123101316) do
     t.index ["student_id"], name: "index_attempts_on_student_id", using: :btree
   end
 
+  create_table "course_translations", force: :cascade do |t|
+    t.integer  "course_id",   null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "course_name"
+    t.index ["course_id"], name: "index_course_translations_on_course_id", using: :btree
+    t.index ["locale"], name: "index_course_translations_on_locale", using: :btree
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string   "course_name"
     t.string   "course_code"
-    t.integer  "semester_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["semester_id"], name: "index_courses_on_semester_id", using: :btree
   end
 
-  create_table "group_translations", force: :cascade do |t|
-    t.integer  "group_id",   null: false
-    t.string   "locale",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
-    t.index ["group_id"], name: "index_group_translations_on_group_id", using: :btree
-    t.index ["locale"], name: "index_group_translations_on_locale", using: :btree
+  create_table "courses_semesters", force: :cascade do |t|
+    t.integer  "semester_id"
+    t.integer  "course_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["course_id"], name: "index_courses_semesters_on_course_id", using: :btree
+    t.index ["semester_id"], name: "index_courses_semesters_on_semester_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "semester_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "professor_id"
-    t.integer  "course_id"
     t.integer  "group_id"
-    t.index ["course_id"], name: "index_groups_on_course_id", using: :btree
+    t.string   "name"
+    t.integer  "courses_semester_id"
+    t.index ["courses_semester_id"], name: "index_groups_on_courses_semester_id", using: :btree
     t.index ["professor_id"], name: "index_groups_on_professor_id", using: :btree
-    t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
-  end
-
-  create_table "groups_quizzes", force: :cascade do |t|
-    t.integer  "quiz_id"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_groups_quizzes_on_group_id", using: :btree
-    t.index ["quiz_id"], name: "index_groups_quizzes_on_quiz_id", using: :btree
   end
 
   create_table "groups_students", force: :cascade do |t|
@@ -184,6 +181,8 @@ ActiveRecord::Schema.define(version: 20170123101316) do
     t.datetime "updated_at",                 null: false
     t.boolean  "active"
     t.float    "total_weight", default: 0.0
+    t.integer  "group_id"
+    t.index ["group_id"], name: "index_quizzes_on_group_id", using: :btree
   end
 
   create_table "responses", force: :cascade do |t|
@@ -235,11 +234,12 @@ ActiveRecord::Schema.define(version: 20170123101316) do
   add_foreign_key "answers_responses", "responses"
   add_foreign_key "attempts", "quiz_permutations"
   add_foreign_key "attempts", "students"
+  add_foreign_key "courses_semesters", "courses"
+  add_foreign_key "courses_semesters", "semesters"
+  add_foreign_key "groups", "courses_semesters"
   add_foreign_key "groups", "professors"
-  add_foreign_key "groups", "semesters"
-  add_foreign_key "groups_quizzes", "groups"
-  add_foreign_key "groups_quizzes", "quizzes"
   add_foreign_key "question_categories", "quizzes"
   add_foreign_key "questions", "question_categories"
   add_foreign_key "quiz_permutations", "students"
+  add_foreign_key "quizzes", "groups"
 end

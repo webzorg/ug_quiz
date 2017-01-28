@@ -18,6 +18,12 @@
     = f.label t(:academic_term), class: "col-sm-2 control-label"
     .col-sm-10
       = f.check_box :academicterm, class: "js-switch",  "data-off-text": t(:fall), "data-on-text": t(:spring)
+
+  .form-group
+    = f.label t(:courses), class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.collection_select(:course_ids, Course.all, :id, :course_name_concat,
+      {include_hidden: true}, { id: "include_semesters_in_course", class: "form-control", multiple: true })
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"

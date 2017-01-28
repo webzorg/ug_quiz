@@ -21,8 +21,6 @@ class Attempt < ApplicationRecord
   before_save :attempt_score_setter
 
   def attempt_score_setter
-    update_columns(
-      score: responses.select(&:correct).map(&:question).map(&:question_category).sum(&:weight)
-    )
+    self.score = responses.select(&:correct).map(&:question).map(&:question_category).sum(&:weight)
   end
 end

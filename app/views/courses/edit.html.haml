@@ -1,0 +1,11 @@
+.page-header
+  = link_to courses_path, class: "btn btn-default" do
+    %span.glyphicon.glyphicon-list-alt
+    =t(:back)
+  &nbsp
+  = link_to @course, class: "btn btn-primary" do
+    %span.glyphicon.glyphicon-info-sign
+    =t(:show)
+  %h1=t(:editing_course)
+
+= render "form"

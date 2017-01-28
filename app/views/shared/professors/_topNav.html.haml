@@ -15,15 +15,15 @@
             =t(:main_menu)
             %span.caret
           %ul.dropdown-menu{role: "menu"}
+            %li{class: active_class(courses_path)}
+              =link_to t(:courses), courses_path
             %li{class: active_class(semesters_path)}
               =link_to t(:semesters), semesters_path
             %li{class: active_class(groups_path)}
               =link_to t(:groups), groups_path
+            %li.divider
             %li{class: active_class(quizzes_path)}
               =link_to t(:quizzes), quizzes_path
-            %li.divider
-            %li
-              %a{href: "#"} Separated link
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded": "false", "data-toggle": "dropdown", href: "#", role: "button"}
             = t(:user_management)

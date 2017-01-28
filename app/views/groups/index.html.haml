@@ -9,9 +9,7 @@
     %thead
       %tr
         %th.col-sm-2=t(:group_id)
-        %th.col-sm-2=t(:name)
-        %th.col-sm-2=t(:semester)
-        %th=t(:professor)
+        %th.col-sm-7=t(:name)
         %th.col-sm-1
         %th.col-sm-1
         %th.col-sm-1
@@ -21,8 +19,6 @@
         %tr
           %td= group.group_id
           %td= group.name
-          %td= group.semester.semester_name_concat
-          %td= group.professor.name
           %td= link_to t(:show), group, class: "btn btn-primary #{can_class(:show, group)}"
           %td= link_to t(:edit), edit_group_path(group), class: "btn btn-warning #{can_class(:update, group)}"
           %td= link_to t(:destroy), group, data: { confirm: t(:are_you_sure) }, method: :delete, class: "btn btn-danger #{can_class(:destroy, group)}"

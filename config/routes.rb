@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :groups
     resources :semesters
     resources :attempts
+    resources :courses
 
     root "home#index"
   end

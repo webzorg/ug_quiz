@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: courses_semesters
 #
 #  id          :integer          not null, primary key
-#  course_name :string
-#  course_code :string
+#  semester_id :integer
+#  course_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
 require 'test_helper'
 
-class CourseTest < ActiveSupport::TestCase
+class CoursesSemesterTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

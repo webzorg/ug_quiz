@@ -5,13 +5,15 @@
 #  id          :integer          not null, primary key
 #  course_name :string
 #  course_code :string
-#  semester_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
 class Course < ApplicationRecord
-  belongs_to :semester
+  translates :course_name, fallbacks_for_empty_translations: true
+
+  has_many :courses_semesters, dependent: :destroy
+  has_many :semesters, through: :courses_semesters
   has_many :groups
 
   def course_name_concat

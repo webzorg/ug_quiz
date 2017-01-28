@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_course_path, class: "btn btn-primary #{can_class(:create, Course)}" do
+    %span.glyphicon.glyphicon-plus
+    =t(:new_course)
+  %h1=t(:listing_courses)
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th=t(:course_code)
+        %th=t(:course_name)
+        %th
+        %th
+        %th
+
+    %tbody
+      - @courses.each do |course|
+        %tr
+          %td= course.course_code
+          %td= course.course_name
+          %td= link_to t(:show), course, class: "btn btn-primary #{can_class(:show, course)}"
+          %td= link_to t(:edit), edit_course_path(course), class: "btn btn-warning #{can_class(:update, course)}"
+          %td= link_to t(:destroy), course, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger #{can_class(:destroy, course)}"
