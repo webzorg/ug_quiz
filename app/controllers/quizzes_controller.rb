@@ -1,6 +1,5 @@
 class QuizzesController < Professors::ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :toggle_quiz]
-  # before_action :remove_blank_group_ids_if_admin, only: [:update]
   before_action :groups_set_for_create, only: [:create]
   before_action :groups_set_for_update, only: [:update]
   before_action :cleanup_quiz_permutations_for_removed_groups, only: [:update]
@@ -45,6 +44,10 @@ class QuizzesController < Professors::ApplicationController
 
   def toggle_quiz
     if @quiz.update_attributes(active: params[:active])
+      # params[:quiz_duration].to_i.downto(0) do |i|
+      #   puts "00:00:#{'%02d' % i}"
+      #   sleep 1
+      # end
       respond_to do |format|
         @ajax_status_text = @quiz.active ? "Successfully activated quiz." : "Successfully deactivated quiz."
         @flash_status = @quiz.active ? "success" : "warning"
@@ -115,7 +118,6 @@ class QuizzesController < Professors::ApplicationController
     @temp_quizzes = [@quiz]
     return unless params[:others_group_ids].present?
     groups = Group.where(id: params[:others_group_ids].reject(&:blank?).map(&:to_i))
-    professors = Professor.where(id: groups.map(&:professor_id).uniq)
 
     groups.each do |group|
       quiz_temp = @quiz.deep_clone include: [{ question_categories: { questions: :answers } }]
@@ -124,8 +126,6 @@ class QuizzesController < Professors::ApplicationController
       quiz_temp.save
     end
   end
-
-
 
   def cleanup_quiz_permutations_for_removed_groups
     # cleaning up quiz permutations after removing it from group
@@ -137,11 +137,6 @@ class QuizzesController < Professors::ApplicationController
     QuestionPermutation.where(quiz_permutation_id: @quiz.quiz_permutations).destroy_all
   end
 
-  # def remove_blank_group_ids_if_admin
-  #   return unless current_professor.admin?
-  #   params[:quiz].delete(:group_ids) if params[:quiz][:group_ids].reject(&:blank?).blank?
-  # end
-
   def set_quiz
     @quiz = Quiz.find(params[:id])
   end
@@ -149,6 +144,7 @@ class QuizzesController < Professors::ApplicationController
   def quiz_params
     params.require(:quiz).permit(
       :active,
+      :quiz_duration,
       :questions_per_quizzes,
       :group_id,
       others_group_ids: [],

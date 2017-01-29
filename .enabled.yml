@@ -1,5 +1,0 @@
-Rails:
-  Enabled: true
-
-Style/IndentationConsistency:
-  EnforcedStyle: rails

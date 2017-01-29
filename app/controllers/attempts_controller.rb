@@ -5,8 +5,9 @@ class AttemptsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @attempts = current_student.attempts
+    @attempts = current_student.attempts & Quiz.active.map(&:attempts).flatten
   end
+
   # def new
   # end
 
@@ -30,7 +31,9 @@ class AttemptsController < ApplicationController
   # end
 
   def update
-    params[:attempt][:responses_attributes].delete_if { |_key, value| value.is_a?(Hash) } # cleaning rails checkbox automagics
+    # cleaning rails checkbox automagics
+    params[:attempt][:responses_attributes].delete_if { |_key, value| value.is_a?(Hash) }
+
     params[:attempt][:responses_attributes] =
       params[:attempt][:responses_attributes].map do |key, value|
         { question_id: key, answer_ids: value }

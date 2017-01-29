@@ -51,6 +51,8 @@ $(document).ready(function() {
     animate: true
   });
 
+  let rows = $('table').find('tr');
+
   $('.async-toggle-quiz').bootstrapSwitch({
     onColor: "success",
     offColor: "warning",
@@ -59,11 +61,13 @@ $(document).ready(function() {
     labelWidth: 10,
     animate: true,
     onSwitchChange: function(event, state) {
+      // get index of a row containing the switch.
+      let index_of_switch = rows.index($(this).parents().eq(4))
       clearFlash();
       $.ajax({
         url: '/ka/quizzes/' + this.value + '/toggle_quiz',
         type: 'PATCH',
-        data: {'active': this.checked},
+        data: {'active': this.checked, 'quiz_duration': $('#quiz_duration' + index_of_switch).val()},
       });
     }
   });

@@ -50,7 +50,7 @@ group :development do
   gem "rack-livereload"
   gem "rails-erd"
   gem "rubocop", require: false
-  gem "scss_lint"
+  gem "scss_lint", require: false
   # Access an IRB console on exception pages or by using
   # <%= console %> anywhere in the code.
   gem "listen", "~> 3.0.5"

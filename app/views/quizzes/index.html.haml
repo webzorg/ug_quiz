@@ -9,16 +9,24 @@
     %thead
       %tr
         %th.col-sm-7=t(:group_name)
-        %th.col-sm-1=t(:status)
+        %th.col-sm-1=t(:something)
         %th.col-sm-1=t(:weight)
         %th.col-sm-1
         %th.col-sm-1
         %th.col-sm-1
     %tbody
-      - @quizzes.each do |quiz|
+      - @quizzes.each.with_index(1) do |quiz, index|
         %tr
           %td= quiz.group.name
-          %td= check_box_tag(:active, quiz.id, quiz.active, {class: "async-toggle-quiz", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
+          %td
+            %button.btn.btn-info{"data-target": ".quiz-control-panel", "data-toggle": "collapse", type: "button"}=t(:quiz_control_panel)
+            -#.collapse
+            .quiz-control-panel
+              =number_field_tag :quiz_duration, 10, min: 5, id: "quiz_duration#{index}"
+              %br
+              %br
+              =check_box_tag(:active, quiz.id, quiz.active, {class: "async-toggle-quiz", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
+
           %td= quiz.total_weight
           %td= link_to t(:show), quiz, class: "btn btn-primary #{can_class(:show, quiz)}"
           %td= link_to t(:edit), edit_quiz_path(quiz), class: "btn btn-warning #{can_class(:update, quiz)}"
