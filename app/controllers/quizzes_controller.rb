@@ -44,10 +44,6 @@ class QuizzesController < Professors::ApplicationController
 
   def toggle_quiz
     if @quiz.update_attributes(active: params[:active])
-      # params[:quiz_duration].to_i.downto(0) do |i|
-      #   puts "00:00:#{'%02d' % i}"
-      #   sleep 1
-      # end
       respond_to do |format|
         @ajax_status_text = @quiz.active ? "Successfully activated quiz." : "Successfully deactivated quiz."
         @flash_status = @quiz.active ? "success" : "warning"

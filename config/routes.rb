@@ -33,4 +33,6 @@ Rails.application.routes.draw do
 
   # fallback to root if locale param is missing
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
+
+  mount ActionCable.server => "/cable"
 end

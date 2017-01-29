@@ -4,6 +4,8 @@
     =t(:new_quiz)
   %h1=t(:listing_quizzes)
 
+
+
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
@@ -22,10 +24,12 @@
             %button.btn.btn-info{"data-target": ".quiz-control-panel", "data-toggle": "collapse", type: "button"}=t(:quiz_control_panel)
             -#.collapse
             .quiz-control-panel
+              =content_tag :div, nil, id: "countdown#{index}"
+              %br
               =number_field_tag :quiz_duration, 10, min: 5, id: "quiz_duration#{index}"
               %br
               %br
-              =check_box_tag(:active, quiz.id, quiz.active, {class: "async-toggle-quiz", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
+              =check_box_tag(:active, quiz.id, quiz.active, {class: "async-toggle-quiz", id: "async-toggle-quiz#{index}", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
 
           %td= quiz.total_weight
           %td= link_to t(:show), quiz, class: "btn btn-primary #{can_class(:show, quiz)}"

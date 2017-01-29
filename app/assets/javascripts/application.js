@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require select2
 //= require bootstrap-switch
+//= require jquery.countdown
 //= require cocoon
 //= require_tree .
 
@@ -28,6 +29,8 @@ function clearFlash(){
 clearFlash();
 
 $(document).ready(function() {
+  // rows for quizzes index
+  let rows = $('table').find('tr');
 
   $("#include_semesters_in_course").select2();
   $("#include_students_in_group").select2();
@@ -51,8 +54,17 @@ $(document).ready(function() {
     animate: true
   });
 
-  let rows = $('table').find('tr');
-
+  function disableSwitchOnStateUp(disabledTime, index_of_timer) {
+    setTimeout(function() {
+      // $('.async-toggle-quiz').bootstrapSwitch('disabled', false);// Remove disabled.
+      $('#async-toggle-quiz' + index_of_timer).bootstrapSwitch('disabled', false);// Apply disabled.
+      $('#async-toggle-quiz' + index_of_timer).bootstrapSwitch('state', false);// Success!
+      $('#countdown' + index_of_timer).countdown('destroy');
+    }, disabledTime);
+  }
+  function initCounter(quiz_duration, index_of_timer) {
+    $('#countdown'+index_of_timer).countdown({until: quiz_duration, compact: true});
+  }
   $('.async-toggle-quiz').bootstrapSwitch({
     onColor: "success",
     offColor: "warning",
@@ -62,12 +74,21 @@ $(document).ready(function() {
     animate: true,
     onSwitchChange: function(event, state) {
       // get index of a row containing the switch.
-      let index_of_switch = rows.index($(this).parents().eq(4))
+      let index_of_switch = rows.index($(this).parents().eq(4));
+      let this_quiz_duration = $('#quiz_duration' + index_of_switch).val();
       clearFlash();
+
+      // only for state up
+      if (state == true) {
+        $(this).bootstrapSwitch('disabled', true);
+        disableSwitchOnStateUp(this_quiz_duration*1000, index_of_switch);
+        initCounter(this_quiz_duration, index_of_switch);
+      }
+
       $.ajax({
         url: '/ka/quizzes/' + this.value + '/toggle_quiz',
         type: 'PATCH',
-        data: {'active': this.checked, 'quiz_duration': $('#quiz_duration' + index_of_switch).val()},
+        data: {'active': state, 'quiz_duration': this_quiz_duration},
       });
     }
   });
