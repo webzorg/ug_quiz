@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128184352) do
+ActiveRecord::Schema.define(version: 20170130130932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(version: 20170128184352) do
     t.boolean  "active"
     t.float    "total_weight", default: 0.0
     t.integer  "group_id"
+    t.datetime "expires_at"
     t.index ["group_id"], name: "index_quizzes_on_group_id", using: :btree
   end
 

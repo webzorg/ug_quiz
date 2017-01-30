@@ -60,11 +60,13 @@ $(document).ready(function() {
       $('#async-toggle-quiz' + index_of_timer).bootstrapSwitch('disabled', false);// Apply disabled.
       $('#async-toggle-quiz' + index_of_timer).bootstrapSwitch('state', false);// Success!
       $('#countdown' + index_of_timer).countdown('destroy');
-    }, disabledTime);
+    }, disabledTime + 5000);
   }
-  function initCounter(quiz_duration, index_of_timer) {
-    $('#countdown'+index_of_timer).countdown({until: quiz_duration, compact: true});
+
+  function initCounter(dom_element_id, quiz_duration, index_of_timer) {
+    $(dom_element_id+index_of_timer).countdown({until: quiz_duration, compact: true, format: 'MS'});
   }
+
   $('.async-toggle-quiz').bootstrapSwitch({
     onColor: "success",
     offColor: "warning",
@@ -82,7 +84,7 @@ $(document).ready(function() {
       if (state == true) {
         $(this).bootstrapSwitch('disabled', true);
         disableSwitchOnStateUp(this_quiz_duration*1000, index_of_switch);
-        initCounter(this_quiz_duration, index_of_switch);
+        initCounter("#countdown", this_quiz_duration, index_of_switch);
       }
 
       $.ajax({

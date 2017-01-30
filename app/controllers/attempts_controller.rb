@@ -1,34 +1,14 @@
 class AttemptsController < ApplicationController
-  before_action :set_attempt, only: [:show, :edit, :update, :destroy]
-  # before_action :set_student_quizzes
-  # before_action :set_quiz, only: [:new]
+  before_action :set_attempt, only: [:edit, :update]
   load_and_authorize_resource
 
   def index
     @attempts = current_student.attempts & Quiz.active.map(&:attempts).flatten
   end
 
-  # def new
-  # end
-
   def edit
-    # completed_quiz_fallback if @attempt.completed? # dev tempo Not for production
+    completed_quiz_fallback if @attempt.completed?
   end
-
-  # def create
-  #   params[:attempt][:responses_attributes] =
-  #     params[:attempt][:responses_attributes].map do |key, value|
-  #       { question_id: key, answer_ids: value }
-  #     end
-  #
-  #   # @quiz = @active_quizzes.find(attempt_params[:quiz_id])
-  #   # @attempt = @quiz.attempts.new(attempt_params)
-  #   if @attempt.save
-  #     redirect_to attempts_path, notice: I18n.t(:attempt_successfully_created)
-  #   else
-  #     render :new, quiz_id: @quiz.id
-  #   end
-  # end
 
   def update
     # cleaning rails checkbox automagics
@@ -41,36 +21,27 @@ class AttemptsController < ApplicationController
 
     if @attempt.update(attempt_params)
       @attempt.update_attributes(completed: true)
-      redirect_to attempts_path, notice: "Attempt was successfully updated."
+      redirect_to attempts_path, notice: I18n.t(:quiz_successfully_submitted)
     else
       render :edit
     end
   end
 
-  # def destroy
-  #   @attempt.destroy
-  #   redirect_to attempts_url, notice: "Attempt was successfully destroyed."
-  # end
-
   private
 
-  # def set_student_quizzes
-  #   @active_quizzes = current_student.quizzes.newest_first.active.distinct
-  # end
-  #
-  # def set_quiz
-  #   @quiz = @active_quizzes.find(params[:quiz_id])
-  # end
+    def completed_quiz_fallback
+      redirect_to attempts_path, notice: I18n.t(:quiz_already_completed)
+    end
 
-  def completed_quiz_fallback
-    redirect_to attempts_path, notice: "Quiz already attempted."
-  end
+    def set_attempt
+      @attempt = Attempt.find(params[:id])
+      redirect_to attempts_path, notice: I18n.t(:quiz_expired) unless @attempt.quiz_permutation.quiz.active?
+    end
 
-  def set_attempt
-    @attempt = Attempt.find(params[:id])
-  end
-
-  def attempt_params
-    params.require(:attempt).permit(:student_id, responses_attributes: [:id, :question_id, :correct, :answer_ids, answer_ids: []])
-  end
+    def attempt_params
+      params.require(:attempt).permit(
+        :student_id,
+        responses_attributes: [:id, :question_id, :correct, :answer_ids, answer_ids: []]
+      )
+    end
 end

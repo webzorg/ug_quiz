@@ -4,4 +4,25 @@
     =t(:back)
   %h1=t(:taking_quiz)
 
+#countdown
+%br
+
 = render "form"
+-# expiryUrl: "http://localhost:3000#{attempts_path(I18n.default_locale)}"
+
+-time_left = (@attempt.quiz_permutation.quiz.expires_at - Time.current).to_i
+:javascript
+
+    function submitFormAndRedirect(){
+      $("form").submit();
+    }
+
+    $(document).ready( function() {
+      $("#countdown").countdown({until: "#{time_left}",
+        compact: true,
+        format: "MS",
+        description: "<i>#{I18n.t(:quiz_will_autosubmit_when_time_expires)}</i>",
+        onExpiry: submitFormAndRedirect,
+        expiryUrl: "#{attempts_url(I18n.default_locale)}"
+      });
+    });

@@ -8,6 +8,7 @@
 #  active       :boolean
 #  total_weight :float            default(0.0)
 #  group_id     :integer
+#  expires_at   :datetime
 #
 
 require 'test_helper'

@@ -43,13 +43,17 @@ class QuizzesController < Professors::ApplicationController
   end
 
   def toggle_quiz
-    if @quiz.update_attributes(active: params[:active])
+    quiz_duration = params[:quiz_duration].to_i
+    if @quiz.update_attributes(
+      active: params[:active],
+      expires_at: Time.now + quiz_duration
+    )
       respond_to do |format|
         if @quiz.active?
           @ajax_status_text = I18n.t(:successfully_activated_quiz)
           @flash_status = "success"
           DisableQuizAfterTimoutJob.set(
-            wait: (params[:quiz_duration].to_i + 5).seconds
+            wait: (quiz_duration + 5).seconds
           ).perform_later(@quiz)
         else
           @ajax_status_text = I18n.t(:successfully_deactivated_quiz)

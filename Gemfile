@@ -29,7 +29,6 @@ gem "rails-i18n", github: "svenfuchs/rails-i18n", branch: "master"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
-gem "bootstrap-generators", "~> 3.3.4"
 gem "bootstrap-switch-rails"
 gem "select2-rails"
 
@@ -47,6 +46,7 @@ end
 
 group :development do
   gem "annotate"
+  gem "bootstrap-generators", "~> 3.3.4"
   gem "foreman"
   gem "guard-livereload", "~> 2.5", require: false
   gem "haml_lint"

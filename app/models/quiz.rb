@@ -8,6 +8,7 @@
 #  active       :boolean
 #  total_weight :float            default(0.0)
 #  group_id     :integer
+#  expires_at   :datetime
 #
 
 class Quiz < ApplicationRecord
@@ -46,21 +47,19 @@ class Quiz < ApplicationRecord
 
   private
 
-  def validate_questions_per_quizzes
-    marked_for_destruction_counter = 0
-    marked_for_destruction = false
-    question_categories.each do |question_category|
-      recount_questions = 0
-      question_category.questions.each do |question|
-        marked_for_destruction = question.marked_for_destruction?
-        marked_for_destruction_counter += 1 if question.marked_for_destruction?
-        recount_questions += 1
-      end
-      if question_category.questions_per_category > recount_questions - marked_for_destruction_counter && marked_for_destruction
-        errors.add(" ", I18n.t(:number_of_questions_requested_in_quiz_exceeds_question_amount))
+    def validate_questions_per_quizzes
+      marked_for_destruction_counter = 0
+      marked_for_destruction = false
+      question_categories.each do |question_category|
+        recount_questions = 0
+        question_category.questions.each do |question|
+          marked_for_destruction = question.marked_for_destruction?
+          marked_for_destruction_counter += 1 if question.marked_for_destruction?
+          recount_questions += 1
+        end
+        if question_category.questions_per_category > recount_questions - marked_for_destruction_counter && marked_for_destruction
+          errors.add(" ", I18n.t(:number_of_questions_requested_in_quiz_exceeds_question_amount))
+        end
       end
     end
-
-  end
-
 end
