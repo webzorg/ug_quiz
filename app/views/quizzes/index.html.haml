@@ -21,11 +21,12 @@
         %tr
           %td= quiz.group.name
           %td
-            %button.btn.btn-info{"data-target": ".quiz-control-panel", "data-toggle": "collapse", type: "button"}=t(:quiz_control_panel)
-            -#.collapse
-            .quiz-control-panel
-              =content_tag :div, nil, id: "countdown#{index}"
+            %button.btn.btn-info{"data-target": "#quiz-control-panel#{index}", "data-toggle": "collapse", type: "button"}=t(:quiz_control_panel)
+            %br
+            =content_tag :div, nil, id: "quiz-control-panel#{index}", class: "collapse" do
               %br
+              =content_tag :div, nil, id: "countdown#{index}"
+              =t(:input_time_in_seconds) + ":"
               =number_field_tag :quiz_duration, 10, min: 5, id: "quiz_duration#{index}"
               %br
               %br

@@ -23,10 +23,10 @@
       = collection_select(nil, :others_group_ids, groups, :id, :name,
       {include_hidden: false}, {id: "include_others_groups_in_quiz", class: "form-control", multiple: true })
 
-  .form-group
-    = f.label t(:status), class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.check_box :active, class: "toggle-quiz",  "data-on-text": t(:on_off), "data-off-text": t(:off_on)
+  -# .form-group
+  -#   = f.label t(:status), class: "col-sm-2 control-label"
+  -#   .col-sm-10
+  -#     = f.check_box :active, class: "toggle-quiz",  "data-on-text": t(:on_off), "data-off-text": t(:off_on)
 
   -# ***** question-categories *****
   .form-group

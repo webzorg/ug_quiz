@@ -151,8 +151,10 @@ $padding-side: 1em;
 $padding-detail-pane: 0.2em;
 
 .quiz-control-panel {
-  background-color: black;
-  // height: 10em;
+  input[name="quiz_duration"] {
+    // width: 50%;
+  }
+  // background-color: $gray-light;
   padding: 1em;
 }
 

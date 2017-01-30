@@ -27,7 +27,7 @@ class QuizzesController < Professors::ApplicationController
     @quiz = Quiz.new(quiz_params)
     if @quiz.save
       add_others_group_ids
-      redirect_to @quiz, notice: "Quiz was successfully created."
+      redirect_to @quiz, notice: I18n.t(:quiz_was_successfully_created)
     else
       render :new
     end
@@ -36,7 +36,7 @@ class QuizzesController < Professors::ApplicationController
   def update
     if @quiz.update(quiz_params)
       add_others_group_ids
-      redirect_to @quiz, notice: "Quiz was successfully updated."
+      redirect_to @quiz, notice: I18n.t(:quiz_was_successfully_updated)
     else
       render :edit
     end
@@ -45,12 +45,20 @@ class QuizzesController < Professors::ApplicationController
   def toggle_quiz
     if @quiz.update_attributes(active: params[:active])
       respond_to do |format|
-        @ajax_status_text = @quiz.active ? "Successfully activated quiz." : "Successfully deactivated quiz."
-        @flash_status = @quiz.active ? "success" : "warning"
+        if @quiz.active?
+          @ajax_status_text = I18n.t(:successfully_activated_quiz)
+          @flash_status = "success"
+          DisableQuizAfterTimoutJob.set(
+            wait: (params[:quiz_duration].to_i + 5).seconds
+          ).perform_later(@quiz)
+        else
+          @ajax_status_text = I18n.t(:successfully_deactivated_quiz)
+          @flash_status = "warning"
+        end
         format.js
       end
     else
-      @ajax_status_text = "Request Failed"
+      @ajax_status_text = I18n.t(:request_failed)
       @flash_status = "danger"
       format.js
     end
@@ -58,7 +66,7 @@ class QuizzesController < Professors::ApplicationController
 
   def destroy
     @quiz.destroy
-    redirect_to quizzes_url, notice: "Quiz was successfully destroyed."
+    redirect_to quizzes_url, notice: I18n.t(:quiz_was_successfully_destroyed)
   end
 
   private
@@ -85,7 +93,9 @@ class QuizzesController < Professors::ApplicationController
     @temp_quizzes.zip(@temp_groups).each do |quiz, group|
 
       group.students.each do |student|
-        quiz_permutation = QuizPermutation.find_or_create_by(quiz_id: quiz.id, student_id: student.id, group_id: group.id)
+        quiz_permutation = QuizPermutation.find_or_create_by(
+          quiz_id: quiz.id, student_id: student.id, group_id: group.id
+        )
 
         # Find attempt, set completed to false and delete all responses.
         attempts_handler(quiz_permutation, student)
@@ -105,7 +115,9 @@ class QuizzesController < Professors::ApplicationController
   end
 
   def attempts_handler(quiz_permutation, student)
-    quiz_permutation.attempt = Attempt.find_or_create_by(student_id: student.id, quiz_permutation_id: quiz_permutation.id)
+    quiz_permutation.attempt = Attempt.find_or_create_by(
+      student_id: student.id, quiz_permutation_id: quiz_permutation.id
+    )
     quiz_permutation.attempt.update_attributes(completed: false)
     quiz_permutation.attempt.responses.destroy_all # delete all student responses on quiz update
   end

@@ -38,8 +38,9 @@ gem "cocoon"
 gem "deep_cloneable", "~> 2.2.2"
 gem "devise"
 
-#timer
+# timer
 gem "jquery-countdown-rails"
+
 group :development, :test do
   gem "pry-byebug"
 end
