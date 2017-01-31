@@ -13,7 +13,6 @@ class Course < ApplicationRecord
 
   has_many :courses_semesters, dependent: :destroy
   has_many :semesters, through: :courses_semesters
-  has_many :groups
 
   def course_name_concat
     "#{course_code} - #{course_name}"
