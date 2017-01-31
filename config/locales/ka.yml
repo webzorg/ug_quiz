@@ -106,6 +106,7 @@ ka:
   add_question: კითხვის დამატება
   add_question_category: კითხვების კატეგორიის დამატება
   add_questions: კითხვების დამატება
+  add_to_group: ჯგუფში დამატება
   add_to_groups: ჯგუფებში დამატება
   add_to_others_groups: ჯგუფებისთვის გაზიარება
   admin: ადმინი
@@ -114,26 +115,32 @@ ka:
   attempt_successfully_created: ქვიზი ჩაბარებულია წარმატებით
   attempts: ქვიზები
   back: უკან
+  belongs_to_course_semester: ეკუთვნის ჯგუფს
+  belongs_to_group: ეკუთვნის ჯგუფს
   belongs_to_groups: ეკუთვნის ჯგუფებს
   belongs_to_owner: ეკუთვნის პროფესორს
-  by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted:
-    არსებული ქვიზის განახლებით, თქვენ წაშლით ყველა სტუდენტების მიერ ჩაბარებულ პასუხს. ასევე იქნება გენერირებული ახალი კითხვების კომბინაციები.
-  category_max_score_sum: Category max score sum
-  category_possible_score_sum: Category possible score sum
+  by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted: არსებული ქვიზის განახლებით, თქვენ წაშლით ყველა სტუდენტების მიერ ჩაბარებულ პასუხს. ასევე იქნება გენერირებული ახალი კითხვების კომბინაციები.
+  category_max_score_sum: ყველა აქტიური კითხვის ქულის ჯამი კატეგორიაში
+  category_possible_score_sum: ყველა კითხვის ქულის ჯამი
+  completed: დასრულებული
   correct: სწორია
-  course: Course
-  course_code: Course code
-  course_name: Course name
+  course: კურსი
+  course_and_semester: კურსი და სემესტრი
+  course_code: კურსის კოდი
+  course_name: კურსის სახელი
+  course_name_concat: კონკატინირებული კურსის სახელი
+  courses: კურსები
   destroy: წაშლა
   edit: შესწორება
   editing_attempt: ცვლილების რედაქტირება
+  editing_course: კურსის რედაქტირება
   editing_group: ჯგუფის რედაქტირება
   editing_professor: პროფესორის რედაქტირება
   editing_quiz: ქვიზის რედაქტირება
   editing_semester: სემესტრის რედაქტირება
   editing_student: სტუდენტის რედაქტირება
   email: ელ-ფოსტა
-  en: english
+  en: English
   fall: შემოდგომა
   group_id: ჯგუფის ID
   group_name: ჯგუფის სახელი
@@ -147,9 +154,11 @@ ka:
           one: ნაჩვენებია <b>1</b> %{entry_name}
           other: ნაჩვენებია <b>ყველა %{count}</b> %{entry_name}
           zero: "%{entry_name} არ მოიძებნა"
+  input_time_in_seconds: Input time in seconds
   ka: ქართული
   language: ენა
   listing_attempts: ქვიზები
+  listing_courses: კურსების ინდექსი
   listing_groups: ჯგუფების ინდექსი
   listing_quizzes: ქვიზების ინდექსი
   listing_semesters: სემესტრების ინდექსი
@@ -157,6 +166,7 @@ ka:
   main_menu: მთავარი მენიუ
   name: სახელი
   new_attempt: ქვიზი
+  new_course: ახალი კურსი
   new_group: ახალი ჯგუფი
   new_password: ახალი პაროლი
   new_password_confirmation: ახალი პაროლის დადასტურება
@@ -164,9 +174,9 @@ ka:
   new_quiz: ახალი ქვიზი
   new_semester: ახალი სემესტრი
   new_student: ახალი სტუდენტი
-  number_of_active_questions: Number of active questions
-  number_of_questions: Number of questions
-  number_of_questions_requested_in_quiz_exceeds_question_amount: Number of questions requested in quiz exceeds question amount
+  number_of_active_questions: აქტიური კითხვების რაოდენობა
+  number_of_questions: კითხვების რაოდენობა
+  number_of_questions_requested_in_quiz_exceeds_question_amount: ქვიზში მითითებული კითხვების რაოდენობა აღემატება დამატებული კითხვების რაოდენობას
   off_on: გამორთული
   on_off: ჩართული
   password: პაროლი
@@ -180,15 +190,26 @@ ka:
   questions: კითხვები
   questions_per_category: კითხვები კატეგორიიდან
   questions_per_quizzes: კითხვების მაქს რაოდენობა
+  quiz_already_completed: თქვენ ეს ქვიზი უკვე ჩააბარეთ
+  quiz_control_panel: ქვიზის მართვის პანელი
+  quiz_expired: ქვიზი დასრულებულია
   quiz_id: ქვიზის ID
-  quiz_number: Quiz number
+  quiz_number: ქვიზის ნომერი
+  quiz_successfully_submitted: ქვიზი წარმატებულად ჩაბარებულია
+  quiz_was_successfully_created: ქვიზი წარმატებით შექმნილია
+  quiz_was_successfully_destroyed: ქვიზი წარმატებით წაშლილია
+  quiz_was_successfully_updated: ქვიზი წარმატებით რედაქტირებულია
+  quiz_will_autosubmit_when_time_expires: დროის ამოწურვის შემთხვევაში ქვიზი ავტომატურად ჩაბარდება
   quizzes: ქვიზები
-  score: Score
+  request_failed: მოთხოვნა წარუმატებელია
+  score: ქულა
   score_per_question: თითო კითხვის ქულა
   semester: სემესტრი
+  semester_name_concat: კონკატინირებული სემესტრის სახელი
   semesters: სემესტრები
   show: ჩვენება
   show_attempt: მცდელობის ჩვენება
+  show_course: კურსის ჩვენება
   show_group: ჯგუფის ჩვენება
   show_professor: პროფესორის ჩვენება
   show_quiz: ქვიზის ჩვენება
@@ -199,12 +220,14 @@ ka:
   student_id: სტუდენტის ID
   student_index: სტუდენტების ინდექსი
   student_name: სტუდენტის სახელი
-  student_results: Student results
+  student_results: სტუდენტის შედეგები
   students: სტუდენტები
+  successfully_activated_quiz: ქვიზი წარმატებულად აქტივირებულია
+  successfully_deactivated_quiz: ქვიზი წარმატებულად დეაქტივირებულია
   take_quiz: ქვიზის დაწყება
-  taking_quiz: Taking quiz
-  total_possible_weight: Total possible weight
-  total_weight: Total weight
+  taking_quiz: შეავსეთ ქვიზი
+  total_possible_weight: მაქსიმალური შესაძლებელი ქულა
+  total_weight: მაქსიმალური ქულა
   unauthorized:
     default: დაფიქსირდა შეცდომა.
     manage:

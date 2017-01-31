@@ -38,11 +38,11 @@ class Quiz < ApplicationRecord
   end
 
   def total_weight
-    question_categories.inject(0) { |acc, elem| acc + elem.questions.count * elem.weight }
+    question_categories.sum { |qc| qc.questions.count * qc.weight }
   end
 
   def total_possible_weight
-    question_categories.inject(0) { |acc, elem| acc + elem.questions_per_category * elem.weight }
+    question_categories.sum { |qc| qc.questions_per_category * qc.weight }
   end
 
   private

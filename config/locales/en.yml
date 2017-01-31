@@ -106,6 +106,7 @@ en:
   add_question: Add question
   add_question_category: Add question category
   add_questions: Add questions
+  add_to_group: Add to group
   add_to_groups: Add to groups
   add_to_others_groups: Share with other groups
   admin: Admin
@@ -114,19 +115,25 @@ en:
   attempt_successfully_created: Attempt successfully created
   attempts: Attempts
   back: Back
+  belongs_to_course_semester: Belongs to course semester
+  belongs_to_group: Belongs to group
   belongs_to_groups: Belongs to groups
   belongs_to_owner: Belongs to owner
-  by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted:
-    By updating existing quiz, all existing answers submitted by the students will be destroyed. New question combinations will be generated.
+  by_updating_quiz_all_existing_answers_submitted_by_students_will_be_deleted: By updating existing quiz, all existing answers submitted by the students will be destroyed. New question combinations will be generated.
   category_max_score_sum: Category max score sum
   category_possible_score_sum: Category possible score sum
+  completed: Completed
   correct: Correct
   course: Course
+  course_and_semester: Course and semester
   course_code: Course code
   course_name: Course name
+  course_name_concat: Course name concat
+  courses: Courses
   destroy: Destroy
   edit: Edit
   editing_attempt: Editing attempt
+  editing_course: Editing course
   editing_group: Editing group
   editing_professor: Editing professor
   editing_quiz: Editing quiz
@@ -147,9 +154,11 @@ en:
           one: Displaying <b>1</b> %{entry_name}
           other: Displaying <b>all %{count}</b> %{entry_name}
           zero: No %{entry_name} found
+  input_time_in_seconds: Input time in seconds
   ka: ქართული
   language: Language
   listing_attempts: Listing attempts
+  listing_courses: Listing courses
   listing_groups: Groups
   listing_quizzes: Listing quizzes
   listing_semesters: Listing semesters
@@ -157,6 +166,7 @@ en:
   main_menu: Main menu
   name: Name
   new_attempt: Start Quiz
+  new_course: New course
   new_group: New group
   new_password: New password
   new_password_confirmation: New password confirmation
@@ -180,15 +190,26 @@ en:
   questions: Questions
   questions_per_category: Questions per category
   questions_per_quizzes: Questions per Quiz
+  quiz_already_completed: Quiz already completed
+  quiz_control_panel: Quiz control panel
+  quiz_expired: Quiz expired
   quiz_id: Quiz
   quiz_number: Quiz number
+  quiz_successfully_submitted: Quiz successfully submitted
+  quiz_was_successfully_created: Quiz was successfully created
+  quiz_was_successfully_destroyed: Quiz was successfully destroyed
+  quiz_was_successfully_updated: Quiz was successfully updated
+  quiz_will_autosubmit_when_time_expires: Quiz will autosubmit when time expires
   quizzes: Quizzes
+  request_failed: Request failed
   score: Score
   score_per_question: Score per question
   semester: Semester
+  semester_name_concat: Semester name concat
   semesters: Semester
   show: Show
   show_attempt: Show attempt
+  show_course: Show course
   show_group: Show group
   show_professor: Show professor
   show_quiz: Show quiz
@@ -201,6 +222,8 @@ en:
   student_name: Student name
   student_results: Student results
   students: Students
+  successfully_activated_quiz: Successfully activated quiz
+  successfully_deactivated_quiz: Successfully deactivated quiz
   take_quiz: Take quiz
   taking_quiz: Taking quiz
   total_possible_weight: Total possible weight

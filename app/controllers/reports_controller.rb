@@ -10,11 +10,11 @@ class ReportsController < ApplicationController
   end
 
   def by_groups
-    @groups = @semester.groups
+    @groups = @semester.courses_semesters.collect(&:groups).flatten
   end
 
   def by_students
-    @students = @semester.groups.map(&:students).flatten
+    @students = @semester.courses_semesters.collect(&:groups).flatten.collect(&:students).flatten.uniq
   end
 
   private

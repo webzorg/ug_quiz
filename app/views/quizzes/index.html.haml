@@ -32,7 +32,7 @@
               %br
               =check_box_tag(:active, quiz.id, quiz.active, {class: "async-toggle-quiz", id: "async-toggle-quiz#{index}", "data-on-text": t(:on_off), "data-off-text": t(:off_on)})
 
-          %td= quiz.total_weight
+          %td= quiz.total_possible_weight
           %td= link_to t(:show), quiz, class: "btn btn-primary #{can_class(:show, quiz)}"
           %td= link_to t(:edit), edit_quiz_path(quiz), class: "btn btn-warning #{can_class(:update, quiz)}"
           %td= link_to t(:destroy), quiz, data: { confirm: t(:are_you_sure) }, method: :delete, class: "btn btn-danger #{can_class(:destroy, quiz)}"

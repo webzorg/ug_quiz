@@ -10,8 +10,6 @@
 #
 
 class Semester < ApplicationRecord
-  # has_many :groups, dependent: :destroy
-
   has_many :courses_semesters, dependent: :destroy
   has_many :courses, through: :courses_semesters
   scope :newest_first, -> { order(created_at: :desc) }

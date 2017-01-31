@@ -11,16 +11,16 @@
           %li= msg
 
   = f.hidden_field :student_id, value: current_student.id
-  = f.fields_for :responses, @attempt.quiz_permutation.question_permutations do |question_permutation|
+  = f.fields_for :responses, @attempt.quiz_permutation.question_permutations.shuffle do |question_permutation|
     - question = question_permutation.object.question
     %li.attempt-question= "(#{question.question_category.weight} ქულა) - #{question.content}"
     .attempt-question
       -if question.radio?
-        = collection_radio_buttons("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+        = collection_radio_buttons("attempt[responses_attributes]", question.id, question.answers.shuffle, :id, :content) do |b|
           .attempt-question
             = b.label { "#{b.radio_button} #{b.text}" }
       -else
-        = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers, :id, :content) do |b|
+        = collection_check_boxes("attempt[responses_attributes]", question.id, question.answers.shuffle, :id, :content) do |b|
           .attempt-question
             = b.label { "#{b.check_box} #{b.text}" }
   %br

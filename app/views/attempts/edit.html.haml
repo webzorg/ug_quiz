@@ -4,11 +4,13 @@
     =t(:back)
   %h1=t(:taking_quiz)
 
-#countdown
+%button.btn.btn-warning{"data-target": "#countdown", "data-toggle": "collapse", type: "button"}=t(:show_timer)
+%br
+%br
+#countdown.collapse
 %br
 
 = render "form"
--# expiryUrl: "http://localhost:3000#{attempts_path(I18n.default_locale)}"
 
 -time_left = (@attempt.quiz_permutation.quiz.expires_at - Time.current).to_i
 :javascript
